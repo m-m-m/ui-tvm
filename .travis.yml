@@ -1,0 +1,14 @@
+language: java
+jdk: openjdk11
+env:
+  global:
+  - secure: rsy6hbbJ5HeW8/kH6Vsvxb2hhh0F8I6aLwvnlGtSOeCvkNbjkyzjcG7FjVc95fsPTzxBCSstSqvrKv6oDHqIRjCnVusDdcB63KF/BYtmaqg9PGoAfZO0uPIHtX8bsMP2NHT+T4+zl/S/lpfrd4WWpsqaPU53L6uPIKHmxGP/9vGz31Ep6cii1KDm7sCYH07dr848BzcwP7gM/jH3yNCyxDuNuc9VmCCsWqF5p78qxfIxlj77Ra1mLdnDcB2N5llISDSmJnRsQrkvs8BJp2NrseAH0JfYyBty+8+K6aP8KuljHfJ7F8Ezd8KoRwNIh9rkSAtI9XpZRzVwOrn/qvBv+z2oQy4SkRNtP51PRZXGnt2/uPZAxcbpqOpY/VHjh0G2rNURAVgGZplZU0FDif3Gh8wZFnbgrHHHbTD67sjl3FD70+gBkoXJp+Lg+YZxhUxaeq6W8OlW0NYplIjVNUMfmQKK8jaJTce1oO3A6ChLeRhB3UUy/xVnhw+2PDBwGt1cUX32ag94NcdXD+up1GXfxOv0BfH/TuE1TgZuERciqgnoEH8W/nqEyAjMj7R/6TssAlWhXBeAtxMhc1Avamof6uHemavue2eUHsSgoDosViEpIefEhKoxNrkAPRNhhTSgSBgYmjz4RtCynf0W3f1i4ZzcgXVdNLD+a/9gb2UbfPk=
+  - secure: AdSNhZS36XaWEvN1XCyxMvN3InnrXF4Zj1q/HLOkIbMxe5tq1MF3lPN868iCapAvYE8U20TxSyIFD2FoQE5yADFm+4GeYwXHuTWUJVWh+j6g6+m64yEFsb8jHUroOuvGDb5cQxe65FhF8U5Wcpq74fmENm2dxh01/JJTxzsjrqBw70hbGONn0Wb2qop/p35i3YDH8ubRXrJVAMk3UfR9onxdDxuu3+zZ7WDvsGzKwx+jf7gQN9v14nfxz/NmkRtjy92tv52dDYaX3jrgGRSYqRhd4JEWNBYpzOV+cLj5aW2oDw9++BYuT6Fq9Y5hQc3kHHmz14CKKQQVC4cqFFT19MQB3rc8m2YqpXj0Cur2uWidT68v2whlbfTZ9eoHtp6F38UcZzvIHRIjOiFdiG0ctroX9tKVW4uEIYFhZPcDA6X0bHFcpOC3qGP24QgK7a2fDG2pnvPBsOxyQVpfPtSZXy56yEBwWkCVLwQrhC7E8LWmCZGxXMTxrdQdIgf3hhRX2J7eM5PpwYgu0VJRJnGkRWf/9TsomgV+Z0FKBpTgSL/8Wa6/YY9BoH7k7ScQsDP0PTQ0jYxEbc3dKtKBGsgIAk6ZVdgcwZ/WYuXVhwGhBEwIPOmdmmb3Z/nU0lRHS1eCO0O/sv9QxHyhr5r62evxdIisSEpKD/7YOZ2sLZ8262s=
+install: skip
+script: mvn --settings .mvn/settings.xml install && ([[ $TRAVIS_BRANCH != "master" ]] || mvn --settings .mvn/settings.xml -DskipTests=true deploy)
+cache:
+  directories: "$HOME/.m2"
+branches:
+  except: gh-pages
+notifications:
+  email: joerg.hohwiller@googlemail.com
