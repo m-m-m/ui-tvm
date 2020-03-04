@@ -7,6 +7,7 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLAudioElement;
 import org.teavm.jso.dom.html.HTMLButtonElement;
+import org.teavm.jso.dom.html.HTMLCanvasElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLFormElement;
@@ -261,6 +262,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLAudioElement newAudio() {
 
     return DOC.createElement("audio").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLCanvasElement}.
+   */
+  protected static HTMLCanvasElement newCanvas() {
+
+    return DOC.createElement("canvas").cast();
   }
 
   /**
