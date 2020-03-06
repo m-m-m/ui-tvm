@@ -182,18 +182,12 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public void setValue(V value) {
+  public void setValue(V value, boolean forUser) {
 
-    this.modified = false;
-    setOriginalValue(value);
-    setProgrammaticEventType(UiValueChangeEvent.TYPE);
-    setValueNative(value);
-  }
-
-  @Override
-  public void setValueForUser(V value) {
-
-    this.modified = true;
+    this.modified = forUser;
+    if (!forUser) {
+      setOriginalValue(value);
+    }
     setProgrammaticEventType(UiValueChangeEvent.TYPE);
     setValueNative(value);
   }

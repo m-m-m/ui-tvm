@@ -7,7 +7,7 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormGroup;
@@ -15,9 +15,10 @@ import io.github.mmm.ui.widget.panel.UiFormGroup;
 /**
  * Implementation of {@link UiFormGroup} using TeaVM.
  *
+ * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> implements UiFormGroup {
+public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>, V> implements UiFormGroup<V> {
 
   private final Legend legend;
 

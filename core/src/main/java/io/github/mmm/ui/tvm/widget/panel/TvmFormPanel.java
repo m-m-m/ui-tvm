@@ -5,7 +5,7 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
@@ -13,9 +13,10 @@ import io.github.mmm.ui.widget.panel.UiFormPanel;
 /**
  * Implementation of {@link UiFormPanel} using TeaVM.
  *
+ * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public class TvmFormPanel extends TvmDynamicComposite<HTMLElement, UiAbstractInput<?>> implements UiFormPanel {
+public class TvmFormPanel<V> extends TvmValuedComposite<HTMLElement, UiAbstractInput<?>, V> implements UiFormPanel<V> {
 
   /**
    * The constructor.

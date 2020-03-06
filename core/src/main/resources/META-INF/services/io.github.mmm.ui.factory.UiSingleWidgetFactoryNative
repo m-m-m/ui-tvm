@@ -5,6 +5,7 @@ io.github.mmm.ui.tvm.factory.core.TvmFactoryComboBoxDataList
 io.github.mmm.ui.tvm.factory.core.TvmFactoryFormGroup
 io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel
 io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel
+io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput
 io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel
 io.github.mmm.ui.tvm.factory.core.TvmFactoryMenu
 io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem

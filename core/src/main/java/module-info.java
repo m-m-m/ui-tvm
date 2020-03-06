@@ -8,6 +8,7 @@ import io.github.mmm.ui.tvm.factory.core.TvmFactoryButton;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel;
+import io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryMenu;
 import io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem;
@@ -43,6 +44,7 @@ module io.github.mmm.ui.tvm.core {
       TvmFactoryFormPanel, //
       TvmFactoryLabel, //
       TvmFactoryHorizontalPanel, //
+      TvmFactoryIntegerInput, //
       TvmFactoryMenu, //
       TvmFactoryMenuItem, //
       // TvmFactoryMenuItemCheckbox, //
