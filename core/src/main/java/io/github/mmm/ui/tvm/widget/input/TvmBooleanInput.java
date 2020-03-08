@@ -28,7 +28,7 @@ public abstract class TvmBooleanInput extends TvmLabelledInput<Boolean> {
   }
 
   @Override
-  public Boolean getValue() {
+  public Boolean getValueOrThrow() {
 
     return Boolean.valueOf(this.widget.isChecked());
   }

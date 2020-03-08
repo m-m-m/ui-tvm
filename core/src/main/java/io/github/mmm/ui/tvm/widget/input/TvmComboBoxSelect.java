@@ -110,7 +110,7 @@ public class TvmComboBoxSelect<V> extends TvmHtmlSelect<V> implements UiComboBox
   }
 
   @Override
-  public V getValue() {
+  public V getValueOrThrow() {
 
     int index = this.widget.getSelectedIndex();
     if ((index < 0) || (index >= this.options.size())) {

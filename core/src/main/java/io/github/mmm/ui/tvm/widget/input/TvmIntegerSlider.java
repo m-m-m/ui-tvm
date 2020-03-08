@@ -4,21 +4,21 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.base.number.NumberType;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiIntegerInput;
+import io.github.mmm.ui.widget.input.UiIntegerSlider;
 
 /**
- * Implementation of {@link UiIntegerInput} using TeaVM.
+ * Implementation of {@link UiIntegerSlider} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmIntegerInput extends TvmNumberInput<Integer> implements UiIntegerInput {
+public class TvmIntegerSlider extends TvmSlider<Integer> implements UiIntegerSlider {
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
    */
-  public TvmIntegerInput(UiContext context) {
+  public TvmIntegerSlider(UiContext context) {
 
     super(context);
   }

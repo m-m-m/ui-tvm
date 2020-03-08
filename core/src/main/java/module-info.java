@@ -4,21 +4,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryButton;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryMenu;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryTab;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryTabPanel;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput;
-import io.github.mmm.ui.tvm.factory.core.TvmFactoryVerticalPanel;
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
@@ -39,25 +24,26 @@ module io.github.mmm.ui.tvm.core {
   requires transitive teavm.jso.apis;
 
   provides UiSingleWidgetFactoryNative with //
-      TvmFactoryButton, //
-      TvmFactoryCheckbox, //
-      TvmFactoryFormPanel, //
-      TvmFactoryLabel, //
-      TvmFactoryHorizontalPanel, //
-      TvmFactoryIntegerInput, //
-      TvmFactoryMenu, //
-      TvmFactoryMenuItem, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryButton, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryMenu, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem, //
       // TvmFactoryMenuItemCheckbox, //
       // TvmFactoryMenuItemRadioButton, //
       // TvmFactoryMenuItemSeparator, //
-      TvmFactoryPasswordInput, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
       // TvmFactoryPopup, //
-      TvmFactoryRadioButton, //
-      TvmFactoryTab, //
-      TvmFactoryTabPanel, //
-      TvmFactoryTextInput, //
-      TvmFactoryTextArea, //
-      TvmFactoryVerticalPanel //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryTab, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryTabPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryVerticalPanel //
   // TvmFactoryWindow
   ;
 

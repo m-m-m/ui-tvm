@@ -78,7 +78,7 @@ public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidg
   }
 
   @Override
-  public V getValue() {
+  public V getValueOrThrow() {
 
     if (this.binding != null) {
       return this.binding.getValue();

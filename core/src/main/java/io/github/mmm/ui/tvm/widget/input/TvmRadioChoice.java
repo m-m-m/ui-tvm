@@ -121,7 +121,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
   }
 
   @Override
-  public V getValue() {
+  public V getValueOrThrow() {
 
     int optionCount = this.options.size();
     for (int i = 0; i < optionCount; i++) {

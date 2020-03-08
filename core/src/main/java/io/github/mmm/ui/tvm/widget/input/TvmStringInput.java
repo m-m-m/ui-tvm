@@ -37,7 +37,7 @@ public abstract class TvmStringInput extends TvmTextualInput<String> implements 
   }
 
   @Override
-  public String getValue() {
+  public String getValueOrThrow() {
 
     return this.widget.getValue();
   }

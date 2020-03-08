@@ -63,6 +63,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static final String EVENT_TYPE_INPUT = "input";
 
   /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_CHANGE = "change";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
   protected static final String EVENT_TYPE_KEYDOWN = "keydown";
 
   /** {@link HTMLElement#getClassName() CSS class name} for error icon. */
@@ -225,6 +228,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   }
 
   /**
+   * @return a new {@link HTMLElement output element}.
+   */
+  protected static HTMLElement newOutput() {
+
+    return DOC.createElement("output").cast();
+  }
+
+  /**
    * @return a new {@link HTMLTextAreaElement}.
    */
   protected static HTMLTextAreaElement newTextArea() {
@@ -310,6 +321,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLElement newSpan() {
 
     return DOC.createElement("span").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement datalist element}.
+   */
+  protected static HTMLElement newDatalist() {
+
+    return DOC.createElement("datalist").cast();
   }
 
   /**

@@ -12,6 +12,7 @@ import io.github.mmm.ui.widget.panel.UiFormPanel;
  *
  * @since 1.0.0
  */
+@SuppressWarnings("rawtypes")
 public class TvmFactoryFormPanel implements UiSingleWidgetFactoryNative<UiFormPanel> {
 
   @Override

@@ -27,7 +27,7 @@ public class TvmTextArea extends TvmInput<String, HTMLTextAreaElement> implement
   }
 
   @Override
-  public String getValue() {
+  public String getValueOrThrow() {
 
     return this.widget.getValue();
   }

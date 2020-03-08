@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLOptionElement;
@@ -45,9 +44,8 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
   public TvmComboBoxDataList(UiContext context) {
 
     super(context, "text");
-    HTMLDocument document = Window.current().getDocument();
-    this.topWidget = document.createElement("div");
-    this.datalist = document.createElement("datalist");
+    this.topWidget = newElement("ui-combobox");
+    this.datalist = newDatalist();
     String dataListId = "tvm-dl-" + counter++;
     this.datalist.setAttribute("id", dataListId);
     this.widget.setAttribute("list", dataListId);
@@ -117,7 +115,7 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
   }
 
   @Override
-  public V getValue() {
+  public V getValueOrThrow() {
 
     String title = this.widget.getValue();
     int index = this.titles.indexOf(title);
