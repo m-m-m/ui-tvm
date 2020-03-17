@@ -44,7 +44,7 @@ public class TvmLabel extends TvmWidgetHtmlElement<HTMLElement> implements UiLab
    */
   public void setFor(String id) {
 
-    this.widget.setAttribute("for", id);
+    this.widget.setAttribute(ATR_FOR, id);
   }
 
   @Override

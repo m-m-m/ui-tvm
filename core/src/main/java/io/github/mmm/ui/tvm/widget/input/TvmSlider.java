@@ -89,6 +89,7 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
   public void setId(String id) {
 
     super.setId(id);
+    this.output.setAttribute(ATR_FOR, id);
   }
 
   @Override
