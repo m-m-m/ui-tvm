@@ -53,22 +53,16 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
   @Override
   protected void addChildWidget(UiInput<?> child, int index) {
 
-    int domIndex = index;
-    if (domIndex >= 0) {
-      domIndex = (index * 2) + 1; // legend is first child, then 2 child nodes per UiInput
+    if (index >= 0) {
+      index++;
     }
-    insertAt(this.widget, getTopNode(child.getNameWidget()), domIndex);
-    if (domIndex >= 0) {
-      domIndex++;
-    }
-    insertAt(this.widget, getTopNode(child), domIndex);
+    insertAt(this.widget, getTopNode(child.getContainerWidget()), index);
   }
 
   @Override
   protected void removeChildWidget(UiInput<?> child) {
 
-    this.widget.removeChild(getTopNode(child.getNameWidget()));
-    this.widget.removeChild(getTopNode(child));
+    this.widget.removeChild(getTopNode(child.getContainerWidget()));
   }
 
   @Override

@@ -6,6 +6,7 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
+import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
@@ -42,35 +43,21 @@ public class TvmFormPanel<V> extends TvmValuedComposite<HTMLElement, UiAbstractI
   @Override
   protected void addChildWidget(UiAbstractInput<?> child, int index) {
 
-    int domIndex = -1;
-    if (index >= 0) {
-      domIndex = 0;
-      for (int i = 0; i < index; i++) {
-        UiAbstractInput<?> input = this.children.get(i);
-        domIndex++;
-        if (input instanceof UiInput) {
-          domIndex++;
-        }
-      }
-    }
+    UiWidget childWidget = child;
     if (child instanceof UiInput) {
-      UiInput<?> input = (UiInput<?>) child;
-      insertAt(this.widget, getTopNode(input.getNameWidget()), domIndex);
-      if (domIndex >= 0) {
-        domIndex++;
-      }
+      childWidget = ((UiInput<?>) child).getContainerWidget();
     }
-    insertAt(this.widget, getTopNode(child), domIndex);
+    insertAt(this.widget, getTopNode(childWidget), index);
   }
 
   @Override
   protected void removeChildWidget(UiAbstractInput<?> child) {
 
-    this.widget.removeChild(getTopNode(child));
+    UiWidget childWidget = child;
     if (child instanceof UiInput) {
-      UiInput<?> input = (UiInput<?>) child;
-      this.widget.removeChild(getTopNode(input.getNameWidget()));
+      childWidget = ((UiInput<?>) child).getContainerWidget();
     }
+    this.widget.removeChild(getTopNode(childWidget));
   }
 
 }

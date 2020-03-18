@@ -5,7 +5,7 @@ package io.github.mmm.ui.tvm.widget.composite;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
+import io.github.mmm.ui.UiValueBinding;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiValuedComposite;
@@ -26,7 +26,7 @@ public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidg
 
   private V originalValue;
 
-  private AttributeWriteValueForUser<V> binding;
+  private UiValueBinding<V> binding;
 
   /**
    * The constructor.
@@ -41,12 +41,13 @@ public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidg
   }
 
   @Override
-  public void initBinding(AttributeWriteValueForUser<V> newBinding) {
+  public void initBinding(UiValueBinding<V> newBinding) {
 
     if (this.binding != null) {
       throw new IllegalStateException();
     }
     this.binding = newBinding;
+    this.binding.setWidget(this);
   }
 
   @Override

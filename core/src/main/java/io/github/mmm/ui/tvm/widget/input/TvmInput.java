@@ -11,6 +11,7 @@ import io.github.mmm.ui.datatype.bitmask.BitMask;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
+import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithAutocomplete;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
@@ -29,11 +30,13 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
   private TvmLabel nameWidget;
 
+  private TvmInputContainer containerWidget;
+
   private Validator<? super V> validator;
 
   private V originalValue;
 
-  private boolean modified;
+  private long modificationTimestamp;
 
   private String autocomplete;
 
@@ -47,6 +50,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
     super(context, widget);
     this.validator = Validator.none();
+    this.modificationTimestamp = -1;
   }
 
   @Override
@@ -61,6 +65,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
    */
   protected void onInput(Event event) {
 
+    updateModificationTimestamp(false);
     fireEvent(new UiValueChangeEvent(this, getProgrammaticEventType() == UiValueChangeEvent.TYPE));
   }
 
@@ -121,6 +126,21 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
+  public boolean hasContainerWidget() {
+
+    return (this.containerWidget != null);
+  }
+
+  @Override
+  public UiRegularWidget getContainerWidget() {
+
+    if (this.containerWidget == null) {
+      this.containerWidget = new TvmInputContainer(this);
+    }
+    return this.containerWidget;
+  }
+
+  @Override
   public void setVisible(boolean visible, BitMask flagMode) {
 
     super.setVisible(visible, flagMode);
@@ -176,15 +196,24 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public boolean isModified() {
+  public long getModificationTimestamp() {
 
-    return this.modified;
+    return this.modificationTimestamp;
+  }
+
+  private void updateModificationTimestamp(boolean reset) {
+
+    if (reset) {
+      this.modificationTimestamp = -1;
+    } else {
+      this.modificationTimestamp = System.currentTimeMillis();
+    }
   }
 
   @Override
   public void setValue(V value, boolean forUser) {
 
-    this.modified = forUser;
+    updateModificationTimestamp(!forUser);
     if (!forUser) {
       setOriginalValue(value);
     }
