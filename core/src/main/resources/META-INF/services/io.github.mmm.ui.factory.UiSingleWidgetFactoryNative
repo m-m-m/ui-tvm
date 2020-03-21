@@ -13,6 +13,7 @@ io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem
 io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput
 io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton
 io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioChoice
+io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel
 io.github.mmm.ui.tvm.factory.core.TvmFactoryTab
 io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea
 io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput

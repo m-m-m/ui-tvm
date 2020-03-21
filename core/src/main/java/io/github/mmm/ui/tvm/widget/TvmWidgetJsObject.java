@@ -39,6 +39,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static final String TAG_NAME_UI_ICON = "ui-icon";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_STYLE = "style";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_ROLE = "role";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */

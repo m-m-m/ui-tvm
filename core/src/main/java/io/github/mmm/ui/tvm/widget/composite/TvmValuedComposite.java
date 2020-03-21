@@ -5,7 +5,7 @@ package io.github.mmm.ui.tvm.widget.composite;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.UiValueBinding;
+import io.github.mmm.ui.binding.UiValueBinding;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiValuedComposite;
