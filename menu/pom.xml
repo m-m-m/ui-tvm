@@ -7,27 +7,15 @@
     <artifactId>mmm-ui-tvm-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
-  <artifactId>mmm-ui-tvm-all</artifactId>
+  <artifactId>mmm-ui-tvm-menu</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>Combines all ui implementations for TeaVM.</description>
+  <description>Implementation of menu widgets for TeaVM.</description>
   
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-tvm-chart</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-tvm-media</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-tvm-menu</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-tvm-window</artifactId>
+      <artifactId>mmm-ui-tvm-core</artifactId>
     </dependency>
   </dependencies>
 </project>

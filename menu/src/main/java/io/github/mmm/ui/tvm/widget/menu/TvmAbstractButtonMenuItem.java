@@ -26,13 +26,13 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
   }
 
   @Override
-  public String getLabel() {
+  public String getText() {
 
     return this.label;
   }
 
   @Override
-  public void setLabel(String label) {
+  public void setText(String label) {
 
     if (label == null) {
       label = "";

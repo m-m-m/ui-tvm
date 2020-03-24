@@ -93,4 +93,7 @@ public abstract class TvmActiveWidget<W extends HTMLElement> extends TvmWidgetHt
     return true;
   }
 
+  @Override
+  protected abstract void setEnabledNative(boolean enabled);
+
 }

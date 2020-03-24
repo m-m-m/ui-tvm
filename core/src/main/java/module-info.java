@@ -29,19 +29,17 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryIcon, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryImage, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryMenu, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryMenuItem, //
-      // TvmFactoryMenuItemCheckbox, //
-      // TvmFactoryMenuItemRadioButton, //
-      // TvmFactoryMenuItemSeparator, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
       // TvmFactoryPopup, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTab, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTabPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryText, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryVerticalPanel //
@@ -51,5 +49,9 @@ module io.github.mmm.ui.tvm.core {
   exports io.github.mmm.ui.tvm;
 
   exports io.github.mmm.ui.tvm.widget;
+
+  exports io.github.mmm.ui.tvm.widget.composite;
+
+  exports io.github.mmm.ui.tvm.widget.panel;
 
 }

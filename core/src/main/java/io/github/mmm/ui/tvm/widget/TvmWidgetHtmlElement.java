@@ -14,8 +14,6 @@ import io.github.mmm.ui.UiContext;
  */
 public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWidgetJsObject<W> {
 
-  private String id;
-
   /**
    * The constructor.
    *
@@ -34,23 +32,16 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   }
 
   @Override
+  public HTMLElement getElement() {
+
+    return this.widget;
+  }
+
+  @Override
   protected void onStylesChanged(String newStyles) {
 
     super.onStylesChanged(newStyles);
     this.widget.setClassName(newStyles);
-  }
-
-  @Override
-  public String getId() {
-
-    return this.id;
-  }
-
-  @Override
-  public void setId(String id) {
-
-    this.id = id;
-    this.widget.setAttribute("id", id);
   }
 
   @Override
@@ -78,11 +69,5 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   protected void setTextContent(String text) {
 
     setTextContent(this.widget, text);
-  }
-
-  protected static void setTextContent(HTMLElement element, String text) {
-
-    // TODO: Workaround for #455/#456
-    element.appendChild(element.getOwnerDocument().createTextNode(text));
   }
 }

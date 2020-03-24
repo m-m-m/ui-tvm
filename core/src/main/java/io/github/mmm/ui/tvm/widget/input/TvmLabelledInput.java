@@ -6,15 +6,15 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
- * {@link TvmInput} that also implements {@link UiWidgetWithLabel}.
+ * {@link TvmInput} that also implements {@link UiWidgetWithText}.
  *
  * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiWidgetWithLabel {
+public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiWidgetWithText {
 
   private final HTMLElement topWidget;
 
@@ -53,13 +53,13 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiW
   }
 
   @Override
-  public String getLabel() {
+  public String getText() {
 
     return this.label;
   }
 
   @Override
-  public void setLabel(String label) {
+  public void setText(String label) {
 
     if (label == null) {
       label = "";

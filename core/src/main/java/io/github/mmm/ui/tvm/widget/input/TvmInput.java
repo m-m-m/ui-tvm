@@ -75,7 +75,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     if (this.nameWidget == null) {
       return this.name;
     } else {
-      return this.nameWidget.getLabel();
+      return this.nameWidget.getText();
     }
   }
 
@@ -85,7 +85,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     if (this.nameWidget == null) {
       this.name = name;
     } else {
-      this.nameWidget.setLabel(name);
+      this.nameWidget.setText(name);
     }
   }
 
@@ -110,7 +110,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     if (this.nameWidget == null) {
       this.nameWidget = new TvmLabel(this.context);
       if (this.name != null) {
-        this.nameWidget.setLabel(this.name);
+        this.nameWidget.setText(this.name);
       }
       doSetVisibleState(this.nameWidget, doGetVisibleState(this));
       String id = getId();

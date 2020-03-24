@@ -68,13 +68,13 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
   @Override
   public String getName() {
 
-    return this.legend.getLabel();
+    return this.legend.getText();
   }
 
   @Override
   public void setName(String name) {
 
-    this.legend.setLabel(name);
+    this.legend.setText(name);
   }
 
   @Override
@@ -172,13 +172,13 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
     }
 
     @Override
-    public String getLabel() {
+    public String getText() {
 
       return this.label;
     }
 
     @Override
-    public void setLabel(String label) {
+    public void setText(String label) {
 
       setTextContent(label);
       this.label = label;

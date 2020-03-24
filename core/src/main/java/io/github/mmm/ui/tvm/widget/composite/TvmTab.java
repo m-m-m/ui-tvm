@@ -136,13 +136,13 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   }
 
   @Override
-  public String getLabel() {
+  public String getText() {
 
     return this.label;
   }
 
   @Override
-  public void setLabel(String label) {
+  public void setText(String label) {
 
     if (label == null) {
       label = "";
@@ -193,7 +193,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
     this.widget.setAttribute(ATR_TABINDEX, selected ? "0" : "-1");
     this.widget.setAttribute(ATR_ARIA_SELECTED, Boolean.toString(selected));
-    this.sectionWidget.setAttribute(ATR_ARIA_HIDDEN, Boolean.toString(!selected));
+    this.sectionWidget.setHidden(!selected);
     this.selected = selected;
     if (focus) {
       this.widget.focus();

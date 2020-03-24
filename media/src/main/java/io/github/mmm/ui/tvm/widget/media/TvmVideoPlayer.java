@@ -5,7 +5,7 @@ package io.github.mmm.ui.tvm.widget.media;
 import org.teavm.jso.dom.html.HTMLVideoElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.media.UiImage;
+import io.github.mmm.ui.widget.img.UiImage;
 import io.github.mmm.ui.widget.media.UiVideoPlayer;
 
 /**

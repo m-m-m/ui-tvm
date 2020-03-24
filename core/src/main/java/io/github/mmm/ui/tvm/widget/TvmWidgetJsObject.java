@@ -11,6 +11,7 @@ import org.teavm.jso.dom.html.HTMLCanvasElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLFormElement;
+import org.teavm.jso.dom.html.HTMLImageElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.html.HTMLTextAreaElement;
@@ -39,6 +40,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static final String TAG_NAME_UI_ICON = "ui-icon";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ID = "id";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_STYLE = "style";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
@@ -46,6 +50,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_ARIA_HIDDEN = "aria-hidden";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_LABEL = "aria-label";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_ARIA_SELECTED = "aria-selected";
@@ -74,6 +81,15 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
   protected static final String EVENT_TYPE_KEYDOWN = "keydown";
 
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_POINTERDOWN = "pointerdown";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_POINTERMOVE = "pointermove";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_POINTERUP = "pointerup";
+
   /** {@link HTMLElement#getClassName() CSS class name} for error icon. */
   protected static final String CLASS_ERROR = "error";
 
@@ -101,6 +117,8 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /** @see #getWidget() */
   protected final W widget;
 
+  private String id;
+
   /**
    * The constructor.
    *
@@ -125,9 +143,31 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     return this.widget;
   }
 
+  public abstract HTMLElement getElement();
+
+  @Override
+  public String getId() {
+
+    return this.id;
+  }
+
+  @Override
+  public void setId(String id) {
+
+    this.id = id;
+    getElement().setAttribute(ATR_ID, id);
+  }
+
   @Override
   protected void setReadOnlyNative(boolean readOnly) {
 
+    // nothing by default, override to change
+  }
+
+  @Override
+  protected void setEnabledNative(boolean enabled) {
+
+    // nothing by default, override to change
   }
 
   /**
@@ -206,6 +246,12 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     }
   }
 
+  protected static void setTextContent(HTMLElement element, String text) {
+
+    // TODO: Workaround for #455/#456
+    element.appendChild(element.getOwnerDocument().createTextNode(text));
+  }
+
   /**
    * @return a new {@link HTMLButtonElement}.
    */
@@ -263,6 +309,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLFormElement newForm() {
 
     return DOC.createElement("form").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLImageElement}.
+   */
+  protected static HTMLImageElement newImage() {
+
+    return DOC.createElement("img").cast();
   }
 
   /**
@@ -352,9 +406,12 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
    */
   protected static HTMLElement newIcon(String name) {
 
-    HTMLElement input = newElement(TAG_NAME_UI_ICON);
-    input.setClassName(name);
-    return input;
+    HTMLElement element = newElement(TAG_NAME_UI_ICON);
+    if (name != null) {
+      element.setClassName(name);
+    }
+    element.setAttribute(ATR_ARIA_HIDDEN, "true");
+    return element;
   }
 
 }

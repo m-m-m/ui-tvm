@@ -27,13 +27,13 @@ public class TvmLabel extends TvmWidgetHtmlElement<HTMLElement> implements UiLab
   }
 
   @Override
-  public String getLabel() {
+  public String getText() {
 
     return this.label;
   }
 
   @Override
-  public void setLabel(String label) {
+  public void setText(String label) {
 
     setTextContent(label);
     this.label = label;

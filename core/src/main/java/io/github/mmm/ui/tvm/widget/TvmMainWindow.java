@@ -1,17 +1,15 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.window;
+package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Screen;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLBodyElement;
+import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiLength;
-import io.github.mmm.ui.tvm.widget.menu.TvmMenuBar;
-import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
-import io.github.mmm.ui.widget.UiRegularWidget;
+import io.github.mmm.ui.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
 import io.github.mmm.ui.widget.window.UiMainWindow;
 
@@ -20,17 +18,17 @@ import io.github.mmm.ui.widget.window.UiMainWindow;
  *
  * @since 1.0.0
  */
-public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWindow {
+public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWindow, AttributeWriteMaximized {
 
   private final HTMLBodyElement body;
 
-  private final TvmVerticalPanel content;
-
-  private TvmMenuBar menuBar;
-
-  private String id;
+  private UiMenuBar menuBar;
 
   private String title;
+
+  private int width;
+
+  private int height;
 
   /**
    * The constructor.
@@ -52,7 +50,6 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
 
     super(context, widget);
     this.body = widget.getDocument().getBody();
-    this.content = new TvmVerticalPanel(context);
     setParent(this.content, this);
     this.body.appendChild(this.content.getTopWidget());
     this.title = "";
@@ -66,6 +63,12 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
 
   @Override
   public JSObject getTopWidget() {
+
+    return this.body;
+  }
+
+  @Override
+  public HTMLElement getElement() {
 
     return this.body;
   }
@@ -111,64 +114,33 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   }
 
   @Override
-  public UiLength getWidth() {
+  public double getWidthInPixel() {
 
-    return UiLength.ofPixel(this.widget.getOuterWidth());
+    return this.widget.getOuterWidth();
   }
 
   @Override
-  public void setWidth(UiLength width) {
+  public void setWidthInPixel(double width) {
 
-    Screen screen = this.widget.getScreen();
-    int w = (int) width.toPixel(screen.getAvailWidth());
-    this.widget.resizeTo(w, this.widget.getOuterHeight());
+    this.widget.resizeTo((int) width, this.widget.getOuterHeight());
   }
 
   @Override
-  public UiLength getHeight() {
+  public double getHeightInPixel() {
 
-    return UiLength.ofPixel(this.widget.getOuterHeight());
+    return this.widget.getOuterHeight();
   }
 
   @Override
-  public void setHeight(UiLength height) {
+  public void setHeightInPixel(double height) {
 
-    Screen screen = this.widget.getScreen();
-    int h = (int) height.toPixel(screen.getAvailHeight());
-    this.widget.resizeTo(this.widget.getOuterWidth(), h);
+    this.widget.resizeTo(this.widget.getOuterWidth(), (int) height);
   }
 
   @Override
-  public boolean isResizable() {
+  public void setSizeInPixel(double width, double height) {
 
-    return true;
-  }
-
-  @Override
-  public void setResizable(boolean resizable) {
-
-  }
-
-  @Override
-  public boolean isMovable() {
-
-    return true;
-  }
-
-  @Override
-  public void setMovable(boolean movable) {
-
-  }
-
-  @Override
-  public boolean isClosable() {
-
-    return true;
-  }
-
-  @Override
-  public void setClosable(boolean closable) {
-
+    this.widget.resizeTo((int) width, (int) height);
   }
 
   @Override
@@ -183,63 +155,36 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   @Override
   public void setMaximized(boolean maximized) {
 
-    Screen screen = this.widget.getScreen();
-    this.widget.resizeTo(screen.getAvailWidth(), screen.getAvailHeight());
+    if (maximized) {
+      this.width = this.widget.getOuterWidth();
+      this.height = this.widget.getOuterHeight();
+      Screen screen = this.widget.getScreen();
+      this.widget.resizeTo(screen.getAvailWidth(), screen.getAvailHeight());
+    } else {
+      if (this.width > 0) {
+        this.widget.resizeTo(this.width, this.height);
+        this.width = 0;
+        this.height = 0;
+      }
+    }
   }
 
   @Override
-  public int getChildCount() {
+  public boolean isResizable() {
 
-    return this.content.getChildCount();
+    return false;
   }
 
   @Override
-  public UiRegularWidget getChild(int index) {
+  public void setResizable(boolean resizable) {
 
-    return this.content.getChild(index);
-  }
-
-  @Override
-  public int getChildIndex(UiRegularWidget child) {
-
-    return this.content.getChildIndex(child);
-  }
-
-  @Override
-  public void addChild(UiRegularWidget child, int index) {
-
-    this.content.addChild(child, index);
-  }
-
-  @Override
-  public UiRegularWidget removeChild(int index) {
-
-    return this.content.removeChild(index);
-  }
-
-  @Override
-  public String getId() {
-
-    return this.id;
-  }
-
-  @Override
-  public void setId(String id) {
-
-    this.body.setAttribute("id", id);
+    // not supported to change resizable property of the browser
   }
 
   @Override
   protected void setVisibleNative(boolean visible) {
 
     // hiding browser window is odd (bad UX) and therefore unsupported
-  }
-
-  @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    // TODO Auto-generated method stub
-
   }
 
   @Override
@@ -251,8 +196,8 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   public UiMenuBar getMenuBar() {
 
     if (this.menuBar == null) {
-      this.menuBar = new TvmMenuBar(this.context);
-      insertFirst(this.body, this.menuBar.getTopWidget());
+      this.menuBar = this.context.create(UiMenuBar.class);
+      insertFirst(this.body, getTopNode(this.menuBar));
     }
     return this.menuBar;
   }
