@@ -4,6 +4,7 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.events.EventListener;
 import org.teavm.jso.dom.events.MouseEvent;
 import org.teavm.jso.dom.html.HTMLBodyElement;
 import org.teavm.jso.dom.html.HTMLButtonElement;
@@ -32,15 +33,17 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
 
   private static UiAbstractWindow TOPMOST_WINDOW;
 
+  private final Window window;
+
   private final HTMLElement headerElement;
 
   private final HTMLElement titleElement;
 
   private final HTMLElement controlsElement;
 
-  private final HTMLButtonElement minimzeButton;
+  private final HTMLButtonElement minimizeButton;
 
-  private final HTMLButtonElement maximzeButton;
+  private final HTMLButtonElement maximizeButton;
 
   private final HTMLButtonElement normalizeButton;
 
@@ -85,6 +88,14 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
 
   private String title;
 
+  private int clientX;
+
+  private int clientY;
+
+  private Direction direction;
+
+  private EventListener<?> pointerMoveListener;
+
   /**
    * The constructor.
    *
@@ -92,18 +103,31 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
    */
   public TvmChildWindow(UiContext context) {
 
+    this(context, Window.current());
+  }
+
+  /**
+   * The constructor.
+   *
+   * @param context the {@link #getContext() context}.
+   * @param window the browser {@link Window}.
+   */
+  public TvmChildWindow(UiContext context, Window window) {
+
     super(context, newElement("ui-window"));
+    this.window = window;
     this.headerElement = newElement("ui-wheader");
     this.titleElement = newElement("ui-wtitle");
+    this.titleElement.addEventListener(EVENT_TYPE_POINTERDOWN, e -> onPointerDown(e, null), true);
     this.controlsElement = newElement("ui-wcontrols");
-    this.minimzeButton = newButton();
-    this.minimzeButton.setClassName("minimize");
-    this.minimzeButton.addEventListener(EVENT_TYPE_CLICK, this::onMinimize);
-    this.controlsElement.appendChild(this.minimzeButton);
-    this.maximzeButton = newButton();
-    this.maximzeButton.setClassName("maximize");
-    this.maximzeButton.addEventListener(EVENT_TYPE_CLICK, this::onMaximize);
-    this.controlsElement.appendChild(this.maximzeButton);
+    this.minimizeButton = newButton();
+    this.minimizeButton.setClassName("minimize");
+    this.minimizeButton.addEventListener(EVENT_TYPE_CLICK, this::onMinimize);
+    this.controlsElement.appendChild(this.minimizeButton);
+    this.maximizeButton = newButton();
+    this.maximizeButton.setClassName("maximize");
+    this.maximizeButton.addEventListener(EVENT_TYPE_CLICK, this::onMaximize);
+    this.controlsElement.appendChild(this.maximizeButton);
     this.normalizeButton = newButton();
     this.normalizeButton.setClassName("normalize");
     this.normalizeButton.setHidden(true);
@@ -134,20 +158,23 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     this.widget.appendChild(this.borderTop);
     this.borderTopRight = createBorder(Direction.UP_RIGHT);
     this.widget.appendChild(this.borderTopRight);
+    this.window.getDocument().addEventListener(EVENT_TYPE_POINTERUP, this::onPointerUp);
+    this.pointerMoveListener = this::onPointerMove;
+    this.x = -1;
+    this.y = -1;
     setResizable(true);
     setMovable(true);
     this.closable = true;
     this.sizing = UiWindowSizing.NORMAL;
-    Window window = Window.current();
     this.width = window.getInnerWidth() / 2;
     this.height = window.getInnerHeight() / 2;
   }
 
-  private HTMLElement createBorder(Direction direction) {
+  private HTMLElement createBorder(Direction dir) {
 
     HTMLElement border = newElement("ui-wborder");
-    border.setClassName(direction.toString());
-    border.addEventListener(EVENT_TYPE_POINTERDOWN, e -> onBorderDrag(e, direction), true);
+    border.setClassName(dir.getValue());
+    border.addEventListener(EVENT_TYPE_POINTERDOWN, e -> onPointerDown(e, dir), true);
     return border;
   }
 
@@ -304,10 +331,17 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public void setMaximized(boolean maximized) {
 
     if (maximized) {
+      if (this.sizing == UiWindowSizing.MINIMIZED) {
+        this.minimizeButton.setHidden(false);
+      }
       this.sizing = UiWindowSizing.MAXIMIZED;
+      this.maximizeButton.setHidden(true);
+      this.normalizeButton.setHidden(false);
       updateStyle();
     } else if (this.sizing == UiWindowSizing.MAXIMIZED) {
       this.sizing = UiWindowSizing.NORMAL;
+      this.maximizeButton.setHidden(false);
+      this.normalizeButton.setHidden(true);
       updateStyle();
     }
   }
@@ -322,12 +356,19 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public void setMinimized(boolean minimized) {
 
     if (minimized) {
+      if (this.sizing == UiWindowSizing.MAXIMIZED) {
+        this.maximizeButton.setHidden(false);
+      }
       this.sizing = UiWindowSizing.MINIMIZED;
       this.content.setVisible(false);
+      this.minimizeButton.setHidden(true);
+      this.normalizeButton.setHidden(false);
       updateStyle();
     } else if (this.sizing == UiWindowSizing.MINIMIZED) {
       this.sizing = UiWindowSizing.MINIMIZED;
       this.content.setVisible(true);
+      this.minimizeButton.setHidden(false);
+      this.normalizeButton.setHidden(true);
       updateStyle();
     }
   }
@@ -387,30 +428,35 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   private void updateStyle() {
 
     StringBuilder sb = new StringBuilder();
-    switch (this.sizing) {
-      case NORMAL:
-        sb.append("left:");
-        sb.append(this.x);
-        sb.append("px;top:");
-        sb.append(this.y);
-        sb.append("px;width:");
-        sb.append(this.width);
-        sb.append(";height:");
+    if (this.sizing == UiWindowSizing.MAXIMIZED) {
+      sb.append("left:0;right:0;width:100%;height:100%;");
+    } else {
+      sb.append("left:");
+      if (this.x == -1) {
+        this.x = (Window.current().getInnerWidth() - this.width) / 2.0;
+      }
+      if (this.x < 0) {
+        this.x = 0;
+      }
+      sb.append(this.x);
+      sb.append("px;top:");
+      if (this.y == -1) {
+        this.y = (Window.current().getInnerHeight() - this.height) / 2.0;
+      }
+      if (this.y < 0) {
+        this.y = 0;
+      }
+      sb.append(this.y);
+      sb.append("px;width:");
+      sb.append(this.width);
+      sb.append("px;");
+      if (this.sizing == UiWindowSizing.NORMAL) {
+        sb.append("height:");
         sb.append(this.height);
-        break;
-      case MAXIMIZED:
-        sb.append("left:0;right:0;width:100%;height:100%");
-        break;
-      case MINIMIZED:
-        sb.append("left:");
-        sb.append(this.x);
-        sb.append("px;top:");
-        sb.append(this.y);
-        sb.append("px;width:");
-        sb.append(this.width);
-        break;
+        sb.append("px;");
+      }
     }
-    sb.append(";z-index:");
+    sb.append("z-index:");
     sb.append(this.z);
     String style = sb.toString();
     this.widget.setAttribute(ATR_STYLE, style);
@@ -448,53 +494,80 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     close();
   }
 
-  protected void onTitleMove(Event e) {
+  private void onPointerUp(Event e) {
 
+    this.window.getDocument().removeEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
   }
 
-  /**
-   * @param e {@link Event} send when the close button is clicked.
-   * @param direction the {@link Direction} to resize.
-   */
-  protected void onBorderDrag(Event e, Direction direction) {
+  private void onPointerMove(Event e) {
 
-    if (!this.resizable) {
+    MouseEvent me = e.cast();
+    int oldX = this.clientX;
+    this.clientX = me.getClientX();
+    int movementX = this.clientX - oldX;
+    int oldY = this.clientY;
+    this.clientY = me.getClientY();
+    int movementY = this.clientY - oldY;
+    if ((movementX == 0) && (movementY == 0)) {
       return;
     }
-    MouseEvent me = e.cast();
-    double movementX = me.getMovementX();
-    double movementY = me.getMovementY();
-    if (direction.isLeft()) {
-      double newX = this.x + movementX;
-      if (newX < 0) {
-        this.width = this.width + this.x;
-        this.x = 0;
-      } else {
-        this.x = newX;
-        this.width = this.width - movementX;
+    if (this.direction == null) {
+      this.x = clip(this.x + movementX, 0, this.window.getInnerWidth() - 20);
+      this.y = clip(this.y + movementY, 0, this.window.getInnerHeight() - 20);
+    } else {
+      if (this.direction.isLeft()) {
+        double newX = this.x + movementX;
+        if (newX < 0) {
+          this.width = this.width + this.x;
+          this.x = 0;
+        } else {
+          this.x = newX;
+          this.width = this.width - movementX;
+        }
+      } else if (this.direction.isRight()) {
+        this.width = clip(this.width + movementX, 200, this.window.getInnerWidth() - this.x);
       }
-    } else if (direction.isRight()) {
-      this.width = clip(this.width + movementX, Window.current().getInnerWidth() - this.width - this.x);
-    }
-    if (direction.isUp()) {
-      double newY = this.y + movementY;
-      if (newY < 0) {
-        this.height = this.height + this.y;
-        this.y = 0;
-      } else {
-        this.y = newY;
-        this.height = this.height - movementY;
+      if (this.direction.isUp()) {
+        double newY = this.y + movementY;
+        if (newY < 0) {
+          this.height = this.height + this.y;
+          this.y = 0;
+        } else {
+          this.y = newY;
+          this.height = this.height - movementY;
+        }
+      } else if (this.direction.isDown()) {
+        this.height = clip(this.height + movementY, 200, this.window.getInnerHeight() - this.y);
       }
-    } else if (direction.isDown()) {
-      this.height = clip(this.height + movementY, Window.current().getInnerHeight() - this.height - this.y);
+
     }
     updateStyle();
   }
 
-  private static double clip(double d, double max) {
+  /**
+   * @param e {@link Event} send when the close button is clicked.
+   * @param dir the {@link Direction} to resize or {@code null} for move.
+   */
+  private void onPointerDown(Event e, Direction dir) {
 
-    if (d < 0) {
-      return 0;
+    if ((dir == null) && !this.movable) {
+      return;
+    }
+    if ((dir != null) && !this.resizable) {
+      return;
+    }
+    e.preventDefault();
+    MouseEvent me = e.cast();
+    this.clientX = me.getClientX();
+    this.clientY = me.getClientY();
+    this.direction = dir;
+    this.window.getDocument().addEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
+  }
+
+  private static double clip(double d, double min, double max) {
+
+    if (d < min) {
+      return min;
     }
     if (d > max) {
       return max;
