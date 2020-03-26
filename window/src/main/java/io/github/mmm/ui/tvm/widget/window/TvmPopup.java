@@ -2,11 +2,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.window;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.panel.UiButtonPanel;
+import io.github.mmm.ui.widget.window.UiAbstractWindow;
 import io.github.mmm.ui.widget.window.UiPopup;
 
 /**
@@ -15,6 +15,8 @@ import io.github.mmm.ui.widget.window.UiPopup;
  * @since 1.0.0
  */
 public class TvmPopup extends TvmChildWindow implements UiPopup {
+
+  static TvmPopup TOPMOST_POPUP;
 
   private final HTMLElement modalPane;
 
@@ -30,7 +32,7 @@ public class TvmPopup extends TvmChildWindow implements UiPopup {
     super(context);
     this.modalPane = newElement("ui-modal");
     this.buttonPanel = UiButtonPanel.of(context);
-    this.widget.appendChild(getTopNode(this.buttonPanel));
+    this.contentPane.appendChild(getTopNode(this.buttonPanel));
   }
 
   @Override
@@ -40,15 +42,45 @@ public class TvmPopup extends TvmChildWindow implements UiPopup {
   }
 
   @Override
-  protected void doSetVisible(boolean newVisible) {
+  protected void doOpen() {
 
-    super.doSetVisible(newVisible);
-    if (newVisible) {
-      this.modalPane.setAttribute(ATR_STYLE, "z-index:" + (this.z - 1));
-      Window.current().getDocument().getBody().appendChild(this.modalPane);
+    UiAbstractWindow parent;
+    if (TOPMOST_POPUP == null) {
+      parent = TvmWindow.TOPMOST_WINDOW;
+      if (parent == null) {
+        parent = this.context.getMainWindow();
+      }
+      // if you open 10.000+ instances of UiWindow you will be in trouble but already due to memory
+      this.z = 100_000;
     } else {
-      Window.current().getDocument().getBody().removeChild(this.modalPane);
+      parent = TOPMOST_POPUP;
+      this.z = TOPMOST_POPUP.z + 10;
     }
+    setParent(parent);
+    this.modalPane.setAttribute(ATR_STYLE, "z-index:" + (this.z - 1));
+    this.body.appendChild(this.modalPane);
+    super.doOpen();
+    TOPMOST_POPUP = this;
+  }
+
+  @Override
+  protected void doClose() {
+
+    this.body.removeChild(this.modalPane);
+    UiAbstractWindow parent = getParent();
+    if (TOPMOST_POPUP == this) {
+      if (parent instanceof TvmPopup) {
+        TOPMOST_POPUP = (TvmPopup) parent;
+      } else {
+        TOPMOST_POPUP = null;
+      }
+    } else {
+      UiAbstractWindow child = findChild(TOPMOST_POPUP);
+      if (child != null) {
+        setParent(child, parent);
+      }
+    }
+    super.doClose();
   }
 
 }

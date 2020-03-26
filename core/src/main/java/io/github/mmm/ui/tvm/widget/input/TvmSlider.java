@@ -44,8 +44,14 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     this.topWidget.appendChild(this.widget);
     this.output = newOutput();
     this.topWidget.appendChild(this.output);
-    this.widget.addEventListener(EVENT_TYPE_CHANGE, this::onChange);
+    this.widget.addEventListener(EVENT_TYPE_INPUT, this::onInput);
     this.range = new NumericRange<>(getNumberType());
+  }
+
+  @Override
+  public HTMLElement getTopWidget() {
+
+    return this.topWidget;
   }
 
   /**
@@ -59,7 +65,7 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     return this.range;
   }
 
-  private void onChange(Event event) {
+  private void onInput(Event event) {
 
     String value = this.widget.getValue();
     if (this.input != null) {

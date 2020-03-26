@@ -57,13 +57,13 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   protected void registerHandlers() {
 
     super.registerHandlers();
-    this.widget.addEventListener(EVENT_TYPE_INPUT, this::onInput);
+    this.widget.addEventListener(EVENT_TYPE_CHANGE, this::onChange);
   }
 
   /**
    * @param event the input {@link Event}.
    */
-  protected void onInput(Event event) {
+  protected void onChange(Event event) {
 
     updateModificationTimestamp(false);
     fireEvent(new UiValueChangeEvent(this, getProgrammaticEventType() == UiValueChangeEvent.TYPE));
