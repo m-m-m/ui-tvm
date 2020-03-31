@@ -52,7 +52,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.widget.appendChild(this.labelWidget);
     this.label = "";
     this.closable = false;
-    this.sectionWidget = document.createElement("section");
+    this.sectionWidget = document.createElement("ui-tabcontent");
     setSelected(false);
     this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
@@ -193,7 +193,15 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
     this.widget.setAttribute(ATR_TABINDEX, selected ? "0" : "-1");
     this.widget.setAttribute(ATR_ARIA_SELECTED, Boolean.toString(selected));
-    this.sectionWidget.setHidden(!selected);
+    TvmTabPanel tabPanel = getTabPanel();
+    if (tabPanel != null) {
+      HTMLElement tabContent = tabPanel.getTopWidget();
+      if (selected) {
+        tabContent.appendChild(this.sectionWidget);
+      } else {
+        tabContent.removeChild(this.sectionWidget);
+      }
+    }
     this.selected = selected;
     if (focus) {
       this.widget.focus();

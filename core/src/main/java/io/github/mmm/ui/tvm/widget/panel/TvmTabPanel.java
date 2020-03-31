@@ -109,7 +109,6 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
     super.addChildWidget(child, index);
     int size = this.children.size();
     TvmTab tab = (TvmTab) child;
-    this.topWidget.appendChild(tab.getSectionWidget());
     if (size == 0) {
       tab.setSelected(true, false);
       this.selectedTabIndex = 0;
@@ -130,7 +129,7 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
     UiTab child = super.removeChild(index);
     if (child != null) {
       TvmTab tab = (TvmTab) child;
-      this.topWidget.appendChild(tab.getSectionWidget());
+      this.topWidget.removeChild(tab.getSectionWidget());
     }
     return child;
   }
