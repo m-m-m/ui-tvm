@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.dom.events.Event;
 
-import io.github.mmm.base.placement.Direction;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.window.UiAbstractWindow;
 import io.github.mmm.ui.widget.window.UiChildWindow;
@@ -70,22 +69,13 @@ public class TvmWindow extends TvmChildWindow implements UiWindow {
   }
 
   @Override
-  protected void onPointerDown(Event e, Direction dir) {
-
-    super.onPointerDown(e, dir);
-    bringToFront();
-  }
-
-  @Override
   protected void onClick(Event event) {
 
     super.onClick(event);
     bringToFront();
   }
 
-  /**
-   * Bring this window to the front.
-   */
+  @Override
   public void bringToFront() {
 
     if ((this == TOPMOST_WINDOW) || (TOPMOST_WINDOW == null)) {

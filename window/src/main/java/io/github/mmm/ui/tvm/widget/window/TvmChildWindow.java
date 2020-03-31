@@ -13,11 +13,10 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.base.placement.Direction;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.attribute.AttributeWritePositionRange;
 import io.github.mmm.ui.attribute.AttributeWriteSizeRange;
-import io.github.mmm.ui.datatype.UiSize;
 import io.github.mmm.ui.datatype.UiWindowSizing;
+import io.github.mmm.ui.spi.window.UiWindowPositionAndSize;
 import io.github.mmm.ui.tvm.widget.TvmAbstractWindow;
 import io.github.mmm.ui.widget.window.UiChildWindow;
 
@@ -26,17 +25,13 @@ import io.github.mmm.ui.widget.window.UiChildWindow;
  *
  * @since 1.0.0
  */
-public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
-    implements UiChildWindow, AttributeWriteMaximized, AttributeWritePositionRange, AttributeWriteSizeRange {
+public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> implements UiChildWindow {
 
   private static final String STYLE_RESIZABLE = "resizable";
 
   private static final String STYLE_MOVABLE = "movable";
 
   private static EventListener<KeyboardEvent> keyboardListener;
-
-  /** The browser {@link Window} owning this child window. */
-  protected final Window window;
 
   /** The HTML body element of the {@link Window}. */
   protected final HTMLBodyElement body;
@@ -62,32 +57,12 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
 
   private boolean visible;
 
-  private double x;
+  private final TvmWindowPositionAndSize positionAndSize;
 
-  private double y;
-
-  private double minX;
-
-  private double minY;
-
-  private double maxX;
-
-  private double maxY;
+  private String title;
 
   /** The z-index. */
   protected int z;
-
-  private double width;
-
-  private double height;
-
-  private double minWidth;
-
-  private double minHeight;
-
-  private double maxWidth;
-
-  private double maxHeight;
 
   private UiWindowSizing sizing;
 
@@ -96,16 +71,6 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   private boolean movable;
 
   private boolean closable;
-
-  private String title;
-
-  private int clientX;
-
-  private int clientY;
-
-  private Direction direction;
-
-  private EventListener<?> pointerMoveListener;
 
   /**
    * The constructor.
@@ -126,7 +91,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public TvmChildWindow(UiContext context, Window window) {
 
     super(context, newElement("ui-window"));
-    this.window = window;
+    this.positionAndSize = new TvmWindowPositionAndSize(window);
     this.body = window.getDocument().getBody();
 
     if (keyboardListener == null) {
@@ -140,7 +105,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     // header
     this.headerElement = newElement("ui-wheader");
     this.titleElement = newElement("ui-wtitle");
-    this.titleElement.addEventListener(EVENT_TYPE_POINTERDOWN, e -> onPointerDown(e, null), true);
+    this.titleElement.addEventListener(EVENT_TYPE_POINTERDOWN, e -> this.positionAndSize.onPointerDown(e, null), true);
     this.controlsElement = newElement("ui-wcontrols");
     this.minimizeButton = newButton();
     this.minimizeButton.setClassName("minimize");
@@ -174,24 +139,11 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     }
     this.contentPane.appendChild(this.borders);
     this.widget.appendChild(this.contentPane);
-
-    this.window.getDocument().addEventListener(EVENT_TYPE_POINTERUP, this::onPointerUp);
-    this.pointerMoveListener = this::onPointerMove;
     this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
-    this.x = -1;
-    this.y = -1;
-    this.maxX = Integer.MAX_VALUE;
-    this.maxY = Integer.MAX_VALUE;
-    this.minWidth = 200;
-    this.maxWidth = Integer.MAX_VALUE;
-    this.minHeight = 200;
-    this.maxHeight = Integer.MAX_VALUE;
+    this.sizing = UiWindowSizing.NORMAL;
     setResizable(true);
     setMovable(true);
-    this.closable = true;
-    this.sizing = UiWindowSizing.NORMAL;
-    this.width = window.getInnerWidth() / 2;
-    this.height = window.getInnerHeight() / 2;
+    setClosable(true);
   }
 
   private static void onEscapeKey() {
@@ -211,7 +163,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
 
     HTMLElement border = newElement("ui-wborder");
     border.setClassName(dir.getValue());
-    border.addEventListener(EVENT_TYPE_POINTERDOWN, e -> onPointerDown(e, dir), true);
+    border.addEventListener(EVENT_TYPE_POINTERDOWN, e -> this.positionAndSize.onPointerDown(e, dir), true);
     return border;
   }
 
@@ -219,6 +171,31 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public HTMLElement getElement() {
 
     return this.widget;
+  }
+
+  @Override
+  public String getTitle() {
+
+    return this.title;
+  }
+
+  @Override
+  public void setTitle(String title) {
+
+    setTextContent(this.titleElement, title);
+    this.title = title;
+  }
+
+  @Override
+  public AttributeWritePositionRange getPosition() {
+
+    return this.positionAndSize;
+  }
+
+  @Override
+  public AttributeWriteSizeRange getSize() {
+
+    return this.positionAndSize;
   }
 
   @Override
@@ -230,7 +207,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   @Override
   public void setResizable(boolean resizable) {
 
-    if (this.resizable == resizable) {
+    if (resizable == this.resizable) {
       return;
     }
     if (resizable) {
@@ -238,7 +215,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     } else {
       getStyles().remove(STYLE_RESIZABLE);
     }
-    this.borders.setHidden(!resizable);
+    TvmChildWindow.this.borders.setHidden(!resizable);
     this.resizable = resizable;
   }
 
@@ -263,19 +240,6 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   }
 
   @Override
-  public String getTitle() {
-
-    return this.title;
-  }
-
-  @Override
-  public void setTitle(String title) {
-
-    setTextContent(this.titleElement, title);
-    this.title = title;
-  }
-
-  @Override
   public boolean isClosable() {
 
     return this.closable;
@@ -284,175 +248,11 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   @Override
   public void setClosable(boolean closable) {
 
-    if (this.closable == closable) {
+    if (closable == this.closable) {
       return;
     }
-    this.closeButton.setHidden(!closable);
+    TvmChildWindow.this.closeButton.setHidden(!closable);
     this.closable = closable;
-  }
-
-  @Override
-  public double getWidthInPixel() {
-
-    return this.width;
-  }
-
-  @Override
-  public void setWidth(UiSize width) {
-
-    this.width = UiSize.getSafe(width).toPixel(Window.current().getInnerWidth());
-    updateStyle();
-  }
-
-  @Override
-  public double getHeightInPixel() {
-
-    return this.height;
-  }
-
-  @Override
-  public void setHeight(UiSize height) {
-
-    this.height = UiSize.getSafe(height).toPixel(Window.current().getInnerHeight());
-    updateStyle();
-  }
-
-  @Override
-  public void setSize(UiSize width, UiSize height) {
-
-    this.width = UiSize.getSafe(width).toPixel(Window.current().getInnerWidth());
-    this.height = UiSize.getSafe(height).toPixel(Window.current().getInnerHeight());
-    updateStyle();
-  }
-
-  @Override
-  public double getMinWidth() {
-
-    return this.minWidth;
-  }
-
-  @Override
-  public void setMinWidth(double minWidth) {
-
-    this.minWidth = clipSize(minWidth);
-  }
-
-  @Override
-  public double getMaxWidth() {
-
-    return this.maxWidth;
-  }
-
-  @Override
-  public void setMaxWidth(double maxWidth) {
-
-    this.maxWidth = clipSize(maxWidth);
-  }
-
-  @Override
-  public double getMinHeight() {
-
-    return this.minHeight;
-  }
-
-  @Override
-  public void setMinHeight(double minHeight) {
-
-    this.minHeight = clipSize(minHeight);
-  }
-
-  @Override
-  public double getMaxHeight() {
-
-    return this.maxHeight;
-  }
-
-  @Override
-  public void setMaxHeight(double maxHeight) {
-
-    this.maxHeight = clipSize(maxHeight);
-  }
-
-  @Override
-  public double getX() {
-
-    return this.x;
-  }
-
-  @Override
-  public void setX(double x) {
-
-    this.x = x;
-    updateStyle();
-  }
-
-  @Override
-  public double getY() {
-
-    return this.y;
-  }
-
-  @Override
-  public void setY(double y) {
-
-    this.y = y;
-    updateStyle();
-  }
-
-  @Override
-  public void setPosition(double x, double y) {
-
-    this.x = x;
-    this.y = y;
-    updateStyle();
-  }
-
-  @Override
-  public double getMinX() {
-
-    return this.minX;
-  }
-
-  @Override
-  public void setMinX(double minX) {
-
-    this.minX = clipZero(minX);
-  }
-
-  @Override
-  public double getMaxX() {
-
-    return this.maxX;
-  }
-
-  @Override
-  public void setMaxX(double maxX) {
-
-    this.maxX = clipMax(maxX);
-  }
-
-  @Override
-  public double getMinY() {
-
-    return this.minY;
-  }
-
-  @Override
-  public void setMinY(double minY) {
-
-    this.minY = clipZero(minY);
-  }
-
-  @Override
-  public double getMaxY() {
-
-    return this.maxY;
-  }
-
-  @Override
-  public void setMaxY(double maxY) {
-
-    this.maxY = clipMax(maxY);
   }
 
   @Override
@@ -465,18 +265,15 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public void setMaximized(boolean maximized) {
 
     if (maximized) {
-      if (this.sizing == UiWindowSizing.MINIMIZED) {
-        this.minimizeButton.setHidden(false);
+      if (this.sizing == UiWindowSizing.MAXIMIZED) {
+        return;
       }
-      this.sizing = UiWindowSizing.MAXIMIZED;
-      this.maximizeButton.setHidden(true);
-      this.normalizeButton.setHidden(false);
-      updateStyle();
-    } else if (this.sizing == UiWindowSizing.MAXIMIZED) {
-      this.sizing = UiWindowSizing.NORMAL;
-      this.maximizeButton.setHidden(false);
-      this.normalizeButton.setHidden(true);
-      updateStyle();
+      setSizing(UiWindowSizing.MAXIMIZED);
+    } else {
+      if (this.sizing != UiWindowSizing.MAXIMIZED) {
+        return;
+      }
+      setSizing(UiWindowSizing.NORMAL);
     }
   }
 
@@ -490,23 +287,26 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   public void setMinimized(boolean minimized) {
 
     if (minimized) {
-      if (this.sizing == UiWindowSizing.MAXIMIZED) {
-        this.maximizeButton.setHidden(false);
+      if (this.sizing == UiWindowSizing.MINIMIZED) {
+        return;
       }
-      this.sizing = UiWindowSizing.MINIMIZED;
-      this.content.setVisible(false);
-      this.minimizeButton.setHidden(true);
-      this.normalizeButton.setHidden(false);
-      this.contentPane.setHidden(true);
-      updateStyle();
-    } else if (this.sizing == UiWindowSizing.MINIMIZED) {
-      this.sizing = UiWindowSizing.NORMAL;
-      this.content.setVisible(true);
-      this.minimizeButton.setHidden(false);
-      this.normalizeButton.setHidden(true);
-      this.contentPane.setHidden(false);
-      updateStyle();
+      setSizing(UiWindowSizing.MINIMIZED);
+    } else {
+      if (this.sizing != UiWindowSizing.MINIMIZED) {
+        return;
+      }
+      setSizing(UiWindowSizing.NORMAL);
     }
+  }
+
+  private void setSizing(UiWindowSizing sizing) {
+
+    TvmChildWindow.this.contentPane.setHidden(sizing == UiWindowSizing.MINIMIZED);
+    TvmChildWindow.this.minimizeButton.setHidden(sizing == UiWindowSizing.MINIMIZED);
+    TvmChildWindow.this.maximizeButton.setHidden(sizing == UiWindowSizing.MAXIMIZED);
+    TvmChildWindow.this.normalizeButton.setHidden(sizing == UiWindowSizing.NORMAL);
+    this.sizing = sizing;
+    updateStyle();
   }
 
   @Override
@@ -544,71 +344,10 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
   }
 
   /**
-   * Updates the style attribute with position, size, z-index, etc.
+   * Bring this window to the front unless it is a Popup.
    */
-  protected void updateStyle() {
+  public void bringToFront() {
 
-    StringBuilder sb = new StringBuilder();
-    if (this.sizing == UiWindowSizing.MAXIMIZED) {
-      sb.append("left:0;top:0;width:100%;height:100%;");
-    } else {
-      sb.append("left:");
-      if (this.x == -1) {
-        this.x = (Window.current().getInnerWidth() - this.width) / 2.0;
-      }
-      if (this.x < 0) {
-        this.x = 0;
-      }
-      sb.append(this.x);
-      sb.append("px;top:");
-      if (this.y == -1) {
-        this.y = (Window.current().getInnerHeight() - this.height) / 2.0;
-      }
-      if (this.y < 0) {
-        this.y = 0;
-      }
-      sb.append(this.y);
-      sb.append("px;width:");
-      sb.append(this.width);
-      sb.append("px;");
-      if (this.sizing == UiWindowSizing.NORMAL) {
-        sb.append("height:");
-        sb.append(this.height);
-        sb.append("px;");
-      }
-    }
-    sb.append("z-index:");
-    sb.append(this.z);
-    String style = sb.toString();
-    this.widget.setAttribute(ATR_STYLE, style);
-  }
-
-  /**
-   * @param e {@link Event} send when the minimize button is clicked.
-   */
-  protected void onMinimize(Event e) {
-
-    setMinimized(true);
-  }
-
-  /**
-   * @param e {@link Event} send when the maximize button is clicked.
-   */
-  protected void onMaximize(Event e) {
-
-    setMaximized(true);
-  }
-
-  /**
-   * @param e {@link Event} send when the normalize button is clicked.
-   */
-  protected void onNormalize(Event e) {
-
-    if (this.sizing == UiWindowSizing.MINIMIZED) {
-      setMinimized(false);
-    } else if (this.sizing == UiWindowSizing.MAXIMIZED) {
-      setMaximized(false);
-    }
   }
 
   /**
@@ -619,104 +358,23 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     close();
   }
 
-  private void onPointerUp(Event e) {
+  private void onNormalize(Event e) {
 
-    this.window.getDocument().removeEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
+    if (TvmChildWindow.this.sizing == UiWindowSizing.MINIMIZED) {
+      setMinimized(false);
+    } else if (TvmChildWindow.this.sizing == UiWindowSizing.MAXIMIZED) {
+      setMaximized(false);
+    }
   }
 
-  private void onPointerMove(Event e) {
+  private void onMinimize(Event e) {
 
-    MouseEvent me = e.cast();
-    int oldX = this.clientX;
-    this.clientX = me.getClientX();
-    int movementX = this.clientX - oldX;
-    int oldY = this.clientY;
-    this.clientY = me.getClientY();
-    int movementY = this.clientY - oldY;
-    if ((movementX == 0) && (movementY == 0)) {
-      return;
-    }
-    if (this.direction == null) {
-      double max = this.window.getInnerWidth() - 20;
-      if (max > this.maxX) {
-        max = this.maxX;
-      }
-      this.x = clip(this.x + movementX, this.minX, max);
-      max = this.window.getInnerHeight() - 20;
-      if (max > this.maxY) {
-        max = this.maxY;
-      }
-      this.y = clip(this.y + movementY, this.minY, max);
-    } else {
-      if (this.direction.isLeft()) {
-        double newX = clip(this.x + movementX, this.minX, this.maxX);
-        this.width = this.width - (newX - this.x);
-        this.x = newX;
-      } else if (this.direction.isRight()) {
-        double max = this.window.getInnerWidth() - this.x;
-        if (max > this.maxWidth) {
-          max = this.maxWidth;
-        }
-        this.width = clip(this.width + movementX, this.minWidth, max);
-      }
-      if (this.direction.isUp()) {
-        double newY = clip(this.y + movementY, this.minY, this.maxY);
-        this.height = this.height - (newY - this.y);
-        this.y = newY;
-      } else if (this.direction.isDown()) {
-        double max = this.window.getInnerHeight() - this.y;
-        if (max > this.maxHeight) {
-          max = this.maxHeight;
-        }
-        this.height = clip(this.height + movementY, this.minHeight, max);
-      }
-
-    }
-    updateStyle();
+    setMinimized(true);
   }
 
-  /**
-   * @param e {@link Event} send when the close button is clicked.
-   * @param dir the {@link Direction} to resize or {@code null} for move.
-   */
-  protected void onPointerDown(Event e, Direction dir) {
+  private void onMaximize(Event e) {
 
-    if ((dir == null) && !this.movable) {
-      return;
-    }
-    if ((dir != null) && !this.resizable) {
-      return;
-    }
-    e.preventDefault();
-    MouseEvent me = e.cast();
-    this.clientX = me.getClientX();
-    this.clientY = me.getClientY();
-    this.direction = dir;
-    this.window.getDocument().addEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
-  }
-
-  private static double clipSize(double size) {
-
-    if (size < 100) {
-      return 100;
-    }
-    return size;
-  }
-
-  private static double clipZero(double pos) {
-
-    if (pos < 0) {
-      return 0;
-    }
-    return pos;
-  }
-
-  private static double clipMax(double max) {
-
-    if ((max < 0) || (max > Integer.MAX_VALUE)) {
-      return Integer.MAX_VALUE;
-    }
-    return max;
+    setMaximized(true);
   }
 
   private static double clip(double d, double min, double max) {
@@ -729,4 +387,213 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement>
     }
     return d;
   }
+
+  /**
+   * Updates the style attribute with position, size, z-index, etc.
+   */
+  protected void updateStyle() {
+
+    this.positionAndSize.updateStyle();
+  }
+
+  private class TvmWindowPositionAndSize extends UiWindowPositionAndSize {
+
+    private final Window window;
+
+    private int clientX;
+
+    private int clientY;
+
+    private Direction direction;
+
+    private EventListener<?> pointerMoveListener;
+
+    /**
+     * The constructor.
+     *
+     * @param window the owning browser {@link Window}.
+     */
+    public TvmWindowPositionAndSize(Window window) {
+
+      super();
+      this.window = window;
+      window.getDocument().addEventListener(EVENT_TYPE_POINTERUP, this::onPointerUp);
+      this.pointerMoveListener = this::onPointerMove;
+      setWidthInPixel(0);
+      setHeightInPixel(0);
+    }
+
+    @Override
+    public void setX(double x) {
+
+      super.setX(x);
+      updateStyle();
+    }
+
+    @Override
+    public void setY(double y) {
+
+      super.setY(y);
+      updateStyle();
+    }
+
+    @Override
+    public void setPosition(double x, double y) {
+
+      super.setPosition(x, y);
+      updateStyle();
+    }
+
+    @Override
+    public void setWidthInPixel(double width) {
+
+      super.setWidthInPixel(width);
+      updateStyle();
+    }
+
+    @Override
+    public void setHeightInPixel(double height) {
+
+      super.setHeightInPixel(height);
+      updateStyle();
+    }
+
+    @Override
+    public void setSizeInPixel(double width, double height) {
+
+      super.setSizeInPixel(width, height);
+      updateStyle();
+    }
+
+    @Override
+    protected double getMaxScreenWidth() {
+
+      return this.window.getInnerWidth();
+    }
+
+    @Override
+    protected double getMaxScreenHeight() {
+
+      return this.window.getInnerHeight();
+    }
+
+    /**
+     * @param e {@link Event} send when the close button is clicked.
+     * @param dir the {@link Direction} to resize or {@code null} for move.
+     */
+    protected void onPointerDown(Event e, Direction dir) {
+
+      bringToFront();
+      if ((dir == null) && !TvmChildWindow.this.movable) {
+        return;
+      }
+      if ((dir != null) && !TvmChildWindow.this.resizable) {
+        return;
+      }
+      e.preventDefault();
+      MouseEvent me = e.cast();
+      this.clientX = me.getClientX();
+      this.clientY = me.getClientY();
+      this.direction = dir;
+      this.window.getDocument().addEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
+    }
+
+    private void onPointerUp(Event e) {
+
+      this.window.getDocument().removeEventListener(EVENT_TYPE_POINTERMOVE, this.pointerMoveListener);
+    }
+
+    private void onPointerMove(Event e) {
+
+      MouseEvent me = e.cast();
+      int oldX = this.clientX;
+      this.clientX = me.getClientX();
+      int movementX = this.clientX - oldX;
+      int oldY = this.clientY;
+      this.clientY = me.getClientY();
+      int movementY = this.clientY - oldY;
+      if ((movementX == 0) && (movementY == 0)) {
+        return;
+      }
+      if (this.direction == null) {
+        double max = this.window.getInnerWidth() - 20;
+        if (max > this.maxX) {
+          max = this.maxX;
+        }
+        this.x = clip(this.x + movementX, this.minX, max);
+        max = this.window.getInnerHeight() - 20;
+        if (max > this.maxY) {
+          max = this.maxY;
+        }
+        this.y = clip(this.y + movementY, this.minY, max);
+      } else {
+        if (this.direction.isLeft()) {
+          double newX = clip(this.x + movementX, this.minX, this.maxX);
+          this.width = this.width - (newX - this.x);
+          this.x = newX;
+        } else if (this.direction.isRight()) {
+          double max = this.window.getInnerWidth() - this.x;
+          if (max > this.maxWidth) {
+            max = this.maxWidth;
+          }
+          this.width = clip(this.width + movementX, this.minWidth, max);
+        }
+        if (this.direction.isUp()) {
+          double newY = clip(this.y + movementY, this.minY, this.maxY);
+          this.height = this.height - (newY - this.y);
+          this.y = newY;
+        } else if (this.direction.isDown()) {
+          double max = this.window.getInnerHeight() - this.y;
+          if (max > this.maxHeight) {
+            max = this.maxHeight;
+          }
+          this.height = clip(this.height + movementY, this.minHeight, max);
+        }
+
+      }
+      updateStyle();
+    }
+
+    /**
+     * Updates the style attribute with position, size, z-index, etc.
+     */
+    protected void updateStyle() {
+
+      StringBuilder sb = new StringBuilder();
+      if (TvmChildWindow.this.sizing == UiWindowSizing.MAXIMIZED) {
+        sb.append("left:0;top:0;width:100%;height:100%;");
+      } else {
+        sb.append("left:");
+        if (this.x == -1) {
+          this.x = (this.window.getInnerWidth() - this.width) / 2.0;
+        }
+        if (this.x < 0) {
+          this.x = 0;
+        }
+        sb.append(this.x);
+        sb.append("px;top:");
+        if (this.y == -1) {
+          this.y = (this.window.getInnerHeight() - this.height) / 2.0;
+        }
+        if (this.y < 0) {
+          this.y = 0;
+        }
+        sb.append(this.y);
+        sb.append("px;width:");
+        sb.append(this.width);
+        sb.append("px;");
+        if (TvmChildWindow.this.sizing == UiWindowSizing.NORMAL) {
+          sb.append("height:");
+          sb.append(this.height);
+          sb.append("px;");
+        }
+      }
+      sb.append("z-index:");
+      sb.append(TvmChildWindow.this.z);
+      String style = sb.toString();
+      TvmChildWindow.this.widget.setAttribute(ATR_STYLE, style);
+    }
+
+  }
+
 }

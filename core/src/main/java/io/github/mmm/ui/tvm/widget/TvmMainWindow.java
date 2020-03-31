@@ -9,7 +9,8 @@ import org.teavm.jso.dom.html.HTMLBodyElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteMaximized;
+import io.github.mmm.ui.attribute.AttributeWritePosition;
+import io.github.mmm.ui.attribute.AttributeWriteSizeInPixel;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
 import io.github.mmm.ui.widget.window.UiMainWindow;
 
@@ -18,9 +19,11 @@ import io.github.mmm.ui.widget.window.UiMainWindow;
  *
  * @since 1.0.0
  */
-public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWindow, AttributeWriteMaximized {
+public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWindow {
 
   private final HTMLBodyElement body;
+
+  private final TvmMainWindowPositionAndSize positionAndSize;
 
   private UiMenuBar menuBar;
 
@@ -50,6 +53,7 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
 
     super(context, widget);
     this.body = widget.getDocument().getBody();
+    this.positionAndSize = new TvmMainWindowPositionAndSize(widget);
     setParent(this.content, this);
     this.body.appendChild(this.content.getTopWidget());
     this.title = "";
@@ -90,57 +94,15 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   }
 
   @Override
-  public double getX() {
+  public AttributeWritePosition getPosition() {
 
-    return this.widget.getScreenX();
+    return this.positionAndSize;
   }
 
   @Override
-  public double getY() {
+  public AttributeWriteSizeInPixel getSize() {
 
-    return this.widget.getScreenY();
-  }
-
-  @Override
-  public void setX(double x) {
-
-    // moving browser window is not supported
-  }
-
-  @Override
-  public void setY(double y) {
-
-    // moving browser window is not supported
-  }
-
-  @Override
-  public double getWidthInPixel() {
-
-    return this.widget.getOuterWidth();
-  }
-
-  @Override
-  public void setWidthInPixel(double width) {
-
-    this.widget.resizeTo((int) width, this.widget.getOuterHeight());
-  }
-
-  @Override
-  public double getHeightInPixel() {
-
-    return this.widget.getOuterHeight();
-  }
-
-  @Override
-  public void setHeightInPixel(double height) {
-
-    this.widget.resizeTo(this.widget.getOuterWidth(), (int) height);
-  }
-
-  @Override
-  public void setSizeInPixel(double width, double height) {
-
-    this.widget.resizeTo((int) width, (int) height);
+    return this.positionAndSize;
   }
 
   @Override

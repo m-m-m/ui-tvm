@@ -143,6 +143,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     return this.widget;
   }
 
+  /**
+   * @return the {@link HTMLElement} representing this widget.
+   */
   public abstract HTMLElement getElement();
 
   @Override

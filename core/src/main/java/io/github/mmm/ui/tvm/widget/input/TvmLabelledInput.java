@@ -6,15 +6,15 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
+import io.github.mmm.ui.attribute.AttributeWriteText;
 
 /**
- * {@link TvmInput} that also implements {@link UiWidgetWithText}.
+ * {@link TvmInput} that also implements {@link AttributeWriteText}.
  *
  * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiWidgetWithText {
+public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements AttributeWriteText {
 
   private final HTMLElement topWidget;
 

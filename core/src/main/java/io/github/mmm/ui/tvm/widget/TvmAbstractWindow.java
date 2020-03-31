@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget;
 import org.teavm.jso.JSObject;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiComposite;
@@ -16,7 +17,8 @@ import io.github.mmm.ui.widget.window.UiAbstractWindow;
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsObject<W> implements UiAbstractWindow {
+public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsObject<W>
+    implements UiAbstractWindow, AttributeWriteMaximized {
 
   /** The content panel. */
   protected final TvmVerticalPanel content;
