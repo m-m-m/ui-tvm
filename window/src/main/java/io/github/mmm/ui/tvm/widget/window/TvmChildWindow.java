@@ -329,6 +329,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
    */
   protected void doOpen() {
 
+    this.positionAndSize.centerOnScreen(false);
     updateStyle();
     this.body.appendChild(this.widget);
   }
@@ -348,6 +349,12 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
    */
   public void bringToFront() {
 
+  }
+
+  @Override
+  public void centerOnScreen() {
+
+    this.positionAndSize.centerOnScreen(true);
   }
 
   /**
