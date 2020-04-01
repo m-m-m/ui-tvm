@@ -426,8 +426,6 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
       this.window = window;
       window.getDocument().addEventListener(EVENT_TYPE_POINTERUP, this::onPointerUp);
       this.pointerMoveListener = this::onPointerMove;
-      setWidthInPixel(0);
-      setHeightInPixel(0);
     }
 
     @Override
@@ -473,13 +471,13 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
     }
 
     @Override
-    protected double getMaxScreenWidth() {
+    protected double getScreenWidth() {
 
       return this.window.getInnerWidth();
     }
 
     @Override
-    protected double getMaxScreenHeight() {
+    protected double getScreenHeight() {
 
       return this.window.getInnerHeight();
     }
@@ -571,21 +569,9 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
         sb.append("left:0;top:0;width:100%;height:100%;");
       } else {
         sb.append("left:");
-        if (this.x == -1) {
-          this.x = (this.window.getInnerWidth() - this.width) / 2.0;
-        }
-        if (this.x < 0) {
-          this.x = 0;
-        }
-        sb.append(this.x);
+        sb.append(clipZero(this.x));
         sb.append("px;top:");
-        if (this.y == -1) {
-          this.y = (this.window.getInnerHeight() - this.height) / 2.0;
-        }
-        if (this.y < 0) {
-          this.y = 0;
-        }
-        sb.append(this.y);
+        sb.append(clipZero(this.y));
         sb.append("px;width:");
         sb.append(this.width);
         sb.append("px;");
