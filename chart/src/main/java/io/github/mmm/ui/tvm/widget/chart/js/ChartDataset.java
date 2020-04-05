@@ -35,4 +35,8 @@ public abstract class ChartDataset implements JSObject {
   @JSBody(params = { "label", "data", "color" }, script = "return {label:label,data:data,backgroundColor:color};")
   public static native ChartDataset of(String label, float[] data, String color);
 
+  @JSBody(params = { "label", "data", "color", "fill" }, //
+      script = "return {label:label,data:data,backgroundColor:color,fill:fill};")
+  public static native ChartDataset of(String label, ChartPoint[] data, String color, boolean fill);
+
 }

@@ -14,6 +14,8 @@ import io.github.mmm.ui.tvm.factory.media.TvmFactoryVideoPlayer;
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.media {
 
+  requires transitive io.github.mmm.ui.api.media;
+
   requires transitive io.github.mmm.ui.tvm.core;
 
   provides UiSingleWidgetFactoryNative with //

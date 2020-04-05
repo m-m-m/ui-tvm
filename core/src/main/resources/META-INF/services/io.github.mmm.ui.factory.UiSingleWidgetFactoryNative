@@ -14,6 +14,7 @@ io.github.mmm.ui.tvm.factory.core.TvmFactoryMainWindow
 io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput
 io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton
 io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioChoice
+io.github.mmm.ui.tvm.factory.core.TvmFactorySlot
 io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel
 io.github.mmm.ui.tvm.factory.core.TvmFactoryTab
 io.github.mmm.ui.tvm.factory.core.TvmFactoryText

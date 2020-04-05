@@ -1,3 +1,4 @@
-io.github.mmm.ui.tvm.factory.chart.TvmFactoryPieChart
 io.github.mmm.ui.tvm.factory.chart.TvmFactoryBarChartHorizontal
 io.github.mmm.ui.tvm.factory.chart.TvmFactoryBarChartVertical
+io.github.mmm.ui.tvm.factory.chart.TvmFactoryLineChart
+io.github.mmm.ui.tvm.factory.chart.TvmFactoryPieChart

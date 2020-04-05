@@ -11,7 +11,7 @@ import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.core {
 
-  requires transitive io.github.mmm.ui;
+  requires transitive io.github.mmm.ui.api.core;
 
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.value;
@@ -34,16 +34,15 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
-      // TvmFactoryPopup, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactorySlot, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTab, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTabPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryText, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryVerticalPanel //
-  // TvmFactoryWindow
   ;
 
   exports io.github.mmm.ui.tvm;
