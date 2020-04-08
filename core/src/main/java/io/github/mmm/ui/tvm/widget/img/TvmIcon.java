@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.img;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.img.UiIcon;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
-import io.github.mmm.ui.widget.img.UiIcon;
 
 /**
  * Implementation of {@link UiIcon} for TeaVM.

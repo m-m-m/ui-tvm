@@ -6,18 +6,18 @@ import org.teavm.jso.dom.html.HTMLCanvasElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.base.placement.Direction;
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.widget.chart.UiChart;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 import io.github.mmm.ui.tvm.widget.chart.js.Chart;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartConfig;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartData;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartOptions;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartOptionsLegend;
-import io.github.mmm.ui.widget.chart.UiChart;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.UiNativeWidget} for TeaVM based on {@link HTMLElement}.
+ * Implementation of {@link io.github.mmm.ui.api.widget.UiNativeWidget} for TeaVM based on {@link HTMLElement}.
  *
  * @param <D> type of the chart {@link UiDataSet#getData() data}.
  * @since 1.0.0

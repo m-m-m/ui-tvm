@@ -4,12 +4,12 @@ package io.github.mmm.ui.tvm;
 
 import org.teavm.jso.browser.Window;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiSeverity;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.spi.AbstractUiNotifier;
 
 /**
- * Implementation of {@link io.github.mmm.ui.UiNotifier} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.UiNotifier} for TeaVM.
  *
  * @since 1.0.0
  */

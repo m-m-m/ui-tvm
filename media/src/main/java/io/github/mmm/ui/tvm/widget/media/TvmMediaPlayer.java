@@ -4,11 +4,11 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.media.UiMedia;
-import io.github.mmm.ui.datatype.media.UiMediaType;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.media.UiMedia;
+import io.github.mmm.ui.api.datatype.media.UiMediaType;
+import io.github.mmm.ui.api.widget.media.UiMediaPlayer;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
-import io.github.mmm.ui.widget.media.UiMediaPlayer;
 
 /**
  * Implementation of {@link UiMediaPlayer} using TeaVM.

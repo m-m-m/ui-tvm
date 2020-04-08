@@ -8,9 +8,9 @@ import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.base.number.NumberType;
 import io.github.mmm.base.range.WritableRange;
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.input.UiSlider;
 import io.github.mmm.ui.spi.range.NumericRange;
-import io.github.mmm.ui.widget.input.UiSlider;
 
 /**
  * Implementation of {@link UiSlider} using TeaVM.

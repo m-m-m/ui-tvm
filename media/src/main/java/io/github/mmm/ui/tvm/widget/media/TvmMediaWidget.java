@@ -7,13 +7,13 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLMediaElement;
 import org.teavm.jso.dom.html.HTMLSourceElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.media.UiMedia;
-import io.github.mmm.ui.datatype.media.UiMediaPreview;
-import io.github.mmm.ui.datatype.media.UiMediaSource;
-import io.github.mmm.ui.datatype.media.UiMediaTrack;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.media.UiMedia;
+import io.github.mmm.ui.api.datatype.media.UiMediaPreview;
+import io.github.mmm.ui.api.datatype.media.UiMediaSource;
+import io.github.mmm.ui.api.datatype.media.UiMediaTrack;
+import io.github.mmm.ui.api.widget.media.UiMediaWidget;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
-import io.github.mmm.ui.widget.media.UiMediaWidget;
 
 /**
  * Implementation of {@link UiMediaWidget} using TeaVM.

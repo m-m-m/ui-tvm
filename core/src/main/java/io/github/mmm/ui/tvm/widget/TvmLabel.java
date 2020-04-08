@@ -4,8 +4,8 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.UiLabel;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiLabel;
 
 /**
  * Implementation of {@link UiLabel} for TeaVM.

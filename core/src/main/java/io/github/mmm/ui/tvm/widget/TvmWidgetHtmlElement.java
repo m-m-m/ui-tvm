@@ -4,10 +4,10 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.UiNativeWidget} for TeaVM based on {@link HTMLElement}.
+ * Implementation of {@link io.github.mmm.ui.api.widget.UiNativeWidget} for TeaVM based on {@link HTMLElement}.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
@@ -51,7 +51,7 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   }
 
   /**
-   * @return {@link io.github.mmm.ui.widget.UiAtomicWidget#getTooltip()}
+   * @return {@link io.github.mmm.ui.api.widget.UiAtomicWidget#getTooltip()}
    */
   public String getTooltip() {
 
@@ -59,7 +59,7 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   }
 
   /**
-   * @param tooltip - see {@link io.github.mmm.ui.widget.UiAtomicWidget#setTooltip(String)}
+   * @param tooltip - see {@link io.github.mmm.ui.api.widget.UiAtomicWidget#setTooltip(String)}
    */
   public void setTooltip(String tooltip) {
 

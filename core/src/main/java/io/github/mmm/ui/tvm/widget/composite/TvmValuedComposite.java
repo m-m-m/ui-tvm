@@ -4,11 +4,11 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.binding.UiValueBinding;
-import io.github.mmm.ui.event.UiValueChangeEvent;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.composite.UiValuedComposite;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.binding.UiValueBinding;
+import io.github.mmm.ui.api.event.UiValueChangeEvent;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiValuedComposite;
 import io.github.mmm.validation.Validator;
 
 /**

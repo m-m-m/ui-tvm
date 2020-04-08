@@ -8,11 +8,11 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
+import io.github.mmm.ui.api.widget.composite.UiTab;
 import io.github.mmm.ui.tvm.widget.panel.TvmTabPanel;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
-import io.github.mmm.ui.widget.composite.UiTab;
 
 /**
  * Implementation of {@link UiTab} using TeaVM.

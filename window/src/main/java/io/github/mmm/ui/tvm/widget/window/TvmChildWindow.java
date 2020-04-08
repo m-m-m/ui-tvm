@@ -12,13 +12,13 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.base.placement.Direction;
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWritePositionRange;
-import io.github.mmm.ui.attribute.AttributeWriteSizeRange;
-import io.github.mmm.ui.datatype.UiWindowSizing;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWritePositionRange;
+import io.github.mmm.ui.api.attribute.AttributeWriteSizeRange;
+import io.github.mmm.ui.api.datatype.UiWindowSizing;
+import io.github.mmm.ui.api.widget.window.UiChildWindow;
 import io.github.mmm.ui.spi.window.UiWindowPositionAndSize;
 import io.github.mmm.ui.tvm.widget.TvmAbstractWindow;
-import io.github.mmm.ui.widget.window.UiChildWindow;
 
 /**
  * Abstract base implementation of {@link TvmAbstractWindow} for windows inside the browser content (body).

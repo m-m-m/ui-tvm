@@ -4,8 +4,8 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
-import io.github.mmm.ui.widget.UiRegularWidget;
 
 /**
  * {@link TvmWidgetHtmlElement} for {@link TvmInput#getContainerWidget()}.

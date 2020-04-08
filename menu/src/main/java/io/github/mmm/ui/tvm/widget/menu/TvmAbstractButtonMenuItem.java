@@ -4,7 +4,7 @@ package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
 
 /**
  *

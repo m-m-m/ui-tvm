@@ -6,14 +6,14 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiFocusGainEvent;
-import io.github.mmm.ui.event.UiFocusLossEvent;
-import io.github.mmm.ui.widget.UiActiveWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.event.UiFocusGainEvent;
+import io.github.mmm.ui.api.event.UiFocusLossEvent;
+import io.github.mmm.ui.api.widget.UiActiveWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.UiActiveWidget} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.widget.UiActiveWidget} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0

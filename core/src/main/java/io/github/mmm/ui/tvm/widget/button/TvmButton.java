@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.button;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.button.UiButton;
 import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
-import io.github.mmm.ui.widget.button.UiButton;
 
 /**
  *

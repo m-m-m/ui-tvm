@@ -5,8 +5,8 @@ package io.github.mmm.ui.tvm.widget;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLBodyElement;
 
-import io.github.mmm.ui.attribute.AttributeWritePosition;
-import io.github.mmm.ui.attribute.AttributeWriteSizeInPixel;
+import io.github.mmm.ui.api.attribute.AttributeWritePosition;
+import io.github.mmm.ui.api.attribute.AttributeWriteSizeInPixel;
 
 /**
  * Implementation of {@link AttributeWritePosition} and {@link AttributeWriteSizeInPixel} for {@link TvmMainWindow}.

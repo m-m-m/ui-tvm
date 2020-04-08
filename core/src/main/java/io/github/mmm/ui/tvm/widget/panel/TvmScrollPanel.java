@@ -4,12 +4,12 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiEnabledFlags;
-import io.github.mmm.ui.datatype.UiScrollBarVisibility;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiEnabledFlags;
+import io.github.mmm.ui.api.datatype.UiScrollBarVisibility;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.panel.UiScrollPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmComposite;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.panel.UiScrollPanel;
 
 /**
  * Implementation of {@link UiScrollPanel} for TeaVM.

@@ -5,8 +5,8 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.panel.UiHorizontalPanel;
 
 /**
  * Implementation of {@link UiHorizontalPanel} using TeaVM.

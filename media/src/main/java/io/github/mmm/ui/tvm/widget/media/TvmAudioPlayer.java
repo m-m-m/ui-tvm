@@ -4,8 +4,8 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLAudioElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.media.UiAudioPlayer;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.media.UiAudioPlayer;
 
 /**
  * Implementation of {@link UiAudioPlayer} using TeaVM.

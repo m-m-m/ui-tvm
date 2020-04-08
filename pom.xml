@@ -24,6 +24,7 @@
   <modules>
     <module>core</module>
     <module>chart</module>
+    <module>format</module>
     <module>media</module>
     <module>menu</module>
     <module>temporal</module>
@@ -53,6 +54,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-tvm-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-tvm-format</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

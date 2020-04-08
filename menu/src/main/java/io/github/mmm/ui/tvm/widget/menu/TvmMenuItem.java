@@ -4,8 +4,8 @@ package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.menu.UiMenuItem;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.menu.UiMenuItem;
 
 /**
  * Implementation of {@link UiMenuItem} for TeaVM.

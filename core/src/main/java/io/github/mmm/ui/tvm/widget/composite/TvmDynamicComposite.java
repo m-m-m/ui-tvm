@@ -4,10 +4,10 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiEnabledFlags;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiEnabledFlags;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
 
 /**
  * Implementation of {@link UiDynamicComposite} for TeaVM.

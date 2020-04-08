@@ -5,10 +5,10 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.button.UiAbstractButton;
+import io.github.mmm.ui.api.widget.panel.UiButtonPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
-import io.github.mmm.ui.widget.button.UiAbstractButton;
-import io.github.mmm.ui.widget.panel.UiButtonPanel;
 
 /**
  * Implementation of {@link UiButtonPanel} using TeaVM.

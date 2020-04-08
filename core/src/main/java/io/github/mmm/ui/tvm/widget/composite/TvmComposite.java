@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
 
 /**
  * Implementation of {@link UiComposite} using TeaVM.

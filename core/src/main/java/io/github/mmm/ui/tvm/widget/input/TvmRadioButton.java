@@ -2,9 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.UiToggleGroup;
-import io.github.mmm.ui.widget.input.UiRadioButton;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiToggleGroup;
+import io.github.mmm.ui.api.widget.input.UiRadioButton;
 
 /**
  * Implementation of {@link UiRadioButton} using TeaVM.

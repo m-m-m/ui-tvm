@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiCheckbox;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.input.UiCheckbox;
 
 /**
  * Implementation of {@link UiCheckbox} using TeaVM.

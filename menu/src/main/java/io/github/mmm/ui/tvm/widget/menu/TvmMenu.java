@@ -10,9 +10,9 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.xml.Node;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.menu.UiAbstractMenuItem;
-import io.github.mmm.ui.widget.menu.UiMenu;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.menu.UiAbstractMenuItem;
+import io.github.mmm.ui.api.widget.menu.UiMenu;
 
 /**
  * Implementation of {@link UiMenu} for TeaVM.

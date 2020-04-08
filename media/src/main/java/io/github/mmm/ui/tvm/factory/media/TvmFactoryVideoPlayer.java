@@ -2,10 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.media;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.api.widget.media.UiVideoPlayer;
 import io.github.mmm.ui.tvm.widget.media.TvmVideoPlayer;
-import io.github.mmm.ui.widget.media.UiVideoPlayer;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiVideoPlayer}.

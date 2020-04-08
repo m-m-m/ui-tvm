@@ -4,11 +4,11 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.dom.events.Event;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.window.UiAbstractWindow;
-import io.github.mmm.ui.widget.window.UiChildWindow;
-import io.github.mmm.ui.widget.window.UiPopup;
-import io.github.mmm.ui.widget.window.UiWindow;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
+import io.github.mmm.ui.api.widget.window.UiChildWindow;
+import io.github.mmm.ui.api.widget.window.UiPopup;
+import io.github.mmm.ui.api.widget.window.UiWindow;
 
 /**
  * Implementation of {@link UiPopup} for TeaVM.

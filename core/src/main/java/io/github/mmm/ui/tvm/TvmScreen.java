@@ -8,7 +8,7 @@ import org.teavm.jso.browser.Window;
 import io.github.mmm.ui.spi.AbstractUiScreen;
 
 /**
- * Implementation of {@link io.github.mmm.ui.UiScreen} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.UiScreen} for TeaVM.
  *
  * @since 1.0.0
  */

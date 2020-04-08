@@ -6,13 +6,13 @@ import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.events.KeyboardEvent;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiEnabledFlags;
-import io.github.mmm.ui.datatype.UiVisibleFlags;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiEnabledFlags;
+import io.github.mmm.ui.api.datatype.UiVisibleFlags;
+import io.github.mmm.ui.api.widget.composite.UiTab;
+import io.github.mmm.ui.api.widget.panel.UiTabPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.tvm.widget.composite.TvmTab;
-import io.github.mmm.ui.widget.composite.UiTab;
-import io.github.mmm.ui.widget.panel.UiTabPanel;
 
 /**
  * Implementation of {@link UiTabPanel} using TeaVM.

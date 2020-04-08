@@ -4,8 +4,8 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiStringInput;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.input.UiStringInput;
 
 /**
  * Implementation of {@link UiStringInput} using TeaVM.

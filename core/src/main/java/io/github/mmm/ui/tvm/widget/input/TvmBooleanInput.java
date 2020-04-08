@@ -5,7 +5,7 @@ package io.github.mmm.ui.tvm.widget.input;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
 
 /**
  * Implementation of {@link HTMLInputElement#isChecked() checkable} input with {@link Boolean} {@link #getValue() value}

@@ -4,10 +4,10 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.panel.UiButtonPanel;
-import io.github.mmm.ui.widget.window.UiAbstractWindow;
-import io.github.mmm.ui.widget.window.UiPopup;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.panel.UiButtonPanel;
+import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
+import io.github.mmm.ui.api.widget.window.UiPopup;
 
 /**
  * Implementation of {@link UiPopup} for TeaVM.

@@ -5,12 +5,12 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiLabel;
+import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.panel.UiFormGroup;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
-import io.github.mmm.ui.widget.UiLabel;
-import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.panel.UiFormGroup;
 
 /**
  * Implementation of {@link UiFormGroup} using TeaVM.

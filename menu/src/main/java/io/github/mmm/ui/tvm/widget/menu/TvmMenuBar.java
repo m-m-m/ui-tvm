@@ -4,10 +4,10 @@ package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.menu.UiMenu;
+import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
-import io.github.mmm.ui.widget.menu.UiMenu;
-import io.github.mmm.ui.widget.menu.UiMenuBar;
 
 /**
  * Implementation of {@link UiMenuBar} for TeaVM.

@@ -2,16 +2,16 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm;
 
-import io.github.mmm.ui.UiDispatcher;
-import io.github.mmm.ui.UiNotifier;
-import io.github.mmm.ui.UiScreen;
-import io.github.mmm.ui.UiToggleGroup;
+import io.github.mmm.ui.api.UiDispatcher;
+import io.github.mmm.ui.api.UiNotifier;
+import io.github.mmm.ui.api.UiScreen;
+import io.github.mmm.ui.api.UiToggleGroup;
+import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.ui.spi.AbstractUiContext;
 import io.github.mmm.ui.tvm.widget.TvmMainWindow;
-import io.github.mmm.ui.widget.window.UiMainWindow;
 
 /**
- * Implementation of {@link io.github.mmm.ui.UiContext} using TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.UiContext} using TeaVM.
  *
  * @since 1.0.0
  */

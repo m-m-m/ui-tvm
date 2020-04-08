@@ -4,12 +4,12 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiClickEvent;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithClick;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.event.UiClickEvent;
+import io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.attribute.UiWidgetWithClick} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0

@@ -4,12 +4,12 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
+import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.input.UiAbstractInput;
-import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.panel.UiFormPanel;
 
 /**
  * Implementation of {@link UiFormPanel} using TeaVM.

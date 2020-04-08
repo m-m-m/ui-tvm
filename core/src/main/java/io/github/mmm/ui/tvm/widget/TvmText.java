@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiTextAlignment;
-import io.github.mmm.ui.widget.UiText;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiTextAlignment;
+import io.github.mmm.ui.api.widget.UiText;
 
 /**
  * Implementation of {@link UiText} for TeaVM.

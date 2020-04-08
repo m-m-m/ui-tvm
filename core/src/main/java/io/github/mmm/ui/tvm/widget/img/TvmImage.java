@@ -4,10 +4,10 @@ package io.github.mmm.ui.tvm.widget.img;
 
 import org.teavm.jso.dom.html.HTMLImageElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiSize;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.UiSize;
+import io.github.mmm.ui.api.widget.img.UiImage;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
-import io.github.mmm.ui.widget.img.UiImage;
 
 /**
  * Implementation of {@link UiImage} for TeaVM.

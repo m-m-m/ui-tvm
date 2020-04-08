@@ -19,14 +19,14 @@ import org.teavm.jso.dom.html.HTMLVideoElement;
 import org.teavm.jso.dom.xml.Document;
 import org.teavm.jso.dom.xml.Node;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiClickEvent;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.event.UiClickEvent;
+import io.github.mmm.ui.api.widget.UiCustomWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.spi.widget.AbstractUiNativeWidgetWrapper;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.custom.UiCustomWidget;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.UiNativeWidget} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.widget.UiNativeWidget} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0

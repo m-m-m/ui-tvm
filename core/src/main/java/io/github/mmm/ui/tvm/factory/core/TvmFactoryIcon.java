@@ -2,10 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.api.widget.img.UiIcon;
 import io.github.mmm.ui.tvm.widget.img.TvmIcon;
-import io.github.mmm.ui.widget.img.UiIcon;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiIcon}.

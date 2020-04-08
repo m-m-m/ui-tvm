@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.composite.UiSlot;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.composite.UiSlot;
 
 /**
  * Implementation of {@link UiSlot} for TeaVM.

@@ -5,8 +5,8 @@ package io.github.mmm.ui.tvm.widget.input;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteText;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWriteText;
 
 /**
  * {@link TvmInput} that also implements {@link AttributeWriteText}.

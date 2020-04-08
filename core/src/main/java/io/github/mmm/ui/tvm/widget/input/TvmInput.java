@@ -6,14 +6,14 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteAutocomplete;
-import io.github.mmm.ui.datatype.bitmask.BitMask;
-import io.github.mmm.ui.event.UiValueChangeEvent;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWriteAutocomplete;
+import io.github.mmm.ui.api.datatype.bitmask.BitMask;
+import io.github.mmm.ui.api.event.UiValueChangeEvent;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
 
 /**

@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.temporal;
 
 import java.time.LocalTime;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.temporal.UiTimeInput;
 import io.github.mmm.ui.tvm.widget.input.TvmTextualInput;
-import io.github.mmm.ui.widget.temporal.UiTimeInput;
 
 /**
  * Implementation of {@link UiTimeInput} using TeaVM.

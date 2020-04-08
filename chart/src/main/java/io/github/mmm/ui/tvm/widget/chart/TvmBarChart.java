@@ -2,12 +2,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.chart;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.chart.UiDataSeries;
-import io.github.mmm.ui.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.datatype.chart.UiDataSeries;
+import io.github.mmm.ui.api.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.widget.chart.UiBarChart;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartData;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartDataset;
-import io.github.mmm.ui.widget.chart.UiBarChart;
 
 /**
  * Implementation of {@link UiBarChart} for TeaVM.

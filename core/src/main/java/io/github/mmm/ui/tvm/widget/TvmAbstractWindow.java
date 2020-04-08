@@ -4,12 +4,12 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.JSObject;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteMaximized;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWriteMaximized;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
+import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
 import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
-import io.github.mmm.ui.widget.window.UiAbstractWindow;
 
 /**
  * Implementation of {@link UiAbstractWindow} for TeaVM.

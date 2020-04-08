@@ -8,11 +8,11 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLBodyElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWritePosition;
-import io.github.mmm.ui.attribute.AttributeWriteSizeInPixel;
-import io.github.mmm.ui.widget.menu.UiMenuBar;
-import io.github.mmm.ui.widget.window.UiMainWindow;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWritePosition;
+import io.github.mmm.ui.api.attribute.AttributeWriteSizeInPixel;
+import io.github.mmm.ui.api.widget.menu.UiMenuBar;
+import io.github.mmm.ui.api.widget.window.UiMainWindow;
 
 /**
  * Implementation of {@link UiMainWindow} for TeaVM.

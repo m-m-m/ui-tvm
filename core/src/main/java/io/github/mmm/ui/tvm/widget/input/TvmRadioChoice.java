@@ -10,10 +10,10 @@ import java.util.function.Function;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.input.UiRadioChoice;
+import io.github.mmm.ui.api.widget.input.UiTextInput;
 import io.github.mmm.ui.spi.ToStringFormatter;
-import io.github.mmm.ui.widget.input.UiRadioChoice;
-import io.github.mmm.ui.widget.input.UiTextInput;
 
 /**
  * Implementation of {@link UiTextInput} using TeaVM.

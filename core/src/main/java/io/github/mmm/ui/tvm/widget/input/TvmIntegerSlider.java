@@ -3,8 +3,8 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.base.number.NumberType;
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiIntegerSlider;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.input.UiIntegerSlider;
 
 /**
  * Implementation of {@link UiIntegerSlider} using TeaVM.
