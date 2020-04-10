@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.input.UiInput;
@@ -21,23 +20,19 @@ public class TvmFormPanel<V> extends TvmValuedComposite<HTMLElement, UiAbstractI
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmFormPanel(UiContext context) {
+  public TvmFormPanel() {
 
-    super(context, newForm());
+    super(newForm());
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmFormPanel(UiContext context, HTMLElement widget) {
+  public TvmFormPanel(HTMLElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

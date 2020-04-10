@@ -10,6 +10,7 @@ import org.teavm.jso.dom.html.HTMLCanvasElement;
 /**
  * {@link JSObject} to wrap {@code Chart} from {@code Chart.js}.
  */
+@SuppressWarnings("javadoc")
 public abstract class Chart implements JSObject {
 
   @JSProperty

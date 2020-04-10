@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.dom.events.Event;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
 import io.github.mmm.ui.api.widget.window.UiChildWindow;
+import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.ui.api.widget.window.UiPopup;
 import io.github.mmm.ui.api.widget.window.UiWindow;
 
@@ -21,12 +21,10 @@ public class TvmWindow extends TvmChildWindow implements UiWindow {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmWindow(UiContext context) {
+  public TvmWindow() {
 
-    super(context);
+    super();
   }
 
   @Override
@@ -34,7 +32,7 @@ public class TvmWindow extends TvmChildWindow implements UiWindow {
 
     UiAbstractWindow parent;
     if (TOPMOST_WINDOW == null) {
-      parent = this.context.getMainWindow();
+      parent = UiMainWindow.get();
       this.z = 100;
     } else {
       parent = TOPMOST_WINDOW;

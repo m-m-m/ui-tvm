@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.window;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.window.UiPopup;
 import io.github.mmm.ui.tvm.widget.window.TvmPopup;
@@ -21,9 +20,9 @@ public class TvmFactoryPopup implements UiSingleWidgetFactoryNative<UiPopup> {
   }
 
   @Override
-  public UiPopup create(UiContext context) {
+  public UiPopup create() {
 
-    return new TvmPopup(context);
+    return new TvmPopup();
   }
 
 }

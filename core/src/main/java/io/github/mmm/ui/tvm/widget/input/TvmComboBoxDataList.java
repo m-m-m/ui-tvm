@@ -11,7 +11,6 @@ import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLOptionElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiComboBox;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
 import io.github.mmm.ui.spi.ToStringFormatter;
@@ -38,12 +37,10 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmComboBoxDataList(UiContext context) {
+  public TvmComboBoxDataList() {
 
-    super(context, "text");
+    super("text");
     this.topWidget = newElement("ui-combobox");
     this.datalist = newDatalist();
     String dataListId = "tvm-dl-" + counter++;

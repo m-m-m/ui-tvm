@@ -10,7 +10,6 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.xml.Node;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.menu.UiAbstractMenuItem;
 import io.github.mmm.ui.api.widget.menu.UiMenu;
 
@@ -27,23 +26,20 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmMenu(UiContext context) {
+  public TvmMenu() {
 
-    this(context, newButton());
+    this(newButton());
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmMenu(UiContext context, HTMLButtonElement widget) {
+  public TvmMenu(HTMLButtonElement widget) {
 
-    super(context, widget);
+    super(widget);
     this.children = new ArrayList<>();
     this.menu = newElement("ui-menu");
   }

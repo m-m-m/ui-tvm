@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.panel.UiDynamicPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
@@ -20,13 +19,11 @@ public class TvmDynamicPanel<W extends HTMLElement> extends TvmDynamicComposite<
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmDynamicPanel(UiContext context, W widget) {
+  public TvmDynamicPanel(W widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
 }

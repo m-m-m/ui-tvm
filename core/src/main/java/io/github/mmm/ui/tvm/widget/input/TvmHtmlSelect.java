@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.dom.html.HTMLSelectElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiInput;
 
 /**
@@ -17,23 +16,20 @@ public abstract class TvmHtmlSelect<V> extends TvmInput<V, HTMLSelectElement> {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmHtmlSelect(UiContext context) {
+  public TvmHtmlSelect() {
 
-    super(context, newSelect());
+    super(newSelect());
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmHtmlSelect(UiContext context, HTMLSelectElement widget) {
+  public TvmHtmlSelect(HTMLSelectElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

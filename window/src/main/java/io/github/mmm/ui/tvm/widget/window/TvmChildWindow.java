@@ -12,13 +12,11 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.base.placement.Direction;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWritePositionRange;
 import io.github.mmm.ui.api.attribute.AttributeWriteSizeRange;
 import io.github.mmm.ui.api.datatype.UiWindowSizing;
 import io.github.mmm.ui.api.widget.window.UiChildWindow;
 import io.github.mmm.ui.spi.window.UiWindowPositionAndSize;
-import io.github.mmm.ui.tvm.widget.TvmAbstractWindow;
 
 /**
  * Abstract base implementation of {@link TvmAbstractWindow} for windows inside the browser content (body).
@@ -74,23 +72,20 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmChildWindow(UiContext context) {
+  public TvmChildWindow() {
 
-    this(context, Window.current());
+    this(Window.current());
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param window the browser {@link Window}.
    */
-  public TvmChildWindow(UiContext context, Window window) {
+  public TvmChildWindow(Window window) {
 
-    super(context, newElement("ui-window"));
+    super(newElement("ui-window"));
     this.positionAndSize = new TvmWindowPositionAndSize(window);
     this.body = window.getDocument().getBody();
 

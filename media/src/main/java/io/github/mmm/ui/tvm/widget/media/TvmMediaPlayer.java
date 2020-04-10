@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.media.UiMedia;
 import io.github.mmm.ui.api.datatype.media.UiMediaType;
 import io.github.mmm.ui.api.widget.media.UiMediaPlayer;
@@ -25,18 +24,16 @@ public class TvmMediaPlayer extends TvmActiveWidget<HTMLElement> implements UiMe
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmMediaPlayer(UiContext context) {
+  public TvmMediaPlayer() {
 
-    super(context, newElement("ui-mplayer"));
+    super(newElement("ui-mplayer"));
   }
 
   private TvmAudioPlayer getAudio() {
 
     if (this.audio == null) {
-      this.audio = new TvmAudioPlayer(this.context);
+      this.audio = new TvmAudioPlayer();
       this.audio.getWidget().setControls(true);
       getTopWidget().appendChild(this.audio.getTopWidget());
       this.activeMedia = this.audio;
@@ -47,7 +44,7 @@ public class TvmMediaPlayer extends TvmActiveWidget<HTMLElement> implements UiMe
   private TvmVideoPlayer getVideo() {
 
     if (this.video == null) {
-      this.video = new TvmVideoPlayer(this.context);
+      this.video = new TvmVideoPlayer();
       this.video.getWidget().setControls(true);
       getTopWidget().appendChild(this.video.getTopWidget());
       this.activeMedia = this.video;

@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiLabel;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
@@ -21,9 +20,9 @@ public class TvmFactoryLabel implements UiSingleWidgetFactoryNative<UiLabel> {
   }
 
   @Override
-  public UiLabel create(UiContext context) {
+  public UiLabel create() {
 
-    return new TvmLabel(context);
+    return new TvmLabel();
   }
 
 }

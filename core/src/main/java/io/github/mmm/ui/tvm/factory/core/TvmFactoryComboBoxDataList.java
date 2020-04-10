@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.input.UiComboBox;
 import io.github.mmm.ui.tvm.widget.input.TvmComboBoxDataList;
@@ -22,9 +21,9 @@ public class TvmFactoryComboBoxDataList implements UiSingleWidgetFactoryNative<U
   }
 
   @Override
-  public UiComboBox create(UiContext context) {
+  public UiComboBox create() {
 
-    return new TvmComboBoxDataList(context);
+    return new TvmComboBoxDataList();
   }
 
 }

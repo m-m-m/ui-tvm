@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.panel.UiFormGroup;
 import io.github.mmm.ui.tvm.widget.panel.TvmFormGroup;
@@ -22,9 +21,9 @@ public class TvmFactoryFormGroup implements UiSingleWidgetFactoryNative<UiFormGr
   }
 
   @Override
-  public UiFormGroup create(UiContext context) {
+  public UiFormGroup create() {
 
-    return new TvmFormGroup(context);
+    return new TvmFormGroup();
   }
 
 }

@@ -5,7 +5,6 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiLabel;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.api.widget.panel.UiFormGroup;
@@ -28,24 +27,20 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmFormGroup(UiContext context) {
+  public TvmFormGroup() {
 
-    this(context, newFieldSet());
+    this(newFieldSet());
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmFormGroup(UiContext context, HTMLElement widget) {
+  public TvmFormGroup(HTMLElement widget) {
 
-    super(context, widget);
-    this.legend = new Legend(context);
+    super(widget);
+    this.legend = new Legend();
     this.widget.appendChild(this.legend.getTopWidget());
     setCollapsible(true);
   }
@@ -140,12 +135,10 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
 
     /**
      * The constructor.
-     *
-     * @param context the {@link #getContext() context}.
      */
-    public Legend(UiContext context) {
+    public Legend() {
 
-      super(context, newLabel());
+      super(newLabel());
       this.topWidget = newLegend();
       this.expandIcon = newIcon(CLASS_COLLAPSE);
       this.topWidget.appendChild(this.expandIcon);

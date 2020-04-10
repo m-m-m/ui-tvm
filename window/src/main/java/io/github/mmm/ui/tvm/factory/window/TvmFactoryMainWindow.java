@@ -1,11 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.factory.core;
+package io.github.mmm.ui.tvm.factory.window;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.window.UiMainWindow;
-import io.github.mmm.ui.tvm.widget.TvmMainWindow;
+import io.github.mmm.ui.tvm.widget.window.TvmMainWindow;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiMainWindow}.
@@ -14,6 +13,8 @@ import io.github.mmm.ui.tvm.widget.TvmMainWindow;
  */
 public class TvmFactoryMainWindow implements UiSingleWidgetFactoryNative<UiMainWindow> {
 
+  private static TvmMainWindow mainWindow;
+
   @Override
   public Class<UiMainWindow> getType() {
 
@@ -21,9 +22,12 @@ public class TvmFactoryMainWindow implements UiSingleWidgetFactoryNative<UiMainW
   }
 
   @Override
-  public UiMainWindow create(UiContext context) {
+  public UiMainWindow create() {
 
-    return new TvmMainWindow(context);
+    if (mainWindow == null) {
+      mainWindow = new TvmMainWindow();
+    }
+    return mainWindow;
   }
 
 }

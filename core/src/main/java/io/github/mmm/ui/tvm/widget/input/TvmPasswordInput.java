@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiPasswordInput;
 
 /**
@@ -14,12 +13,10 @@ public class TvmPasswordInput extends TvmStringInput implements UiPasswordInput 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmPasswordInput(UiContext context) {
+  public TvmPasswordInput() {
 
-    super(context, "password");
+    super("password");
   }
 
 }

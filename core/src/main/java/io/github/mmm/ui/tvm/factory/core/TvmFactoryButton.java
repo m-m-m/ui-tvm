@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.button.UiButton;
 import io.github.mmm.ui.tvm.widget.button.TvmButton;
@@ -21,9 +20,9 @@ public class TvmFactoryButton implements UiSingleWidgetFactoryNative<UiButton> {
   }
 
   @Override
-  public UiButton create(UiContext context) {
+  public UiButton create() {
 
-    return new TvmButton(context);
+    return new TvmButton();
   }
 
 }

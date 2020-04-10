@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.panel.UiTabPanel;
 import io.github.mmm.ui.tvm.widget.panel.TvmTabPanel;
@@ -21,9 +20,9 @@ public class TvmFactoryTabPanel implements UiSingleWidgetFactoryNative<UiTabPane
   }
 
   @Override
-  public UiTabPanel create(UiContext context) {
+  public UiTabPanel create() {
 
-    return new TvmTabPanel(context);
+    return new TvmTabPanel();
   }
 
 }

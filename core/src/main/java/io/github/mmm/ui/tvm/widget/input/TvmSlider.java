@@ -8,7 +8,6 @@ import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.base.number.NumberType;
 import io.github.mmm.base.range.WritableRange;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiSlider;
 import io.github.mmm.ui.spi.range.NumericRange;
 
@@ -34,12 +33,10 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmSlider(UiContext context) {
+  public TvmSlider() {
 
-    super(context, "range");
+    super("range");
     this.topWidget = newElement("ui-slider");
     this.topWidget.appendChild(this.widget);
     this.output = newOutput();

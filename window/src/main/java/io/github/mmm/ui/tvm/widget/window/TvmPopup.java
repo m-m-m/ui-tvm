@@ -4,9 +4,9 @@ package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.panel.UiButtonPanel;
 import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
+import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.ui.api.widget.window.UiPopup;
 
 /**
@@ -24,14 +24,12 @@ public class TvmPopup extends TvmChildWindow implements UiPopup {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmPopup(UiContext context) {
+  public TvmPopup() {
 
-    super(context);
+    super();
     this.modalPane = newElement("ui-modal");
-    this.buttonPanel = UiButtonPanel.of(context);
+    this.buttonPanel = UiButtonPanel.of();
     this.contentPane.appendChild(getTopNode(this.buttonPanel));
   }
 
@@ -48,7 +46,7 @@ public class TvmPopup extends TvmChildWindow implements UiPopup {
     if (TOPMOST_POPUP == null) {
       parent = TvmWindow.TOPMOST_WINDOW;
       if (parent == null) {
-        parent = this.context.getMainWindow();
+        parent = UiMainWindow.get();
       }
       // if you open 10.000+ instances of UiWindow you will be in trouble but already due to memory
       this.z = 100_000;

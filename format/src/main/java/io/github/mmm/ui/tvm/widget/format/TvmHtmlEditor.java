@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.format;
 
 import org.teavm.jso.dom.html.HTMLTextAreaElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.format.UiHtmlEditor;
 import io.github.mmm.ui.tvm.widget.input.TvmInput;
 
@@ -18,12 +17,10 @@ public class TvmHtmlEditor extends TvmInput<String, HTMLTextAreaElement> impleme
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmHtmlEditor(UiContext context) {
+  public TvmHtmlEditor() {
 
-    super(context, newTextArea());
+    super(newTextArea());
   }
 
   @Override

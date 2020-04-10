@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.menu.UiAbstractActiveMenuItem;
 import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
 
@@ -19,13 +18,11 @@ public abstract class TvmAbstractActiveMenuItem<W extends HTMLElement> extends T
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmAbstractActiveMenuItem(UiContext context, W widget) {
+  public TvmAbstractActiveMenuItem(W widget) {
 
-    super(context, widget);
+    super(widget);
     this.widget.setAttribute(ATR_ROLE, "menuitem");
   }
 

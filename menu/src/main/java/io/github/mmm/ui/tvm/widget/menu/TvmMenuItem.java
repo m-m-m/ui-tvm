@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.menu.UiMenuItem;
 
 /**
@@ -17,22 +16,19 @@ public class TvmMenuItem extends TvmAbstractButtonMenuItem implements UiMenuItem
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmMenuItem(UiContext context, HTMLButtonElement widget) {
+  public TvmMenuItem(HTMLButtonElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmMenuItem(UiContext context) {
+  public TvmMenuItem() {
 
-    super(context, newButton());
+    super(newButton());
   }
 
 }

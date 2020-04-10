@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.chart;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.chart.UiBarChartHorizontal;
 import io.github.mmm.ui.api.widget.chart.UiBarChartVertical;
 
@@ -15,12 +14,10 @@ public class TvmBarChartVertical extends TvmBarChart implements UiBarChartVertic
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmBarChartVertical(UiContext context) {
+  public TvmBarChartVertical() {
 
-    super(context);
+    super();
   }
 
   @Override

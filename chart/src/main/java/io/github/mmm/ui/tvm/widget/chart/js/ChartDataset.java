@@ -7,8 +7,9 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
 
 /**
- *
+ * {@link JSObject} to wrap {@code dataset} from {@code Chart.js}.
  */
+@SuppressWarnings("javadoc")
 public abstract class ChartDataset implements JSObject {
 
   @JSProperty

@@ -3,12 +3,8 @@
 package io.github.mmm.ui.tvm;
 
 import io.github.mmm.ui.api.UiDispatcher;
-import io.github.mmm.ui.api.UiNotifier;
-import io.github.mmm.ui.api.UiScreen;
 import io.github.mmm.ui.api.UiToggleGroup;
-import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.ui.spi.AbstractUiContext;
-import io.github.mmm.ui.tvm.widget.TvmMainWindow;
 
 /**
  * Implementation of {@link io.github.mmm.ui.api.UiContext} using TeaVM.
@@ -17,10 +13,6 @@ import io.github.mmm.ui.tvm.widget.TvmMainWindow;
  */
 public class TvmContext extends AbstractUiContext {
 
-  private final TvmMainWindow mainWindow;
-
-  private final TvmScreen screen;
-
   private final TvmDispatcher dispatcher;
 
   /**
@@ -28,24 +20,10 @@ public class TvmContext extends AbstractUiContext {
    */
   public TvmContext() {
 
-    // super(new TvmWidgetFactoryNative(), null, null);
-    this.mainWindow = new TvmMainWindow(this);
-    this.screen = new TvmScreen();
+    super();
     this.dispatcher = new TvmDispatcher();
     // root = document.documentElement;
     // root.style.setProperty('--bg', '#000000');
-  }
-
-  @Override
-  public UiMainWindow getMainWindow() {
-
-    return this.mainWindow;
-  }
-
-  @Override
-  public UiScreen getScreen() {
-
-    return this.screen;
   }
 
   @Override
@@ -58,12 +36,6 @@ public class TvmContext extends AbstractUiContext {
   public UiToggleGroup createToggleGroup() {
 
     return new TvmToggleGroup();
-  }
-
-  @Override
-  protected UiNotifier createDefaultNotifier() {
-
-    return new TvmNotifier(this);
   }
 
 }

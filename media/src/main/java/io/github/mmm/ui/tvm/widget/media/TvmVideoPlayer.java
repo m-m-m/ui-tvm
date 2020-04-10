@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLVideoElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.img.UiImage;
 import io.github.mmm.ui.api.widget.media.UiVideoPlayer;
 
@@ -19,12 +18,10 @@ public class TvmVideoPlayer extends TvmMediaWidget<HTMLVideoElement> implements 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmVideoPlayer(UiContext context) {
+  public TvmVideoPlayer() {
 
-    super(context, newVideo());
+    super(newVideo());
   }
 
   @Override

@@ -10,7 +10,6 @@ import java.util.function.Function;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiRadioChoice;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
 import io.github.mmm.ui.spi.ToStringFormatter;
@@ -35,12 +34,10 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmRadioChoice(UiContext context) {
+  public TvmRadioChoice() {
 
-    super(context, TYPE_RADIO);
+    super(TYPE_RADIO);
     this.topWidget = newElement("ui-radios");
     String radioName = "tvm-radio-" + counter++;
     this.widget.addEventListener("focus", this::onFocusGain);

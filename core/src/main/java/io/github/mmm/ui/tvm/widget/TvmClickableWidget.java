@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.event.UiClickEvent;
 import io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick;
 
@@ -20,12 +19,11 @@ public abstract class TvmClickableWidget<W extends HTMLElement> extends TvmActiv
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmClickableWidget(UiContext context, W widget) {
+  public TvmClickableWidget(W widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

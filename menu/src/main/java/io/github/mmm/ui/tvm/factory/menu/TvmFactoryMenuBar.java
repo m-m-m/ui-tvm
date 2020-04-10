@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.menu;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 import io.github.mmm.ui.tvm.widget.menu.TvmMenuBar;
@@ -21,9 +20,9 @@ public class TvmFactoryMenuBar implements UiSingleWidgetFactoryNative<UiMenuBar>
   }
 
   @Override
-  public UiMenuBar create(UiContext context) {
+  public UiMenuBar create() {
 
-    return new TvmMenuBar(context);
+    return new TvmMenuBar();
   }
 
 }

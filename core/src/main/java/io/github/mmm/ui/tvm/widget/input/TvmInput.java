@@ -6,7 +6,6 @@ import org.teavm.jso.JSBody;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteAutocomplete;
 import io.github.mmm.ui.api.datatype.bitmask.BitMask;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
@@ -42,13 +41,11 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmInput(UiContext context, W widget) {
+  public TvmInput(W widget) {
 
-    super(context, widget);
+    super(widget);
     this.validator = Validator.none();
     this.modificationTimestamp = -1;
   }
@@ -108,7 +105,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   public TvmLabel getNameWidget() {
 
     if (this.nameWidget == null) {
-      this.nameWidget = new TvmLabel(this.context);
+      this.nameWidget = new TvmLabel();
       if (this.name != null) {
         this.nameWidget.setText(this.name);
       }

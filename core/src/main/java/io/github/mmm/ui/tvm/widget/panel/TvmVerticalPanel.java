@@ -2,10 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.panel;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.panel.UiVerticalPanel;
 
 /**
@@ -17,23 +15,19 @@ public class TvmVerticalPanel extends TvmDynamicPanel<HTMLElement> implements Ui
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmVerticalPanel(UiContext context) {
+  public TvmVerticalPanel() {
 
-    super(context, Window.current().getDocument().createElement("ui-vpanel"));
+    super(newElement("ui-vpanel"));
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmVerticalPanel(UiContext context, HTMLElement widget) {
+  public TvmVerticalPanel(HTMLElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
 }

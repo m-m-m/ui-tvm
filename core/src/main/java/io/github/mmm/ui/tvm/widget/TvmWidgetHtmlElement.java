@@ -4,8 +4,6 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
-
 /**
  * Implementation of {@link io.github.mmm.ui.api.widget.UiNativeWidget} for TeaVM based on {@link HTMLElement}.
  *
@@ -17,12 +15,11 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmWidgetHtmlElement(UiContext context, W widget) {
+  public TvmWidgetHtmlElement(W widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

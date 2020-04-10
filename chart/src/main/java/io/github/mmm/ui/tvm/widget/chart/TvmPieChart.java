@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.chart;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.chart.UiDataSet;
 import io.github.mmm.ui.api.widget.chart.UiPieChart;
 import io.github.mmm.ui.tvm.widget.chart.js.ChartData;
@@ -17,12 +16,10 @@ public class TvmPieChart extends TvmChart<Number> implements UiPieChart {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmPieChart(UiContext context) {
+  public TvmPieChart() {
 
-    super(context);
+    super();
   }
 
   @Override

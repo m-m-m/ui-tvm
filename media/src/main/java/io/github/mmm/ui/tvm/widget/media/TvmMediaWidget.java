@@ -7,7 +7,6 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLMediaElement;
 import org.teavm.jso.dom.html.HTMLSourceElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.media.UiMedia;
 import io.github.mmm.ui.api.datatype.media.UiMediaPreview;
 import io.github.mmm.ui.api.datatype.media.UiMediaSource;
@@ -30,12 +29,11 @@ public abstract class TvmMediaWidget<W extends HTMLMediaElement> extends TvmActi
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmMediaWidget(UiContext context, W widget) {
+  public TvmMediaWidget(W widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

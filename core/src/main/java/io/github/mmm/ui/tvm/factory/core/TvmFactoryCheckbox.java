@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.input.UiCheckbox;
 import io.github.mmm.ui.tvm.widget.input.TvmCheckbox;
@@ -21,9 +20,9 @@ public class TvmFactoryCheckbox implements UiSingleWidgetFactoryNative<UiCheckbo
   }
 
   @Override
-  public UiCheckbox create(UiContext context) {
+  public UiCheckbox create() {
 
-    return new TvmCheckbox(context);
+    return new TvmCheckbox();
   }
 
 }

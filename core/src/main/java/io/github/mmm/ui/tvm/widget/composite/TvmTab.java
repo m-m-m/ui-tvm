@@ -8,7 +8,6 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.composite.UiTab;
@@ -37,12 +36,10 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmTab(UiContext context) {
+  public TvmTab() {
 
-    super(context, newButton());
+    super(newButton());
     this.widget.setAttribute(ATR_ROLE, "tab");
     HTMLDocument document = Window.current().getDocument();
     this.errorWidget = newIcon(CLASS_ERROR);

@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiScrollBarVisibility;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
@@ -26,12 +25,10 @@ public class TvmScrollPanel extends TvmComposite<HTMLElement, UiRegularWidget> i
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmScrollPanel(UiContext context) {
+  public TvmScrollPanel() {
 
-    super(context, newElement("ui-scrollpanel"));
+    super(newElement("ui-scrollpanel"));
     this.horizontalScrolling = UiScrollBarVisibility.AUTO;
     this.verticalScrolling = UiScrollBarVisibility.AUTO;
     updateStyle();

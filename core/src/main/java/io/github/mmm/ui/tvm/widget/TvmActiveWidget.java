@@ -6,7 +6,6 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.event.UiFocusGainEvent;
 import io.github.mmm.ui.api.event.UiFocusLossEvent;
 import io.github.mmm.ui.api.widget.UiActiveWidget;
@@ -25,12 +24,11 @@ public abstract class TvmActiveWidget<W extends HTMLElement> extends TvmWidgetHt
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmActiveWidget(UiContext context, W widget) {
+  public TvmActiveWidget(W widget) {
 
-    super(context, widget);
+    super(widget);
     this.accessKey = ACCESS_KEY_NONE;
   }
 

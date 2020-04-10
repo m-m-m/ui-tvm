@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.chart;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.chart.UiPieChart;
 import io.github.mmm.ui.tvm.widget.chart.TvmPieChart;
@@ -21,9 +20,9 @@ public class TvmFactoryPieChart implements UiSingleWidgetFactoryNative<UiPieChar
   }
 
   @Override
-  public UiPieChart create(UiContext context) {
+  public UiPieChart create() {
 
-    return new TvmPieChart(context);
+    return new TvmPieChart();
   }
 
 }

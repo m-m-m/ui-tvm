@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiInput;
 
 /**
@@ -26,25 +25,23 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
+   * 
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    */
-  public TvmHtmlInput(UiContext context, String type) {
+  public TvmHtmlInput(String type) {
 
-    super(context, newInput());
+    super(newInput());
     this.widget.setType(type);
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmHtmlInput(UiContext context, HTMLInputElement widget) {
+  public TvmHtmlInput(HTMLInputElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

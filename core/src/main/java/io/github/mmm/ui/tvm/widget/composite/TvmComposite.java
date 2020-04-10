@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
@@ -28,12 +27,11 @@ public abstract class TvmComposite<W extends HTMLElement, C extends UiWidget> ex
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmComposite(UiContext context, W widget) {
+  public TvmComposite(W widget) {
 
-    super(context, widget);
+    super(widget);
     this.children = new ArrayList<>();
   }
 

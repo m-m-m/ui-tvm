@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.temporal;
 
 import java.time.LocalDateTime;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.temporal.UiDateTimeInput;
 import io.github.mmm.ui.tvm.widget.input.TvmTextualInput;
 
@@ -17,12 +16,10 @@ public class TvmDateTimeInput extends TvmTextualInput<LocalDateTime> implements 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmDateTimeInput(UiContext context) {
+  public TvmDateTimeInput() {
 
-    super(context, "date");
+    super("date");
   }
 
   @Override

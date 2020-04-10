@@ -19,7 +19,6 @@ import org.teavm.jso.dom.html.HTMLVideoElement;
 import org.teavm.jso.dom.xml.Document;
 import org.teavm.jso.dom.xml.Node;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.event.UiClickEvent;
 import io.github.mmm.ui.api.widget.UiCustomWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
@@ -122,12 +121,11 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmWidgetJsObject(UiContext context, W widget) {
+  public TvmWidgetJsObject(W widget) {
 
-    super(context);
+    super();
     this.widget = widget;
   }
 

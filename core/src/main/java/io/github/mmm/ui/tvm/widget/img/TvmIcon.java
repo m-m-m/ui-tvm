@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.img;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.img.UiIcon;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 
@@ -23,12 +22,10 @@ public class TvmIcon extends TvmWidgetHtmlElement<HTMLElement> implements UiIcon
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmIcon(UiContext context) {
+  public TvmIcon() {
 
-    super(context, newIcon(null));
+    super(newIcon(null));
     this.size = 1;
   }
 

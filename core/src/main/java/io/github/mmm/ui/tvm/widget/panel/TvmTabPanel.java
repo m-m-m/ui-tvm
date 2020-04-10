@@ -6,7 +6,6 @@ import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.events.KeyboardEvent;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiVisibleFlags;
 import io.github.mmm.ui.api.widget.composite.UiTab;
@@ -27,12 +26,10 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmTabPanel(UiContext context) {
+  public TvmTabPanel() {
 
-    super(context, newElement("ui-tabs"));
+    super(newElement("ui-tabs"));
     this.topWidget = newElement("ui-tabpanel");
     this.topWidget.appendChild(this.widget);
     this.selectedTabIndex = -1;

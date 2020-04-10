@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.button;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.button.UiButton;
 import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
 
@@ -17,12 +16,10 @@ public class TvmButton extends TvmClickableWidget<HTMLButtonElement> implements 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmButton(UiContext context) {
+  public TvmButton() {
 
-    super(context, newButton());
+    super(newButton());
   }
 
   @Override

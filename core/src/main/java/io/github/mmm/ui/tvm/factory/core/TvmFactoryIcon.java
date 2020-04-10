@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.img.UiIcon;
 import io.github.mmm.ui.tvm.widget.img.TvmIcon;
@@ -21,9 +20,9 @@ public class TvmFactoryIcon implements UiSingleWidgetFactoryNative<UiIcon> {
   }
 
   @Override
-  public UiIcon create(UiContext context) {
+  public UiIcon create() {
 
-    return new TvmIcon(context);
+    return new TvmIcon();
   }
 
 }

@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.chart;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.chart.UiLineChart;
 import io.github.mmm.ui.tvm.widget.chart.TvmLineChart;
@@ -21,9 +20,9 @@ public class TvmFactoryLineChart implements UiSingleWidgetFactoryNative<UiLineCh
   }
 
   @Override
-  public UiLineChart create(UiContext context) {
+  public UiLineChart create() {
 
-    return new TvmLineChart(context);
+    return new TvmLineChart();
   }
 
 }

@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLAudioElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.media.UiAudioPlayer;
 
 /**
@@ -16,12 +15,10 @@ public class TvmAudioPlayer extends TvmMediaWidget<HTMLAudioElement> implements 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmAudioPlayer(UiContext context) {
+  public TvmAudioPlayer() {
 
-    super(context, newAudio());
+    super(newAudio());
   }
 
 }

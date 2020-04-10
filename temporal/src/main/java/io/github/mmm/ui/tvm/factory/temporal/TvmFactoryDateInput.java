@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.temporal;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.temporal.UiDateInput;
 import io.github.mmm.ui.tvm.widget.temporal.TvmDateInput;
@@ -21,9 +20,9 @@ public class TvmFactoryDateInput implements UiSingleWidgetFactoryNative<UiDateIn
   }
 
   @Override
-  public UiDateInput create(UiContext context) {
+  public UiDateInput create() {
 
-    return new TvmDateInput(context);
+    return new TvmDateInput();
   }
 
 }

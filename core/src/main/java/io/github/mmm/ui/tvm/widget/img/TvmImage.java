@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.img;
 
 import org.teavm.jso.dom.html.HTMLImageElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiSize;
 import io.github.mmm.ui.api.widget.img.UiImage;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
@@ -26,12 +25,10 @@ public class TvmImage extends TvmWidgetHtmlElement<HTMLImageElement> implements 
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmImage(UiContext context) {
+  public TvmImage() {
 
-    super(context, newImage());
+    super(newImage());
     this.width = UiSize.AUTO;
     this.height = UiSize.AUTO;
   }

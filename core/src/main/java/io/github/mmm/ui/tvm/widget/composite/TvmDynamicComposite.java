@@ -4,30 +4,28 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 
 /**
- * Implementation of {@link UiDynamicComposite} for TeaVM.
+ * Implementation of {@link UiMutableComposite} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
 public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWidget> extends TvmComposite<W, C>
-    implements UiDynamicComposite<C> {
+    implements UiMutableComposite<C> {
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmDynamicComposite(UiContext context, W widget) {
+  public TvmDynamicComposite(W widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

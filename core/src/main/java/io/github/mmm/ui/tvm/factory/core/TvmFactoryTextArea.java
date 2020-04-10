@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.input.UiTextArea;
 import io.github.mmm.ui.tvm.widget.input.TvmTextArea;
@@ -21,9 +20,9 @@ public class TvmFactoryTextArea implements UiSingleWidgetFactoryNative<UiTextAre
   }
 
   @Override
-  public UiTextArea create(UiContext context) {
+  public UiTextArea create() {
 
-    return new TvmTextArea(context);
+    return new TvmTextArea();
   }
 
 }

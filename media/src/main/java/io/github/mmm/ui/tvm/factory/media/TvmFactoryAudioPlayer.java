@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.media;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.media.UiAudioPlayer;
 import io.github.mmm.ui.tvm.widget.media.TvmAudioPlayer;
@@ -21,9 +20,9 @@ public class TvmFactoryAudioPlayer implements UiSingleWidgetFactoryNative<UiAudi
   }
 
   @Override
-  public UiAudioPlayer create(UiContext context) {
+  public UiAudioPlayer create() {
 
-    return new TvmAudioPlayer(context);
+    return new TvmAudioPlayer();
   }
 
 }

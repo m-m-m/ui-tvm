@@ -23,7 +23,7 @@ public class TvmInputContainer extends TvmWidgetHtmlElement<HTMLElement> impleme
    */
   public TvmInputContainer(TvmInput<?, ?> input) {
 
-    super(input.getContext(), newElement("ui-input"));
+    super(newElement("ui-input"));
     this.input = input;
     this.widget.appendChild(input.getNameWidget().getWidget());
     this.widget.appendChild(input.getTopWidget());

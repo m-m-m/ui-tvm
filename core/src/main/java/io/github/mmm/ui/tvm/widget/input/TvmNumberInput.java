@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.base.number.NumberType;
 import io.github.mmm.base.range.WritableRange;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiNumberInput;
 import io.github.mmm.ui.spi.range.NumericRange;
 
@@ -24,12 +23,10 @@ public abstract class TvmNumberInput<V extends Number> extends TvmTextualInput<V
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmNumberInput(UiContext context) {
+  public TvmNumberInput() {
 
-    super(context, "number");
+    super("number");
     this.range = new NumericRange<>(getNumberType());
   }
 

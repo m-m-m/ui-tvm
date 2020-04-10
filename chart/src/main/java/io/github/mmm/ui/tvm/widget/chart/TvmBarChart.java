@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.chart;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.chart.UiDataSeries;
 import io.github.mmm.ui.api.datatype.chart.UiDataSet;
 import io.github.mmm.ui.api.widget.chart.UiBarChart;
@@ -20,12 +19,10 @@ public abstract class TvmBarChart extends TvmChart<UiDataSeries> implements UiBa
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmBarChart(UiContext context) {
+  public TvmBarChart() {
 
-    super(context);
+    super();
   }
 
   @Override

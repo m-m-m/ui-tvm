@@ -1,14 +1,14 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget;
+package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.JSObject;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
+import io.github.mmm.ui.tvm.widget.TvmWidgetJsObject;
 import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
 
 /**
@@ -26,13 +26,12 @@ public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsO
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param nativeWidget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmAbstractWindow(UiContext context, W nativeWidget) {
+  public TvmAbstractWindow(W nativeWidget) {
 
-    super(context, nativeWidget);
-    this.content = new TvmVerticalPanel(context);
+    super(nativeWidget);
+    this.content = new TvmVerticalPanel();
   }
 
   @Override

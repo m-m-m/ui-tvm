@@ -11,6 +11,7 @@ import org.teavm.jso.JSProperty;
  *
  * @since 1.0.0
  */
+@SuppressWarnings("javadoc")
 public abstract class ChartPoint implements JSObject {
 
   @JSProperty

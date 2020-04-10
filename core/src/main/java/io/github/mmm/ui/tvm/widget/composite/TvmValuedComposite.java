@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.binding.UiValueBinding;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
 import io.github.mmm.ui.api.widget.UiWidget;
@@ -31,12 +30,11 @@ public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidg
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmValuedComposite(UiContext context, W widget) {
+  public TvmValuedComposite(W widget) {
 
-    super(context, widget);
+    super(widget);
     this.validator = Validator.none();
   }
 

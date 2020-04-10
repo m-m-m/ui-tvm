@@ -1,9 +1,7 @@
-
 /*
  * Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  */
-import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
@@ -23,18 +21,28 @@ module io.github.mmm.ui.tvm.core {
 
   requires transitive teavm.jso.apis;
 
-  provides UiSingleWidgetFactoryNative with //
+  provides io.github.mmm.ui.api.UiContext with //
+      io.github.mmm.ui.tvm.TvmContext;
+
+  provides io.github.mmm.ui.api.UiScreen with //
+      io.github.mmm.ui.tvm.TvmScreen;
+
+  provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryButton, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryButtonPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryComboBoxDataList, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryFormGroup, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIcon, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryImage, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioChoice, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactorySlot, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTab, //

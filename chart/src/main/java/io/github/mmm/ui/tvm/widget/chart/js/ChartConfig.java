@@ -9,6 +9,7 @@ import org.teavm.jso.JSProperty;
 /**
  * {@link JSObject} to wrap {@code Chart} from {@code Chart.js}.
  */
+@SuppressWarnings("javadoc")
 public abstract class ChartConfig implements JSObject {
 
   @JSProperty

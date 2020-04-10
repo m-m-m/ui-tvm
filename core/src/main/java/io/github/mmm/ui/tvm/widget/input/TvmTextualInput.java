@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiTextualInput;
 
 /**
@@ -20,23 +19,21 @@ public abstract class TvmTextualInput<V> extends TvmHtmlInput<V> implements UiTe
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    */
-  public TvmTextualInput(UiContext context, String type) {
+  public TvmTextualInput(String type) {
 
-    super(context, type);
+    super(type);
   }
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmTextualInput(UiContext context, HTMLInputElement widget) {
+  public TvmTextualInput(HTMLInputElement widget) {
 
-    super(context, widget);
+    super(widget);
   }
 
   @Override

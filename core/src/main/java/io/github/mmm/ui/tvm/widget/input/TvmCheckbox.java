@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiCheckbox;
 
 /**
@@ -14,12 +13,10 @@ public class TvmCheckbox extends TvmBooleanInput implements UiCheckbox {
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmCheckbox(UiContext context) {
+  public TvmCheckbox() {
 
-    super(context, TYPE_CHECKBOX, "ui-checkbox");
+    super(TYPE_CHECKBOX, "ui-checkbox");
   }
 
 }

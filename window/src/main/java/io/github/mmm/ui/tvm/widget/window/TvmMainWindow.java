@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget;
+package io.github.mmm.ui.tvm.widget.window;
 
 import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Screen;
@@ -8,10 +8,8 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLBodyElement;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWritePosition;
 import io.github.mmm.ui.api.attribute.AttributeWriteSizeInPixel;
-import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 import io.github.mmm.ui.api.widget.window.UiMainWindow;
 
 /**
@@ -25,8 +23,6 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
 
   private final TvmMainWindowPositionAndSize positionAndSize;
 
-  private UiMenuBar menuBar;
-
   private String title;
 
   private int width;
@@ -35,23 +31,20 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmMainWindow(UiContext context) {
+  public TvmMainWindow() {
 
-    this(context, Window.current());
+    this(Window.current());
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() JavaFx widget}.
    */
-  public TvmMainWindow(UiContext context, Window widget) {
+  public TvmMainWindow(Window widget) {
 
-    super(context, widget);
+    super(widget);
     this.body = widget.getDocument().getBody();
     this.positionAndSize = new TvmMainWindowPositionAndSize(widget);
     setParent(this.content, this);
@@ -152,16 +145,6 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   @Override
   protected void setReadOnlyNative(boolean readOnly) {
 
-  }
-
-  @Override
-  public UiMenuBar getMenuBar() {
-
-    if (this.menuBar == null) {
-      this.menuBar = this.context.create(UiMenuBar.class);
-      insertFirst(this.body, getTopNode(this.menuBar));
-    }
-    return this.menuBar;
   }
 
   @Override

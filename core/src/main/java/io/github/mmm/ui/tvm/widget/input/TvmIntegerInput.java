@@ -3,7 +3,6 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.base.number.NumberType;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiIntegerInput;
 
 /**
@@ -15,12 +14,10 @@ public class TvmIntegerInput extends TvmNumberInput<Integer> implements UiIntege
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmIntegerInput(UiContext context) {
+  public TvmIntegerInput() {
 
-    super(context);
+    super();
   }
 
   @Override

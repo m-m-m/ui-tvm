@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiSlot;
 
@@ -19,12 +18,10 @@ public class TvmSlot extends TvmComposite<HTMLElement, UiRegularWidget> implemen
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmSlot(UiContext context) {
+  public TvmSlot() {
 
-    super(context, newElement("ui-slot"));
+    super(newElement("ui-slot"));
   }
 
   @Override

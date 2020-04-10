@@ -5,8 +5,6 @@ package io.github.mmm.ui.tvm.widget.input;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
-import io.github.mmm.ui.api.UiContext;
-
 /**
  * Implementation of {@link HTMLInputElement#isChecked() checkable} input with {@link Boolean} {@link #getValue() value}
  * using TeaVM.
@@ -18,13 +16,12 @@ public abstract class TvmBooleanInput extends TvmLabelledInput<Boolean> {
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    * @param tag the {@link HTMLElement#getTagName() tag name} of the {@link #getTopWidget() top widget}.
    */
-  public TvmBooleanInput(UiContext context, String type, String tag) {
+  public TvmBooleanInput(String type, String tag) {
 
-    super(context, type, tag);
+    super(type, tag);
   }
 
   @Override

@@ -3,7 +3,6 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.base.number.NumberType;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiIntegerSlider;
 
 /**
@@ -15,12 +14,10 @@ public class TvmIntegerSlider extends TvmSlider<Integer> implements UiIntegerSli
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmIntegerSlider(UiContext context) {
+  public TvmIntegerSlider() {
 
-    super(context);
+    super();
   }
 
   @Override

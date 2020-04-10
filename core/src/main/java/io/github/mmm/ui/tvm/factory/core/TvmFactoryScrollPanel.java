@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.factory.core;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.panel.UiScrollPanel;
 import io.github.mmm.ui.tvm.widget.panel.TvmScrollPanel;
@@ -21,9 +20,9 @@ public class TvmFactoryScrollPanel implements UiSingleWidgetFactoryNative<UiScro
   }
 
   @Override
-  public UiScrollPanel create(UiContext context) {
+  public UiScrollPanel create() {
 
-    return new TvmScrollPanel(context);
+    return new TvmScrollPanel();
   }
 
 }

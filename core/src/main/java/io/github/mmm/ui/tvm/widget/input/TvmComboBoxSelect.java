@@ -9,7 +9,6 @@ import java.util.function.Function;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLOptionElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiComboBox;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
 import io.github.mmm.ui.spi.ToStringFormatter;
@@ -30,12 +29,10 @@ public class TvmComboBoxSelect<V> extends TvmHtmlSelect<V> implements UiComboBox
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmComboBoxSelect(UiContext context) {
+  public TvmComboBoxSelect() {
 
-    super(context);
+    super();
     this.options = Collections.emptyList();
     this.formatter = ToStringFormatter.get();
   }

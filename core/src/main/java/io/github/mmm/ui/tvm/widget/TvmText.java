@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiTextAlignment;
 import io.github.mmm.ui.api.widget.UiText;
 
@@ -21,12 +20,10 @@ public class TvmText extends TvmWidgetHtmlElement<HTMLElement> implements UiText
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public TvmText(UiContext context) {
+  public TvmText() {
 
-    super(context, newElement("ui-text"));
+    super(newElement("ui-text"));
     setAlignment(UiTextAlignment.LEFT);
   }
 

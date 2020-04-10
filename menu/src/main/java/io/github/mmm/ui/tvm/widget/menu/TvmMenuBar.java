@@ -2,9 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.menu;
 
+import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.menu.UiMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
@@ -18,24 +18,22 @@ public class TvmMenuBar extends TvmDynamicComposite<HTMLElement, UiMenu> impleme
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
    */
-  public TvmMenuBar(UiContext context, HTMLElement widget) {
+  public TvmMenuBar() {
 
-    super(context, widget);
-    this.widget.setAttribute(ATR_ROLE, "menubar");
+    this(newElement("ui-menubar"));
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link #getContext() context}.
+   * @param widget the {@link #getWidget() JavaFx widget}.
    */
-  public TvmMenuBar(UiContext context) {
+  public TvmMenuBar(HTMLElement widget) {
 
-    this(context, newElement("ui-menubar"));
+    super(widget);
+    this.widget.setAttribute(ATR_ROLE, "menubar");
+    insertFirst(Window.current().getDocument().getBody(), this.widget);
   }
 
   @Override
