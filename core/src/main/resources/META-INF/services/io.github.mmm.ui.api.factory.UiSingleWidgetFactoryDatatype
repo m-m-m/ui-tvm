@@ -1,3 +1,3 @@
-io.github.mmm.ui.factory.datatype.UiFactoryDatatypeInteger
-io.github.mmm.ui.factory.datatype.UiFactoryDatatypeBoolean
-io.github.mmm.ui.factory.datatype.UiFactoryDatatypeString
+io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger
+io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean
+io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString
