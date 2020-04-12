@@ -7,14 +7,14 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.menu.UiMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
 
 /**
  * Implementation of {@link UiMenuBar} for TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmMenuBar extends TvmDynamicComposite<HTMLElement, UiMenu> implements UiMenuBar {
+public class TvmMenuBar extends TvmMutableComposite<HTMLElement, UiMenu> implements UiMenuBar {
 
   /**
    * The constructor.

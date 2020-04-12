@@ -34,10 +34,10 @@ public class TvmText extends TvmWidgetHtmlElement<HTMLElement> implements UiText
   }
 
   @Override
-  public void setText(String label) {
+  public void setText(String text) {
 
-    setTextContent(label);
-    this.label = label;
+    setTextContent(text);
+    this.label = text;
   }
 
   @Override

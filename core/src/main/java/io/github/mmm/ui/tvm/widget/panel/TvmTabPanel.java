@@ -10,7 +10,7 @@ import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiVisibleFlags;
 import io.github.mmm.ui.api.widget.composite.UiTab;
 import io.github.mmm.ui.api.widget.panel.UiTabPanel;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
 import io.github.mmm.ui.tvm.widget.composite.TvmTab;
 
 /**
@@ -18,7 +18,7 @@ import io.github.mmm.ui.tvm.widget.composite.TvmTab;
  *
  * @since 1.0.0
  */
-public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> implements UiTabPanel {
+public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> implements UiTabPanel {
 
   private final HTMLElement topWidget;
 

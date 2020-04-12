@@ -18,7 +18,7 @@ import io.github.mmm.validation.Validator;
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidget, V> extends TvmDynamicComposite<W, C>
+public abstract class TvmValuedComposite<W extends HTMLElement, C extends UiWidget, V> extends TvmMutableComposite<W, C>
     implements UiValuedComposite<C, V> {
 
   private Validator<? super V> validator;

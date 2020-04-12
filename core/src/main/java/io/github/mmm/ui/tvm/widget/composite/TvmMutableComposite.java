@@ -15,7 +15,7 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWidget> extends TvmComposite<W, C>
+public abstract class TvmMutableComposite<W extends HTMLElement, C extends UiWidget> extends TvmComposite<W, C>
     implements UiMutableComposite<C> {
 
   /**
@@ -23,7 +23,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
    *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmDynamicComposite(W widget) {
+  public TvmMutableComposite(W widget) {
 
     super(widget);
   }

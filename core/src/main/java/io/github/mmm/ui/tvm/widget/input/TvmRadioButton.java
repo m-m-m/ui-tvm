@@ -4,6 +4,7 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.ui.api.UiToggleGroup;
 import io.github.mmm.ui.api.widget.input.UiRadioButton;
+import io.github.mmm.ui.tvm.TvmToggleGroup;
 
 /**
  * Implementation of {@link UiRadioButton} using TeaVM.
@@ -14,6 +15,8 @@ public class TvmRadioButton extends TvmBooleanInput implements UiRadioButton {
 
   static final String TAG_UI_RADIO = "ui-radio";
 
+  private TvmToggleGroup toggleGroup;
+
   /**
    * The constructor.
    */
@@ -23,9 +26,16 @@ public class TvmRadioButton extends TvmBooleanInput implements UiRadioButton {
   }
 
   @Override
+  public TvmToggleGroup getToggleGroup() {
+
+    return this.toggleGroup;
+  }
+
+  @Override
   public void setToggleGroup(UiToggleGroup group) {
 
-    this.widget.setName(group.toString());
+    this.toggleGroup = (TvmToggleGroup) group;
+    this.widget.setName(this.toggleGroup.getGroup());
   }
 
 }

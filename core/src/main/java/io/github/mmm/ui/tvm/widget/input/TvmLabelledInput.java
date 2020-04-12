@@ -56,13 +56,13 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
   }
 
   @Override
-  public void setText(String label) {
+  public void setText(String text) {
 
-    if (label == null) {
-      label = "";
+    if (text == null) {
+      text = "";
     }
-    this.label = label;
-    setTextContent(this.labelWidget, label);
+    this.label = text;
+    setTextContent(this.labelWidget, text);
   }
 
 }

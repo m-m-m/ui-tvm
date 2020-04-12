@@ -26,7 +26,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   private final HTMLElement errorWidget;
 
-  private String label;
+  private String text;
 
   private UiRegularWidget child;
 
@@ -47,7 +47,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.widget.appendChild(this.errorWidget);
     this.labelWidget = newLabel();
     this.widget.appendChild(this.labelWidget);
-    this.label = "";
+    this.text = "";
     this.closable = false;
     this.sectionWidget = document.createElement("ui-tabcontent");
     setSelected(false);
@@ -135,17 +135,17 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   @Override
   public String getText() {
 
-    return this.label;
+    return this.text;
   }
 
   @Override
-  public void setText(String label) {
+  public void setText(String text) {
 
-    if (label == null) {
-      label = "";
+    if (text == null) {
+      text = "";
     }
-    this.label = label;
-    setTextContent(this.labelWidget, label);
+    this.text = text;
+    setTextContent(this.labelWidget, text);
   }
 
   @Override

@@ -9,7 +9,7 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
  */
 public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuItem<HTMLButtonElement> {
 
-  private String label;
+  private String text;
 
   /**
    * The constructor.
@@ -18,23 +18,23 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
   public TvmAbstractButtonMenuItem(HTMLButtonElement widget) {
 
     super(widget);
-    this.label = "";
+    this.text = "";
   }
 
   @Override
   public String getText() {
 
-    return this.label;
+    return this.text;
   }
 
   @Override
-  public void setText(String label) {
+  public void setText(String text) {
 
-    if (label == null) {
-      label = "";
+    if (text == null) {
+      text = "";
     }
-    setTextContent(label);
-    this.label = label;
+    setTextContent(text);
+    this.text = text;
   }
 
   @Override

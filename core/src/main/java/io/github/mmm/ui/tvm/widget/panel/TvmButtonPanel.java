@@ -7,14 +7,14 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
 import io.github.mmm.ui.api.widget.panel.UiButtonPanel;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
 
 /**
  * Implementation of {@link UiButtonPanel} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmButtonPanel extends TvmDynamicComposite<HTMLElement, UiAbstractButton> implements UiButtonPanel {
+public class TvmButtonPanel extends TvmMutableComposite<HTMLElement, UiAbstractButton> implements UiButtonPanel {
 
   /**
    * The constructor.

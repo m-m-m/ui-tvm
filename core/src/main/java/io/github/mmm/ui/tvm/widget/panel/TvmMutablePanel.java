@@ -5,23 +5,23 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.UiRegularWidget;
-import io.github.mmm.ui.api.widget.panel.UiDynamicPanel;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.api.widget.panel.UiMutablePanel;
+import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
 
 /**
- * Implementation of {@link UiDynamicPanel} for TeaVM.
+ * Implementation of {@link UiMutablePanel} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public class TvmDynamicPanel<W extends HTMLElement> extends TvmDynamicComposite<W, UiRegularWidget>
-    implements UiDynamicPanel {
+public class TvmMutablePanel<W extends HTMLElement> extends TvmMutableComposite<W, UiRegularWidget>
+    implements UiMutablePanel {
 
   /**
    * The constructor.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmDynamicPanel(W widget) {
+  public TvmMutablePanel(W widget) {
 
     super(widget);
   }

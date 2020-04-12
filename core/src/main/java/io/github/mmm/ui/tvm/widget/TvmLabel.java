@@ -30,10 +30,10 @@ public class TvmLabel extends TvmWidgetHtmlElement<HTMLElement> implements UiLab
   }
 
   @Override
-  public void setText(String label) {
+  public void setText(String text) {
 
-    setTextContent(label);
-    this.label = label;
+    setTextContent(text);
+    this.label = text;
   }
 
   /**

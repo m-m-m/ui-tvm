@@ -11,7 +11,7 @@ import io.github.mmm.ui.api.widget.panel.UiVerticalPanel;
  *
  * @since 1.0.0
  */
-public class TvmVerticalPanel extends TvmDynamicPanel<HTMLElement> implements UiVerticalPanel {
+public class TvmVerticalPanel extends TvmMutablePanel<HTMLElement> implements UiVerticalPanel {
 
   /**
    * The constructor.

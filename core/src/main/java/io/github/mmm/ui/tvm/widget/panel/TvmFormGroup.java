@@ -131,7 +131,7 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
 
     private final HTMLElement errorWidget;
 
-    private String label;
+    private String text;
 
     /**
      * The constructor.
@@ -167,14 +167,14 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
     @Override
     public String getText() {
 
-      return this.label;
+      return this.text;
     }
 
     @Override
-    public void setText(String label) {
+    public void setText(String text) {
 
-      setTextContent(label);
-      this.label = label;
+      setTextContent(text);
+      this.text = text;
     }
 
     @Override
