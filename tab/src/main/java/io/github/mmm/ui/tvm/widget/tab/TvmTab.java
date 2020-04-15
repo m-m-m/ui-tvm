@@ -1,6 +1,8 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.composite;
+package io.github.mmm.ui.tvm.widget.tab;
+
+import java.util.function.Supplier;
 
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
@@ -10,8 +12,8 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
-import io.github.mmm.ui.api.widget.composite.UiTab;
-import io.github.mmm.ui.tvm.widget.panel.TvmTabPanel;
+import io.github.mmm.ui.api.widget.tab.UiTab;
+import io.github.mmm.ui.tvm.widget.composite.TvmComposite;
 
 /**
  * Implementation of {@link UiTab} using TeaVM.
@@ -29,6 +31,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   private String text;
 
   private UiRegularWidget child;
+
+  private Supplier<UiRegularWidget> childSupplier;
 
   private boolean closable;
 
@@ -96,9 +100,25 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     setParent(child, this);
   }
 
+  /**
+   * @param childSupplier the {@link Supplier} {@link Supplier#get() providing} the {@link #getChild() child widget}.
+   */
+  public void setChild(Supplier<UiRegularWidget> childSupplier) {
+
+    if (this.child != null) {
+      throw new IllegalStateException();
+    }
+    this.childSupplier = childSupplier;
+  }
+
   @Override
   public UiRegularWidget getChild() {
 
+    if ((this.child == null) && (this.childSupplier != null)) {
+      setChild(this.childSupplier.get());
+      assert (this.child != null);
+      this.childSupplier = null;
+    }
     return this.child;
   }
 
@@ -190,6 +210,9 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
     this.widget.setAttribute(ATR_TABINDEX, selected ? "0" : "-1");
     this.widget.setAttribute(ATR_ARIA_SELECTED, Boolean.toString(selected));
+    if (selected) {
+      getChild(); // ensure lazy loading from Supplier
+    }
     TvmTabPanel tabPanel = getTabPanel();
     if (tabPanel != null) {
       HTMLElement tabContent = tabPanel.getTopWidget();

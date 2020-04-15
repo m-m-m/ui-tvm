@@ -1,10 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.factory.core;
+package io.github.mmm.ui.tvm.factory.tab;
 
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.api.widget.panel.UiTabPanel;
-import io.github.mmm.ui.tvm.widget.panel.TvmTabPanel;
+import io.github.mmm.ui.api.widget.tab.UiTabPanel;
+import io.github.mmm.ui.tvm.widget.tab.TvmTabPanel;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiTabPanel}.

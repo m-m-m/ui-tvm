@@ -45,8 +45,6 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioChoice, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryScrollPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactorySlot, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryTab, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryTabPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryText, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryTextArea, //

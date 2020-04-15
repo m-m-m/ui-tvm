@@ -1,6 +1,8 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.panel;
+package io.github.mmm.ui.tvm.widget.tab;
+
+import java.util.function.Supplier;
 
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.events.KeyboardEvent;
@@ -8,10 +10,10 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiVisibleFlags;
-import io.github.mmm.ui.api.widget.composite.UiTab;
-import io.github.mmm.ui.api.widget.panel.UiTabPanel;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.tab.UiTab;
+import io.github.mmm.ui.api.widget.tab.UiTabPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
-import io.github.mmm.ui.tvm.widget.composite.TvmTab;
 
 /**
  * Implementation of {@link UiTabPanel} using TeaVM.
@@ -110,6 +112,28 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
       tab.setSelected(true, false);
       this.selectedTabIndex = 0;
     }
+  }
+
+  @Override
+  public UiTab addTab(String text, UiRegularWidget child) {
+
+    TvmTab tab = new TvmTab();
+    setParent(tab, this);
+    tab.setText(text);
+    tab.setChild(child);
+    addChild(tab);
+    return tab;
+  }
+
+  @Override
+  public UiTab addTab(String text, Supplier<UiRegularWidget> childSupplier) {
+
+    TvmTab tab = new TvmTab();
+    setParent(tab, this);
+    tab.setText(text);
+    tab.setChild(childSupplier);
+    addChild(tab);
+    return tab;
   }
 
   @Override

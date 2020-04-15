@@ -22,14 +22,15 @@
   </properties>
 
   <modules>
+    <module>all</module>
     <module>core</module>
     <module>chart</module>
     <module>format</module>
     <module>media</module>
     <module>menu</module>
+    <module>tab</module>
     <module>temporal</module>
     <module>window</module>
-    <module>all</module>
   </modules>
 
   <dependencyManagement>
@@ -69,6 +70,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-tvm-menu</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-tvm-tab</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
