@@ -198,7 +198,7 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static Node getTopNode(UiWidget uiWidget) {
 
     if (uiWidget instanceof UiCustomWidget) {
-      getTopNode(((UiCustomWidget<?>) uiWidget).getDelegate());
+      return getTopNode(((UiCustomWidget<?>) uiWidget).getDelegate());
     }
     return ((TvmWidgetHtmlElement<?>) uiWidget).getTopWidget();
   }
