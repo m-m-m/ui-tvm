@@ -47,6 +47,7 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
     super(widget);
     this.body = widget.getDocument().getBody();
     this.positionAndSize = new TvmMainWindowPositionAndSize(widget);
+    this.content.setVisible(false);
     setParent(this.content, this);
     this.body.appendChild(this.content.getTopWidget());
     this.title = "";
@@ -139,7 +140,7 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   @Override
   protected void setVisibleNative(boolean visible) {
 
-    // hiding browser window is odd (bad UX) and therefore unsupported
+    this.content.setVisible(visible);
   }
 
   @Override

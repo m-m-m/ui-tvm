@@ -35,6 +35,12 @@ public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsO
   }
 
   @Override
+  protected boolean isInitiallyVisible() {
+
+    return false;
+  }
+
+  @Override
   public UiAbstractWindow getParent() {
 
     return (UiAbstractWindow) super.getParent();
