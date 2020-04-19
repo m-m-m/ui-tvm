@@ -8,6 +8,8 @@
  */
 module io.github.mmm.ui.tvm.all {
 
+  requires transitive io.github.mmm.ui.spi.all;
+
   requires transitive io.github.mmm.ui.tvm.chart;
 
   requires transitive io.github.mmm.ui.tvm.format;

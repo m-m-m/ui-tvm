@@ -9,7 +9,7 @@
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.core {
 
-  requires transitive io.github.mmm.ui.api.core;
+  requires transitive io.github.mmm.ui.spi.core;
 
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.value;

@@ -9,9 +9,9 @@ import java.util.function.Function;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLOptionElement;
 
+import io.github.mmm.base.lang.ToStringFormatter;
 import io.github.mmm.ui.api.widget.input.UiComboBox;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
-import io.github.mmm.ui.spi.ToStringFormatter;
 
 /**
  * Implementation of {@link UiTextInput} using TeaVM.
