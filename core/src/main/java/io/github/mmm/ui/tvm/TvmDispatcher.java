@@ -10,7 +10,7 @@ import org.teavm.jso.browser.Window;
 import io.github.mmm.ui.spi.AbstractUiDispatcher;
 
 /**
- *
+ * Implementation of {@link io.github.mmm.ui.api.UiDispatcher} for TeaVM.
  */
 public class TvmDispatcher extends AbstractUiDispatcher {
 

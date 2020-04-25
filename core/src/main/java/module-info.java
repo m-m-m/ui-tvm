@@ -21,11 +21,14 @@ module io.github.mmm.ui.tvm.core {
 
   requires transitive teavm.jso.apis;
 
-  provides io.github.mmm.ui.api.UiContext with //
-      io.github.mmm.ui.tvm.TvmContext;
-
   provides io.github.mmm.ui.api.UiScreen with //
       io.github.mmm.ui.tvm.TvmScreen;
+
+  provides io.github.mmm.ui.api.UiDispatcher with //
+      io.github.mmm.ui.tvm.TvmDispatcher;
+
+  provides io.github.mmm.ui.api.factory.UiToggleGroupFactory with //
+      io.github.mmm.ui.tvm.TvmToggleGroupFactory;
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryButton, //

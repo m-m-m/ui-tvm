@@ -398,6 +398,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   }
 
   /**
+   * @return a new {@link HTMLElement table element}.
+   */
+  protected static HTMLElement newTable() {
+
+    return DOC.createElement("table").cast();
+  }
+
+  /**
    * @param tag the {@link HTMLElement#getTagName() tag name}.
    * @return a new {@link HTMLElement div element}.
    */
