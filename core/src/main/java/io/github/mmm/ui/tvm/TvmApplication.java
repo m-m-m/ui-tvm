@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import org.teavm.jso.JSBody;
 
-import io.github.mmm.ui.spi.UiApplication;
+import io.github.mmm.ui.api.UiApplication;
 
 /**
  * Base class for you main application to build your client with TeaVM.<br>
