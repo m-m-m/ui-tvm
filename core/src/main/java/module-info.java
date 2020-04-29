@@ -11,6 +11,8 @@ module io.github.mmm.ui.tvm.core {
 
   requires transitive io.github.mmm.ui.spi.core;
 
+  requires transitive io.github.mmm.ui.api.form;
+
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.value;
 
@@ -35,8 +37,6 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryButtonPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryComboBoxDataList, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryFormGroup, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryFormPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIcon, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryImage, //

@@ -7,27 +7,19 @@
     <artifactId>mmm-ui-tvm-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
-  <artifactId>mmm-ui-tvm-core</artifactId>
+  <artifactId>mmm-ui-tvm-form</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>Implementation of user-interface framework based on TeaVM.</description>
+  <description>Implementation of form widgets (input form layout) for TeaVM.</description>
   
   <dependencies>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-spi-core</artifactId>
-    </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-api-form</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.teavm</groupId>
-      <artifactId>teavm-classlib</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.teavm</groupId>
-      <artifactId>teavm-metaprogramming-impl</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-tvm-core</artifactId>
     </dependency>
   </dependencies>
 </project>

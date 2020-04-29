@@ -10,6 +10,7 @@ import io.github.mmm.ui.api.attribute.AttributeWriteAutocomplete;
 import io.github.mmm.ui.api.datatype.bitmask.BitMask;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.form.UiInputContainer;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
@@ -29,7 +30,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
   private TvmLabel nameWidget;
 
-  private TvmInputContainer containerWidget;
+  private UiInputContainer<V> containerWidget;
 
   private Validator<? super V> validator;
 
@@ -41,6 +42,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
   /**
    * The constructor.
+   *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmInput(W widget) {
@@ -132,7 +134,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   public UiRegularWidget getContainerWidget() {
 
     if (this.containerWidget == null) {
-      this.containerWidget = new TvmInputContainer(this);
+      this.containerWidget = UiInputContainer.of(this);
     }
     return this.containerWidget;
   }

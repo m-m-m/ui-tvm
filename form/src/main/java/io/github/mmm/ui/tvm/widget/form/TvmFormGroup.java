@@ -1,13 +1,13 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.panel;
+package io.github.mmm.ui.tvm.widget.form;
 
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.UiLabel;
+import io.github.mmm.ui.api.widget.form.UiFormGroup;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.ui.api.widget.panel.UiFormGroup;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 import io.github.mmm.ui.tvm.widget.composite.TvmValuedComposite;
 

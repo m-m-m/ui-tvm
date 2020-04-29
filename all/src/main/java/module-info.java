@@ -12,6 +12,8 @@ module io.github.mmm.ui.tvm.all {
 
   requires transitive io.github.mmm.ui.tvm.chart;
 
+  requires transitive io.github.mmm.ui.tvm.form;
+
   requires transitive io.github.mmm.ui.tvm.format;
 
   requires transitive io.github.mmm.ui.tvm.media;

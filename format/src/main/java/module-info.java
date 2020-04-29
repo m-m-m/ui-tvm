@@ -4,7 +4,7 @@
  */
 
 /**
- * Provides the implementation of UI chart widgets based on TeaVM.
+ * Provides the implementation of UI chart widgets for TeaVM.
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.format {
