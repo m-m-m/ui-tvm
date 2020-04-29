@@ -62,6 +62,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_FOR = "for";
 
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_REQUIRED = "required";
+
   /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
   protected static final String EVENT_TYPE_BLUR = "blur";
 

@@ -25,7 +25,7 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
 
   /**
    * The constructor.
-   * 
+   *
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    */
   public TvmHtmlInput(String type) {
@@ -48,6 +48,17 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
   protected void setEnabledNative(boolean enabled) {
 
     this.widget.setDisabled(!enabled);
+  }
+
+  @Override
+  protected void setMandatory(boolean mandatory) {
+
+    super.setMandatory(mandatory);
+    if (mandatory) {
+      this.widget.setAttribute(ATR_REQUIRED, "");
+    } else {
+      this.widget.removeAttribute(ATR_REQUIRED);
+    }
   }
 
 }

@@ -185,11 +185,19 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     } else {
       this.validator = validator;
     }
+    setMandatory(this.validator.isMandatory());
+  }
+
+  /**
+   * @param mandatory the new mandatory (required) flag.
+   */
+  protected void setMandatory(boolean mandatory) {
+
     if (this.nameWidget != null) {
-      if (this.validator.isMandatory()) {
-        this.nameWidget.getStyles().add("mandatory");
+      if (mandatory) {
+        this.nameWidget.getStyles().add(STYLE_MANDATORY);
       } else {
-        this.nameWidget.getStyles().remove("mandatory");
+        this.nameWidget.getStyles().remove(STYLE_MANDATORY);
       }
     }
   }
