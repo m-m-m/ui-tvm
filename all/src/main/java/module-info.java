@@ -4,7 +4,7 @@
  */
 
 /**
- * Provides the implementation of UI chart widgets based on TeaVM.
+ * Aggregates all UI modules of for TeaVM.
  */
 module io.github.mmm.ui.tvm.all {
 
