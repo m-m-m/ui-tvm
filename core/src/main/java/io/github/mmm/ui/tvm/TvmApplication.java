@@ -30,6 +30,10 @@ import io.github.mmm.ui.api.UiApplication;
  */
 public abstract class TvmApplication implements UiApplication {
 
+  private static String contextPath = "/";
+
+  private static boolean useAnchor = true;
+
   /**
    * The constructor.
    */
@@ -43,4 +47,45 @@ public abstract class TvmApplication implements UiApplication {
 
   @JSBody(script = "return navigator.language || navigator.userLanguage;")
   private static native String getLanguage();
+
+  /**
+   * @return the context path of this application. So if your application is running in the root context this should be
+   *         "/" what is the default. Otherwise you can {@link #setContextPath(String) set} the context path according
+   *         to your app (e.g. "/my-cool-app/" or even "/my-cool-app/index.html").
+   */
+  public static String getContextPath() {
+
+    return contextPath;
+  }
+
+  /**
+   * @param contextPath new value of {@link #getContextPath()}.
+   */
+  protected static void setContextPath(String contextPath) {
+
+    if (!contextPath.startsWith("/")) {
+      contextPath = "/" + contextPath;
+    }
+    if (!contextPath.endsWith("/")) {
+      contextPath = contextPath + "/";
+    }
+    TvmApplication.contextPath = contextPath;
+  }
+
+  /**
+   * @return {@code true} to use the anchor (the URL part starting with the hash sign '#') for state management and
+   *         {@code UiPlace}s.
+   */
+  public static boolean isUseAnchor() {
+
+    return useAnchor;
+  }
+
+  /**
+   * @param useAnchor new value of {@link #isUseAnchor()}.
+   */
+  public static void setUseAnchor(boolean useAnchor) {
+
+    TvmApplication.useAnchor = useAnchor;
+  }
 }
