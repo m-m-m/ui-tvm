@@ -68,7 +68,7 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     if (this.input != null) {
       this.input.setValue(value);
     }
-    setTextContent(this.output, value);
+    this.output.setTextContent(value);
   }
 
   @Override

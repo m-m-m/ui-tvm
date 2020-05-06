@@ -31,7 +31,7 @@ public class TvmButton extends TvmClickableWidget<HTMLButtonElement> implements 
   @Override
   public void setText(String text) {
 
-    setTextContent(text);
+    this.widget.setTextContent(text);
   }
 
   @Override

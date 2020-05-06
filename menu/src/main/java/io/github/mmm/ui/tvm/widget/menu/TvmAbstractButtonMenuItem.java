@@ -13,6 +13,7 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
 
   /**
    * The constructor.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmAbstractButtonMenuItem(HTMLButtonElement widget) {
@@ -33,7 +34,7 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
     if (text == null) {
       text = "";
     }
-    setTextContent(text);
+    this.widget.setTextContent(text);
     this.text = text;
   }
 

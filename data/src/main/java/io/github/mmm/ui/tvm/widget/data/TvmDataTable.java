@@ -62,6 +62,7 @@ public class TvmDataTable<R> extends TvmAbstractDataWidget<R> implements UiDataT
 
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public void sort(SortOrder order, UiColumn<R, ?>... columns) {
 

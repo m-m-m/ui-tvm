@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.JSBody;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
@@ -161,17 +160,6 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  protected void doSetValidationFailure(String error) {
-
-    if (error == null) {
-      setCustomValidity(this.widget, "");
-    } else {
-      setCustomValidity(this.widget, error);
-      reportValidity(this.widget);
-    }
-  }
-
-  @Override
   public Validator<? super V> getValidator() {
 
     return this.validator;
@@ -234,16 +222,6 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   protected abstract void setValueNative(V value);
 
   @Override
-  protected void onFocusGain(Event event) {
-
-    super.onFocusGain(event);
-    if (!isValid()) {
-      // TODO update tvm version
-      reportValidity(this.widget);
-    }
-  }
-
-  @Override
   protected void onFocusLoss(Event event) {
 
     validate();
@@ -263,9 +241,4 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     this.widget.setAttribute("autocomplete", autocomplete);
   }
 
-  @JSBody(params = { EVENT_TYPE_INPUT, "value" }, script = "input.setCustomValidity(value);")
-  private static native void setCustomValidity(HTMLElement input, String value);
-
-  @JSBody(params = { EVENT_TYPE_INPUT }, script = "input.reportValidity();")
-  private static native void reportValidity(HTMLElement input);
 }

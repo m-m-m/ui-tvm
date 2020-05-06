@@ -250,17 +250,6 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     }
   }
 
-  protected static void setTextContent(HTMLElement element, String text) {
-
-    // TODO: Workaround for #455/#456
-    Node child = element.getFirstChild();
-    while ((child != null) && (child.getNodeType() == Node.TEXT_NODE)) {
-      element.removeChild(child);
-      child = element.getFirstChild();
-    }
-    element.appendChild(element.getOwnerDocument().createTextNode(text));
-  }
-
   /**
    * @return a new {@link HTMLButtonElement}.
    */

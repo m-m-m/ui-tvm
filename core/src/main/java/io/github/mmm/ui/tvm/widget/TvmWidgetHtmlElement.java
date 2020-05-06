@@ -62,9 +62,4 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
 
     this.widget.setTitle(tooltip);
   }
-
-  protected void setTextContent(String text) {
-
-    setTextContent(this.widget, text);
-  }
 }

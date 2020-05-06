@@ -2,8 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.dom.html.HTMLTextAreaElement;
-
 import io.github.mmm.ui.api.widget.input.UiTextArea;
 
 /**
@@ -11,48 +9,14 @@ import io.github.mmm.ui.api.widget.input.UiTextArea;
  *
  * @since 1.0.0
  */
-public class TvmTextArea extends TvmInput<String, HTMLTextAreaElement> implements UiTextArea {
-
-  private String placeholder;
+public class TvmTextArea extends TvmAbstractTextArea implements UiTextArea {
 
   /**
    * The constructor.
    */
   public TvmTextArea() {
 
-    super(newTextArea());
-  }
-
-  @Override
-  public String getValueOrThrow() {
-
-    return this.widget.getValue();
-  }
-
-  @Override
-  protected void setValueNative(String value) {
-
-    this.widget.setValue(value);
-  }
-
-  @Override
-  public String getPlaceholder() {
-
-    return this.placeholder;
-  }
-
-  @Override
-  public void setPlaceholder(String placeholder) {
-
-    this.placeholder = placeholder;
-    // widget.setPlaceholder(placeholder);
-
-  }
-
-  @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    this.widget.setDisabled(!enabled);
+    super();
   }
 
 }

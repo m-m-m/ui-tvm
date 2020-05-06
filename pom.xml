@@ -18,7 +18,7 @@
     <revision>1.0.0</revision>
     <changelist>-SNAPSHOT</changelist>
     <mmm.repository>ui-tvm</mmm.repository>
-    <teavm.version>0.6.1</teavm.version>
+    <teavm.version>0.7.0-dev-1090</teavm.version>
   </properties>
 
   <modules>
@@ -35,6 +35,14 @@
     <module>temporal</module>
     <module>window</module>
   </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-classlib</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
   <dependencyManagement>
     <dependencies>
@@ -132,4 +140,17 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  
+  <repositories>
+    <repository>
+      <id>teavm-dev</id>
+      <url>https://dl.bintray.com/konsoletyper/teavm</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>teavm-dev</id>
+      <url>https://dl.bintray.com/konsoletyper/teavm</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

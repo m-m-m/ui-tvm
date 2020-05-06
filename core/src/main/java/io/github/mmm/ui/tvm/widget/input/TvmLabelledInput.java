@@ -23,6 +23,7 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
 
   /**
    * The constructor.
+   * 
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    * @param tag the {@link HTMLElement#getTagName() tag name} of the {@link #getTopWidget() top widget}.
    */
@@ -62,7 +63,7 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
       text = "";
     }
     this.label = text;
-    setTextContent(this.labelWidget, text);
+    this.labelWidget.setTextContent(text);
   }
 
 }

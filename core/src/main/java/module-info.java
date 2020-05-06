@@ -19,9 +19,9 @@ module io.github.mmm.ui.tvm.core {
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.validation;
 
-  requires transitive teavm.jso;
+  requires transitive org.teavm.jso;
 
-  requires transitive teavm.jso.apis;
+  requires transitive org.teavm.jso.apis;
 
   provides io.github.mmm.ui.api.UiScreen with //
       io.github.mmm.ui.tvm.TvmScreen;

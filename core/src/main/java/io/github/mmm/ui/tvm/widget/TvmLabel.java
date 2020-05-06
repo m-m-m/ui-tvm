@@ -32,7 +32,7 @@ public class TvmLabel extends TvmWidgetHtmlElement<HTMLElement> implements UiLab
   @Override
   public void setText(String text) {
 
-    setTextContent(text);
+    this.widget.setTextContent(text);
     this.label = text;
   }
 

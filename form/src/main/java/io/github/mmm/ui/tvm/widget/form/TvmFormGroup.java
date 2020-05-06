@@ -35,6 +35,7 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
 
   /**
    * The constructor.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmFormGroup(HTMLElement widget) {
@@ -173,7 +174,7 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
     @Override
     public void setText(String text) {
 
-      setTextContent(text);
+      this.widget.setTextContent(text);
       this.text = text;
     }
 

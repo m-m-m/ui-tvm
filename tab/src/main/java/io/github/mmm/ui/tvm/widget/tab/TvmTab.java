@@ -165,7 +165,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
       text = "";
     }
     this.text = text;
-    setTextContent(this.labelWidget, text);
+    this.labelWidget.setTextContent(text);
   }
 
   @Override

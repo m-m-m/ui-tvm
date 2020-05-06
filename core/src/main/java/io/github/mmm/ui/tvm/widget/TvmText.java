@@ -36,7 +36,7 @@ public class TvmText extends TvmWidgetHtmlElement<HTMLElement> implements UiText
   @Override
   public void setText(String text) {
 
-    setTextContent(text);
+    this.widget.setTextContent(text);
     this.label = text;
   }
 

@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
+import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.api.widget.input.UiInput;
@@ -58,6 +59,26 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
       this.widget.setAttribute(ATR_REQUIRED, "");
     } else {
       this.widget.removeAttribute(ATR_REQUIRED);
+    }
+  }
+
+  @Override
+  protected void doSetValidationFailure(String error) {
+
+    if (error == null) {
+      this.widget.setCustomValidity("");
+    } else {
+      this.widget.setCustomValidity(error);
+      this.widget.reportValidity();
+    }
+  }
+
+  @Override
+  protected void onFocusGain(Event event) {
+
+    super.onFocusGain(event);
+    if (!isValid()) {
+      this.widget.reportValidity();
     }
   }
 

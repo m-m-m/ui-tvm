@@ -77,7 +77,7 @@ public class TvmComboBoxSelect<V> extends TvmHtmlSelect<V> implements UiComboBox
     for (V option : this.options) {
       HTMLOptionElement optionElement = document.createElement("option").cast();
       String title = this.formatter.apply(option);
-      setTextContent(optionElement, title);
+      optionElement.setTextContent(title);
       this.widget.appendChild(optionElement);
     }
   }

@@ -177,7 +177,7 @@ public abstract class TvmChildWindow extends TvmAbstractWindow<HTMLElement> impl
   @Override
   public void setTitle(String title) {
 
-    setTextContent(this.titleElement, title);
+    this.titleElement.setTextContent(title);
     this.title = title;
   }
 

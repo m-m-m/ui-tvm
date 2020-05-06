@@ -2,17 +2,15 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.format;
 
-import org.teavm.jso.dom.html.HTMLTextAreaElement;
-
 import io.github.mmm.ui.api.widget.format.UiHtmlEditor;
-import io.github.mmm.ui.tvm.widget.input.TvmInput;
+import io.github.mmm.ui.tvm.widget.input.TvmAbstractTextArea;
 
 /**
  * Implementation of {@link UiHtmlEditor} for TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmHtmlEditor extends TvmInput<String, HTMLTextAreaElement> implements UiHtmlEditor {
+public class TvmHtmlEditor extends TvmAbstractTextArea implements UiHtmlEditor {
   // TODO choose OSS JS Editor solution (Squire, Quill)
 
   /**
@@ -20,25 +18,7 @@ public class TvmHtmlEditor extends TvmInput<String, HTMLTextAreaElement> impleme
    */
   public TvmHtmlEditor() {
 
-    super(newTextArea());
-  }
-
-  @Override
-  public String getValueOrThrow() {
-
-    return this.widget.getValue();
-  }
-
-  @Override
-  protected void setValueNative(String value) {
-
-    this.widget.setValue(value);
-  }
-
-  @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    this.widget.setDisabled(!enabled);
+    super();
   }
 
 }

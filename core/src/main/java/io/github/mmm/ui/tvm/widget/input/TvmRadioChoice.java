@@ -78,10 +78,13 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
     removeAllChildren(this.topWidget);
     ensureRadioButtonCount(this.options.size());
     int i = 0;
+    String tooltip = getTooltip();
     for (V option : this.options) {
       RadioButton rb = this.radios.get(i++);
       String title = this.formatter.apply(option);
       rb.setLabel(title);
+      rb.input.setTitle(tooltip);
+      rb.label.setTitle(tooltip);
       this.topWidget.appendChild(rb.top);
     }
   }
@@ -156,7 +159,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
     private void setLabel(String title) {
 
-      setTextContent(this.label, title);
+      this.label.setTextContent(title);
     }
 
     private RadioButton(HTMLInputElement widget, String name, int index) {
