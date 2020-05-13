@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.html.HTMLAnchorElement;
 import org.teavm.jso.dom.html.HTMLAudioElement;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLCanvasElement;
@@ -115,6 +116,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
   /** CSS style for a collapsible widget (can be collapsed/expanded by the end-user). */
   protected static final String STYLE_COLLAPSIBLE = "collapsible";
+
+  /** CSS style for a disabled widget that does not support disabling natively (e.g. anchor). */
+  protected static final String STYLE_DISABLED = "disabled";
 
   /** @see #getWidget() */
   protected final W widget;
@@ -256,6 +260,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLButtonElement newButton() {
 
     return DOC.createElement("button").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLAnchorElement}.
+   */
+  protected static HTMLAnchorElement newAnchor() {
+
+    return DOC.createElement("a").cast();
   }
 
   /**

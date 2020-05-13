@@ -5,14 +5,13 @@ package io.github.mmm.ui.tvm.widget.button;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
 import io.github.mmm.ui.api.widget.button.UiButton;
-import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
 
 /**
+ * Implementation of {@link UiButton} for TeaVM.
  *
+ * @since 1.0.0
  */
-public class TvmButton extends TvmClickableWidget<HTMLButtonElement> implements UiButton {
-
-  private String label;
+public class TvmButton extends TvmAbstractButton<HTMLButtonElement> implements UiButton {
 
   /**
    * The constructor.
@@ -20,18 +19,6 @@ public class TvmButton extends TvmClickableWidget<HTMLButtonElement> implements 
   public TvmButton() {
 
     super(newButton());
-  }
-
-  @Override
-  public String getText() {
-
-    return this.label;
-  }
-
-  @Override
-  public void setText(String text) {
-
-    this.widget.setTextContent(text);
   }
 
   @Override

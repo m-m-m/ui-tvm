@@ -5,6 +5,11 @@
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
+ *
+ * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
+ * @provides io.github.mmm.ui.api.factory.UiToggleGroupFactory
+ * @provides io.github.mmm.ui.api.UiDispatcher
+ * @provides io.github.mmm.ui.api.UiScreen
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.core {
@@ -43,6 +48,7 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryLink, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioButton, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryRadioChoice, //
