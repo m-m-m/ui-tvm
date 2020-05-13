@@ -15,7 +15,7 @@ import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
  */
 public class TvmImage extends TvmWidgetHtmlElement<HTMLImageElement> implements UiImage {
 
-  private String source;
+  private String url;
 
   private String altText;
 
@@ -34,16 +34,16 @@ public class TvmImage extends TvmWidgetHtmlElement<HTMLImageElement> implements 
   }
 
   @Override
-  public String getSource() {
+  public String getUrl() {
 
-    return this.source;
+    return this.url;
   }
 
   @Override
-  public void setSource(String source) {
+  public void setUrl(String url) {
 
-    this.widget.setSrc(source);
-    this.source = source;
+    this.widget.setSrc(url);
+    this.url = url;
   }
 
   @Override

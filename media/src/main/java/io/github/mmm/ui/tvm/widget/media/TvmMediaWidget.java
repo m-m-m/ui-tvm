@@ -63,7 +63,7 @@ public abstract class TvmMediaWidget<W extends HTMLMediaElement> extends TvmActi
       HTMLDocument document = mediaElement.getOwnerDocument();
       for (UiMediaSource source : media.getSources()) {
         HTMLSourceElement sourceElement = document.createElement("source").cast();
-        sourceElement.setSrc(source.getSource());
+        sourceElement.setSrc(source.getUrl());
         String mimetype = source.getMimetype();
         if (mimetype != null) {
           sourceElement.setType(mimetype);
@@ -76,7 +76,7 @@ public abstract class TvmMediaWidget<W extends HTMLMediaElement> extends TvmActi
       }
       for (UiMediaTrack track : media.getTracks()) {
         HTMLElement trackElement = document.createElement("track");
-        trackElement.setAttribute("src", track.getSource());
+        trackElement.setAttribute("src", track.getUrl());
         String kind = track.getKind();
         if (kind != null) {
           trackElement.setAttribute("kind", kind);
@@ -91,7 +91,7 @@ public abstract class TvmMediaWidget<W extends HTMLMediaElement> extends TvmActi
     if (preview == null) {
       mediaElement.removeAttribute(ATR_POSTER);
     } else {
-      mediaElement.setAttribute(ATR_POSTER, preview.getSource());
+      mediaElement.setAttribute(ATR_POSTER, preview.getUrl());
     }
     mediaElement.load();
   }

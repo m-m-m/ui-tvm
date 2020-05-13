@@ -36,7 +36,7 @@ public class TvmVideoPlayer extends TvmMediaWidget<HTMLVideoElement> implements 
     if (image == null) {
       this.widget.setPoster("");
     } else {
-      this.widget.setPoster(image.getSource());
+      this.widget.setPoster(image.getUrl());
     }
     this.image = image;
   }
