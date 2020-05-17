@@ -5,6 +5,8 @@
 
 /**
  * Provides the implementation of UI data widgets for TeaVM.
+ * 
+ * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.data {

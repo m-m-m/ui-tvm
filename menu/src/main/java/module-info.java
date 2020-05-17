@@ -7,6 +7,8 @@ import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
+ * 
+ * @provides UiSingleWidgetFactoryNative
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.menu {
