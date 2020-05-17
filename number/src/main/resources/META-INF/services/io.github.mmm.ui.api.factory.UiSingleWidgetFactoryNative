@@ -1,2 +1,7 @@
+io.github.mmm.ui.tvm.factory.number.TvmFactoryBigDecimalInput
+io.github.mmm.ui.tvm.factory.number.TvmFactoryBigIntegerInput
+io.github.mmm.ui.tvm.factory.number.TvmFactoryDoubleInput
 io.github.mmm.ui.tvm.factory.number.TvmFactoryIntegerInput
 io.github.mmm.ui.tvm.factory.number.TvmFactoryIntegerSlider
+io.github.mmm.ui.tvm.factory.number.TvmFactoryLongInput
+io.github.mmm.ui.tvm.factory.number.TvmFactoryLongSlider
