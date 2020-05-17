@@ -47,6 +47,10 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-tvm-number</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-tvm-tab</artifactId>
     </dependency>
     <!--

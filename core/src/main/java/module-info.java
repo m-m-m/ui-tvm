@@ -46,8 +46,6 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIcon, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryImage, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerInput, //
-      io.github.mmm.ui.tvm.factory.core.TvmFactoryIntegerSlider, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryInternalLink, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryLabel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryPasswordInput, //
