@@ -19,6 +19,7 @@ public class TvmButton extends TvmAbstractButton<HTMLButtonElement> implements U
   public TvmButton() {
 
     super(newButton());
+    getStyles().add(STYLE);
   }
 
   @Override

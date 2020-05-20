@@ -21,11 +21,13 @@ public class TvmButtonPanel extends TvmMutableComposite<HTMLElement, UiAbstractB
    */
   public TvmButtonPanel() {
 
-    super(Window.current().getDocument().createElement("ui-buttons"));
+    super(Window.current().getDocument().createElement(STYLE));
+    getStyles().add(STYLE);
   }
 
   /**
    * The constructor.
+   *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmButtonPanel(HTMLElement widget) {
