@@ -25,7 +25,8 @@ public class TvmInputContainer<V> extends TvmWidgetHtmlElement<HTMLElement> impl
    */
   public TvmInputContainer() {
 
-    super(newElement("ui-input"));
+    super(newElement(STYLE));
+    getStyles().add(STYLE);
   }
 
   @Override

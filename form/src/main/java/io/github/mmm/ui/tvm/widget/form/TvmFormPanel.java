@@ -24,10 +24,12 @@ public class TvmFormPanel<V> extends TvmValuedComposite<HTMLElement, UiAbstractI
   public TvmFormPanel() {
 
     super(newForm());
+    getStyles().add(STYLE);
   }
 
   /**
    * The constructor.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmFormPanel(HTMLElement widget) {
