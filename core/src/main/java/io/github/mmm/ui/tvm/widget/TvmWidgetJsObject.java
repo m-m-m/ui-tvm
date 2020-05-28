@@ -66,6 +66,15 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_REQUIRED = "required";
 
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_COLSPAN = "colspan";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ROWSPAN = "rowspan";
+
+  /** {@link #ATR_ROLE Role} {@value}. */
+  protected static final String ROLE_PRESENTATION = "presentation";
+
   /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
   protected static final String EVENT_TYPE_BLUR = "blur";
 
@@ -407,6 +416,22 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLElement newTable() {
 
     return DOC.createElement("table").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement table row} (tr).
+   */
+  protected static HTMLElement newTableRow() {
+
+    return DOC.createElement("tr").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement table data cell} (td).
+   */
+  protected static HTMLElement newTableCell() {
+
+    return DOC.createElement("td").cast();
   }
 
   /**

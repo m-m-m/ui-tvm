@@ -43,6 +43,7 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryComboBoxDataList, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryExternalLink, //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryGridPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryHorizontalPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryIcon, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryImage, //
