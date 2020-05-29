@@ -243,18 +243,19 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
     if (index == 0) {
       insertFirst(parent, child);
+      return;
+    } else if (index == -1) {
+      parent.appendChild(child);
+      return;
     }
+    Node node = parent.getFirstChild();
     int i = 0;
-    Node node = null;
-    if (index > 0) {
-      node = parent.getFirstChild();
-      while ((node != null) && (i < index)) {
-        node = node.getNextSibling();
-        i++;
-      }
-      if (i < index) {
-        throw new IllegalArgumentException(Integer.toString(index));
-      }
+    while ((node != null) && (i < index)) {
+      node = node.getNextSibling();
+      i++;
+    }
+    if (i < index) {
+      throw new IndexOutOfBoundsException(Integer.toString(index));
     }
     if (node == null) {
       parent.appendChild(child);

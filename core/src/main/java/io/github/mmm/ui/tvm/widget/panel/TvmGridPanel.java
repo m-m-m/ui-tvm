@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.panel;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.panel.UiGridPanel;
 import io.github.mmm.ui.api.widget.panel.UiGridRow;
 import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
@@ -27,14 +26,9 @@ public class TvmGridPanel extends TvmMutableComposite<HTMLElement, UiGridRow> im
   }
 
   @Override
-  public UiGridRow addRow(int rowIndex, UiRegularWidget... childWidgets) {
+  public UiGridRow addRow(int rowIndex) {
 
     TvmGridRow row = new TvmGridRow();
-    if (childWidgets != null) {
-      for (UiRegularWidget child : childWidgets) {
-        row.addChild(child);
-      }
-    }
     addChild(row, rowIndex);
     return row;
   }
