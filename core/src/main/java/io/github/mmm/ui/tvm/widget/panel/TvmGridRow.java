@@ -17,7 +17,7 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
 
   private TableCell firstCell;
 
-  private int columnCount;
+  private int childCount;
 
   /**
    * The constructor.
@@ -30,13 +30,13 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
   @Override
   public int getChildCount() {
 
-    return this.columnCount;
+    return this.childCount;
   }
 
   @Override
   public UiRegularWidget getChild(int index) {
 
-    if ((this.firstCell != null) && (index >= 0) && (index < this.columnCount)) {
+    if ((this.firstCell != null) && (index >= 0) && (index < this.childCount)) {
       TableCell cell = this.firstCell.get(index);
       if (cell != null) {
         return cell.child;
@@ -55,97 +55,77 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
   }
 
   @Override
-  public void setChild(UiRegularWidget child, int column, int colspan, int rowspan) {
+  public void addChild(UiRegularWidget child, int index, int colspan, int rowspan) {
 
-    if ((column < 0) || (column > 1000)) {
-      throw new IndexOutOfBoundsException(Integer.toString(column));
+    if (index == -1) {
+      index = this.childCount;
     }
-    TableCell cell = null;
-    if (this.firstCell == null) {
-      if (child == null) {
-        return;
-      }
-      cell = new TableCell(child);
-      if (column == 0) {
-        this.firstCell = cell;
-      } else {
-        this.firstCell = new TableCell(null);
-        this.firstCell.setColspan(column);
-        this.widget.appendChild(this.firstCell.td);
-        this.firstCell.next = cell;
-      }
-      this.widget.appendChild(cell.td);
-      this.columnCount = column + 1;
-    } else {
-      TableCell previous = null;
-      cell = this.firstCell;
-      int i = column;
-      do {
-        i = i - cell.colspan;
-        if (i <= 0) {
-          if (child == null) {
-            if (i == 0) {
-              clearCells(cell, previous);
-            } // otherwise no cell to clear
-            return;
-          } else if (i == 0) {
-            cell = cell.insertChild(child);
-          } else {
-            if ((cell.child != null) || ((colspan + i) > 0)) {
-              throw new IndexOutOfBoundsException(Integer.toString(column)); // cells with colspan have to be disjunct
-            }
-            cell.setColspan(cell.colspan + i);
-            cell = cell.insertChild(child);
-            int rest = -i - colspan;
-            if (rest > 0) {
-              TableCell next = cell.insertChild(null);
-              next.setColspan(rest);
-            }
-          }
-        } else if (cell.next == null) {
-          if (child == null) {
-            return;
-          }
-          cell = cell.insertChild(null);
-          cell.setColspan(i);
-          cell = cell.insertChild(child);
-          i = 0;
-        } else {
-          previous = cell;
-          cell = cell.next;
-        }
-      } while (i > 0);
-    }
+    TableCell cell = new TableCell(child);
     cell.setColspan(colspan);
     cell.setRowspan(rowspan);
-  }
-
-  private void clearCells(TableCell cell, TableCell previous) {
-
-    if (cell.next == null) {
-      this.widget.removeChild(cell.td);
-      this.columnCount--;
-      if (previous == null) {
-        this.firstCell = null;
-        this.columnCount = 0;
+    if (this.firstCell == null) {
+      if (index == 0) {
+        this.firstCell = cell;
       } else {
-        if (previous.child == null) {
-          this.widget.removeChild(previous.td);
-          previous = this.firstCell.findPrevious(previous);
-        }
-        previous.next = null;
+        throw new IndexOutOfBoundsException(Integer.toString(index));
       }
+      this.widget.appendChild(this.firstCell.td);
     } else {
-      cell.setChild(null);
+      TableCell previous = null;
+      TableCell next = this.firstCell;
+      int i = index;
+      while (i > 0) {
+        if (next == null) {
+          throw new IndexOutOfBoundsException(Integer.toString(index));
+        }
+        previous = next;
+        next = next.next;
+        i--;
+      }
+      if (previous == null) {
+        this.firstCell = cell;
+      } else {
+        previous.next = cell;
+      }
+      if (next == null) {
+        this.widget.appendChild(cell.td);
+      } else {
+        cell.next = next;
+        this.widget.insertBefore(cell.td, next.td);
+      }
     }
+    this.childCount++;
   }
 
   @Override
   public UiRegularWidget removeChild(int index) {
 
-    UiRegularWidget child = getChild(index);
-    setChild(null, index);
-    return child;
+    if (index == -1) {
+      index = this.childCount - 1;
+    }
+    TableCell cell;
+    if (index == 0) {
+      cell = this.firstCell;
+      this.firstCell = this.firstCell.next;
+    } else if ((index > 0) && (index < this.childCount)) {
+      TableCell previous = null;
+      cell = this.firstCell;
+      int i = 0;
+      while (i < index) {
+        previous = cell;
+        cell = cell.next;
+        i++;
+      }
+      if (previous != null) { // pointless check to prevent warning
+        previous.next = cell.next;
+      }
+    } else {
+      throw new IndexOutOfBoundsException(Integer.toString(index));
+    }
+    this.widget.removeChild(cell.td);
+    this.childCount--;
+    setParent(cell.child, null);
+    return cell.child;
   }
 
   private class TableCell {
@@ -172,47 +152,6 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
       this.rowspan = 1;
     }
 
-    private TableCell findPrevious(TableCell cell) {
-
-      TableCell previous = this;
-      while (previous != null) {
-        if (previous.next == cell) {
-          return previous;
-        }
-        previous = previous.next;
-      }
-      return null;
-    }
-
-    private TableCell insertChild(UiRegularWidget newChild) {
-
-      TableCell cell = new TableCell(newChild);
-      cell.next = this.next;
-      this.next = cell;
-      if (cell.next == null) {
-        TvmGridRow.this.widget.appendChild(cell.td);
-      } else {
-        TvmGridRow.this.widget.insertBefore(cell.td, cell.next.td);
-      }
-      return cell;
-    }
-
-    private void setChild(UiRegularWidget child) {
-
-      if (this.child == child) {
-        return;
-      }
-      if (this.child != null) {
-        setParent(this.child, null);
-        this.td.removeChild(getTopNode(this.child));
-      }
-      this.child = child;
-      if (this.child != null) {
-        setParent(this.child, TvmGridRow.this);
-        this.td.appendChild(getTopNode(this.child));
-      }
-    }
-
     private int indexOf(UiRegularWidget childWidget) {
 
       int index = 0;
@@ -222,7 +161,7 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
           return index;
         }
         cell = cell.next;
-        index += this.colspan;
+        index++;
       }
       return -1;
     }
@@ -232,10 +171,6 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
       TableCell cell = this;
       while ((index > 0) && (cell != null)) {
         cell = cell.next;
-        index = index - this.colspan;
-      }
-      if (index < 0) {
-        return null;
       }
       return cell;
     }
