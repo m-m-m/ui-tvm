@@ -8,7 +8,7 @@ import io.github.mmm.ui.api.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
-import io.github.mmm.ui.tvm.widget.TvmWidgetJsObject;
+import io.github.mmm.ui.tvm.widget.TvmWidget;
 import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
 
 /**
@@ -17,7 +17,7 @@ import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsObject<W>
+public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidget<W>
     implements UiAbstractWindow, AttributeWriteMaximized {
 
   /** The content panel. */
@@ -81,6 +81,12 @@ public abstract class TvmAbstractWindow<W extends JSObject> extends TvmWidgetJsO
   public UiRegularWidget removeChild(int index) {
 
     return this.content.removeChild(index);
+  }
+
+  @Override
+  protected void setTooltipNative(String tooltip) {
+
+    getElement().setTitle(tooltip);
   }
 
 }

@@ -10,7 +10,7 @@ import org.teavm.jso.dom.html.HTMLElement;
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWidgetJsObject<W> {
+public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWidget<W> {
 
   /**
    * The constructor.
@@ -47,18 +47,8 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
     this.widget.setHidden(!visible);
   }
 
-  /**
-   * @return {@link io.github.mmm.ui.api.widget.UiAtomicWidget#getTooltip()}
-   */
-  public String getTooltip() {
-
-    return this.widget.getTitle();
-  }
-
-  /**
-   * @param tooltip - see {@link io.github.mmm.ui.api.widget.UiAtomicWidget#setTooltip(String)}
-   */
-  public void setTooltip(String tooltip) {
+  @Override
+  protected void setTooltipNative(String tooltip) {
 
     this.widget.setTitle(tooltip);
   }

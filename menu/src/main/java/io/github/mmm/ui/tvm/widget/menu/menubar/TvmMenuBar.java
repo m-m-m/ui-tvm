@@ -1,20 +1,20 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.menu;
+package io.github.mmm.ui.tvm.widget.menu.menubar;
 
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.widget.menu.UiMenu;
+import io.github.mmm.ui.api.widget.menu.UiAdvancedMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
-import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmRemovableComposite;
 
 /**
  * Implementation of {@link UiMenuBar} for TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmMenuBar extends TvmMutableComposite<HTMLElement, UiMenu> implements UiMenuBar {
+public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMenu> implements UiMenuBar {
 
   /**
    * The constructor.
@@ -37,10 +37,19 @@ public class TvmMenuBar extends TvmMutableComposite<HTMLElement, UiMenu> impleme
   }
 
   @Override
-  protected void setEnabledNative(boolean enabled) {
+  public UiAdvancedMenu addMenu(String text, int index) {
 
-    // TODO Auto-generated method stub
+    TvmMenu menu = new TvmMenu();
+    menu.setText(text);
+    setParent(menu, this);
+    addChildWidget(menu, index);
+    if (index == -1) {
+      this.children.add(menu);
+    } else {
+      this.children.add(index, menu);
+    }
 
+    return menu;
   }
 
 }

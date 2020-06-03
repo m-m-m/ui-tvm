@@ -68,6 +68,8 @@ module io.github.mmm.ui.tvm.core {
 
   exports io.github.mmm.ui.tvm.widget.composite;
 
+  exports io.github.mmm.ui.tvm.widget.link;
+
   exports io.github.mmm.ui.tvm.widget.panel;
 
 }

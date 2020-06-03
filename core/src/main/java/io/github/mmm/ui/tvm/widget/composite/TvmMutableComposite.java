@@ -4,7 +4,6 @@ package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 
@@ -15,7 +14,7 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public abstract class TvmMutableComposite<W extends HTMLElement, C extends UiWidget> extends TvmComposite<W, C>
+public abstract class TvmMutableComposite<W extends HTMLElement, C extends UiWidget> extends TvmRemovableComposite<W, C>
     implements UiMutableComposite<C> {
 
   /**
@@ -37,54 +36,6 @@ public abstract class TvmMutableComposite<W extends HTMLElement, C extends UiWid
       this.children.add(child);
     } else {
       this.children.add(index, child);
-    }
-  }
-
-  /**
-   * @param child the widget to add as child to the DOM.
-   * @param index the index where to insert the child.
-   * @see #addChild(UiWidget, int)
-   */
-  protected void addChildWidget(C child, int index) {
-
-    insertAt(this.widget, getTopNode(child), index);
-  }
-
-  @Override
-  public boolean removeChild(C child) {
-
-    boolean removed = this.children.remove(child);
-    if (removed) {
-      removeChildWidget(child);
-      setParent(child, null);
-    }
-    return removed;
-  }
-
-  @Override
-  public C removeChild(int index) {
-
-    C child = this.children.remove(index);
-    removeChildWidget(child);
-    setParent(child, null);
-    return child;
-  }
-
-  /**
-   * @param child the widget to remove as child from the DOM.
-   * @see #removeChild(UiWidget)
-   * @see #removeChild(int)
-   */
-  protected void removeChildWidget(C child) {
-
-    this.widget.removeChild(getTopNode(child));
-  }
-
-  @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    for (C child : this.children) {
-      child.setEnabled(enabled, UiEnabledFlags.PARENT);
     }
   }
 

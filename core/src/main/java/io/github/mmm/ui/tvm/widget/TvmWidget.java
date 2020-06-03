@@ -31,7 +31,7 @@ import io.github.mmm.ui.spi.widget.AbstractUiNativeWidgetWrapper;
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNativeWidgetWrapper<W> {
+public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidgetWrapper<W> {
 
   /** The owner {@link Document} of the HTML. */
   protected static final HTMLDocument DOC = Window.current().getDocument();
@@ -139,7 +139,7 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
    *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmWidgetJsObject(W widget) {
+  public TvmWidget(W widget) {
 
     super();
     this.widget = widget;
@@ -396,11 +396,43 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   }
 
   /**
+   * @return a new {@link HTMLElement nav(igation) element}.
+   */
+  protected static HTMLElement newNav() {
+
+    return DOC.createElement("nav").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement unordered list element}.
+   */
+  protected static HTMLElement newUl() {
+
+    return DOC.createElement("ul").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement list item element}.
+   */
+  protected static HTMLElement newLi() {
+
+    return DOC.createElement("li").cast();
+  }
+
+  /**
    * @return a new {@link HTMLElement span element}.
    */
   protected static HTMLElement newSpan() {
 
     return DOC.createElement("span").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement horizontal ruler}.
+   */
+  protected static HTMLElement newHr() {
+
+    return DOC.createElement("hr").cast();
   }
 
   /**

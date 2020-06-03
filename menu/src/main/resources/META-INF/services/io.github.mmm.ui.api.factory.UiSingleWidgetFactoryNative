@@ -1,3 +1,2 @@
-io.github.mmm.ui.tvm.factory.menu.TvmFactoryMenu
 io.github.mmm.ui.tvm.factory.menu.TvmFactoryMenuBar
-io.github.mmm.ui.tvm.factory.menu.TvmFactoryMenuItem
+io.github.mmm.ui.tvm.factory.menu.TvmFactoryNavigationBar

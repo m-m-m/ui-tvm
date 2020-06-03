@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
+import io.github.mmm.ui.api.event.UiClickEvent;
 import io.github.mmm.ui.api.widget.input.UiCheckbox;
 
 /**
@@ -17,6 +18,13 @@ public class TvmCheckbox extends TvmBooleanInput implements UiCheckbox {
   public TvmCheckbox() {
 
     super(TYPE_CHECKBOX, "ui-checkbox");
+  }
+
+  @Override
+  public void click() {
+
+    setValueForUser(Boolean.valueOf(!isSelected()));
+    fireEvent(new UiClickEvent(this, true));
   }
 
 }

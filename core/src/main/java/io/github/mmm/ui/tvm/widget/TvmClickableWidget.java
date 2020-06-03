@@ -4,17 +4,17 @@ package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
+import io.github.mmm.ui.api.attribute.AttributeFeatureClick;
 import io.github.mmm.ui.api.event.UiClickEvent;
-import io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick;
 
 /**
- * Implementation of {@link io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.api.attribute.AttributeFeatureClick} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
 public abstract class TvmClickableWidget<W extends HTMLElement> extends TvmActiveWidget<W>
-    implements UiWidgetWithClick {
+    implements AttributeFeatureClick {
 
   /**
    * The constructor.

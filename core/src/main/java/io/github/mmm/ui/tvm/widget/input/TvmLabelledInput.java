@@ -17,9 +17,9 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
 
   private final HTMLElement topWidget;
 
-  private final HTMLElement labelWidget;
+  private final HTMLElement label;
 
-  private String label;
+  private String text;
 
   /**
    * The constructor.
@@ -31,17 +31,17 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
 
     super(type);
     this.topWidget = newElement(tag);
-    this.labelWidget = newLabel();
+    this.label = newLabel();
     this.topWidget.appendChild(this.widget);
-    this.topWidget.appendChild(this.labelWidget);
-    this.label = "";
+    this.topWidget.appendChild(this.label);
+    this.text = "";
   }
 
   @Override
   public void setId(String id) {
 
     super.setId(id);
-    this.labelWidget.setAttribute("for", id);
+    this.label.setAttribute("for", id);
   }
 
   @Override
@@ -53,7 +53,7 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
   @Override
   public String getText() {
 
-    return this.label;
+    return this.text;
   }
 
   @Override
@@ -62,8 +62,8 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements Att
     if (text == null) {
       text = "";
     }
-    this.label = text;
-    this.labelWidget.setTextContent(text);
+    this.text = text;
+    this.label.setTextContent(text);
   }
 
 }

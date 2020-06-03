@@ -11,7 +11,7 @@ import io.github.mmm.ui.tvm.widget.menu.menubar.TvmMenuBar;
  *
  * @since 1.0.0
  */
-public class TvmFactoryMenuBar implements UiSingleWidgetFactoryNative<UiMenuBar> {
+public class TvmFactoryNavigationBar implements UiSingleWidgetFactoryNative<UiMenuBar> {
 
   @Override
   public Class<UiMenuBar> getType() {

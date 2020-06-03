@@ -3,6 +3,7 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.ui.api.UiToggleGroup;
+import io.github.mmm.ui.api.event.UiClickEvent;
 import io.github.mmm.ui.api.widget.input.UiRadioButton;
 import io.github.mmm.ui.tvm.TvmToggleGroup;
 
@@ -36,6 +37,13 @@ public class TvmRadioButton extends TvmBooleanInput implements UiRadioButton {
 
     this.toggleGroup = (TvmToggleGroup) group;
     this.widget.setName(this.toggleGroup.getGroup());
+  }
+
+  @Override
+  public void click() {
+
+    setValueForUser(Boolean.TRUE);
+    fireEvent(new UiClickEvent(this, true));
   }
 
 }
