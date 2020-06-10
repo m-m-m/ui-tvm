@@ -4,17 +4,16 @@ package io.github.mmm.ui.tvm.widget.menu.menubar;
 
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
-import io.github.mmm.ui.api.attribute.AttributeWriteText;
+import io.github.mmm.ui.api.widget.menu.UiAbstractMenuEntry;
+import io.github.mmm.ui.tvm.widget.button.TvmAbstractButton;
 
 /**
- * {@link TvmAbstractMenuItem} based on {@link HTMLButtonElement}.
+ * Implementation of {@link UiAbstractMenuEntry} for TeaVM based on {@link HTMLButtonElement}.
  *
  * @since 1.0.0
  */
-public abstract class TvmAbstractButtonMenuItem extends TvmAbstractMenuItem<HTMLButtonElement>
-    implements AttributeWriteText {
-
-  private String text;
+public abstract class TvmAbstractButtonMenuItem extends TvmAbstractButton<HTMLButtonElement>
+    implements UiAbstractMenuEntry {
 
   /**
    * The constructor.
@@ -24,23 +23,7 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractMenuItem<HTML
   public TvmAbstractButtonMenuItem(HTMLButtonElement widget) {
 
     super(widget);
-    this.text = "";
-  }
-
-  @Override
-  public String getText() {
-
-    return this.text;
-  }
-
-  @Override
-  public void setText(String text) {
-
-    if (text == null) {
-      text = "";
-    }
-    this.widget.setTextContent(text);
-    this.text = text;
+    this.widget.setAttribute(ATR_ROLE, "menuitem");
   }
 
   @Override

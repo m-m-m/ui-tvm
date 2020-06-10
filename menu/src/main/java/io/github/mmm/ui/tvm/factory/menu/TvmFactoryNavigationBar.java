@@ -3,26 +3,26 @@
 package io.github.mmm.ui.tvm.factory.menu;
 
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.api.widget.menu.UiMenuBar;
-import io.github.mmm.ui.tvm.widget.menu.menubar.TvmMenuBar;
+import io.github.mmm.ui.api.widget.menu.UiNavigationBar;
+import io.github.mmm.ui.tvm.widget.menu.navigationbar.TvmNavigationBar;
 
 /**
- * {@link UiSingleWidgetFactoryNative} for {@link UiMenuBar}.
+ * {@link UiSingleWidgetFactoryNative} for {@link UiNavigationBar}.
  *
  * @since 1.0.0
  */
-public class TvmFactoryNavigationBar implements UiSingleWidgetFactoryNative<UiMenuBar> {
+public class TvmFactoryNavigationBar implements UiSingleWidgetFactoryNative<UiNavigationBar> {
 
   @Override
-  public Class<UiMenuBar> getType() {
+  public Class<UiNavigationBar> getType() {
 
-    return UiMenuBar.class;
+    return UiNavigationBar.class;
   }
 
   @Override
-  public UiMenuBar create() {
+  public UiNavigationBar create() {
 
-    return new TvmMenuBar();
+    return new TvmNavigationBar();
   }
 
 }

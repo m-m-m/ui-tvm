@@ -4,6 +4,7 @@ package io.github.mmm.ui.tvm.widget.media;
 
 import org.teavm.jso.dom.html.HTMLVideoElement;
 
+import io.github.mmm.ui.api.widget.img.UiAbstractImage;
 import io.github.mmm.ui.api.widget.img.UiImage;
 import io.github.mmm.ui.api.widget.media.UiVideoPlayer;
 
@@ -14,7 +15,7 @@ import io.github.mmm.ui.api.widget.media.UiVideoPlayer;
  */
 public class TvmVideoPlayer extends TvmMediaWidget<HTMLVideoElement> implements UiVideoPlayer {
 
-  private UiImage image;
+  private UiAbstractImage image;
 
   /**
    * The constructor.
@@ -25,18 +26,19 @@ public class TvmVideoPlayer extends TvmMediaWidget<HTMLVideoElement> implements 
   }
 
   @Override
-  public UiImage getImage() {
+  public UiAbstractImage getImage() {
 
     return this.image;
   }
 
   @Override
-  public void setImage(UiImage image) {
+  public void setImage(UiAbstractImage image) {
 
-    if (image == null) {
-      this.widget.setPoster("");
+    if (image instanceof UiImage) {
+      this.widget.setPoster(((UiImage) image).getUrl());
     } else {
-      this.widget.setPoster(image.getUrl());
+      // handle UiIcon?
+      this.widget.setPoster("");
     }
     this.image = image;
   }

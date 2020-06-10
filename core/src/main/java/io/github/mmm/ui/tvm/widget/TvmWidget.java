@@ -20,6 +20,8 @@ import org.teavm.jso.dom.html.HTMLVideoElement;
 import org.teavm.jso.dom.xml.Document;
 import org.teavm.jso.dom.xml.Node;
 
+import io.github.mmm.ui.api.datatype.UiEnabledFlags;
+import io.github.mmm.ui.api.datatype.UiVisibleFlags;
 import io.github.mmm.ui.api.event.UiClickEvent;
 import io.github.mmm.ui.api.widget.UiCustomWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
@@ -130,9 +132,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   protected static final String STYLE_DISABLED = "disabled";
 
   /** @see #getWidget() */
-  protected final W widget;
-
-  private String id;
+  protected W widget;
 
   /**
    * The constructor.
@@ -158,20 +158,38 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   }
 
   /**
+   * @param widget the TeaVM {@link #getWidget() widget} to initialize.
+   */
+  protected void setWidget(W widget) {
+
+    this.widget = widget;
+    if (this.widget == null) {
+      return;
+    }
+    if (!isVisible(UiVisibleFlags.ALL)) {
+      setVisibleNative(false);
+    }
+    if (!isEnabled(UiEnabledFlags.ALL)) {
+      setEnabledNative(false);
+    }
+    if (isReadOnly()) {
+      setReadOnlyNative(true);
+    }
+    String tooltip = getTooltip();
+    if (tooltip != null) {
+      setTooltipNative(tooltip);
+    }
+    onStylesChanged(getStyles().get());
+  }
+
+  /**
    * @return the {@link HTMLElement} representing this widget.
    */
   public abstract HTMLElement getElement();
 
   @Override
-  public String getId() {
+  protected void setIdNative(String id) {
 
-    return this.id;
-  }
-
-  @Override
-  public void setId(String id) {
-
-    this.id = id;
     getElement().setAttribute(ATR_ID, id);
   }
 
@@ -215,8 +233,10 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
 
     if (uiWidget instanceof UiCustomWidget) {
       return getTopNode(((UiCustomWidget<?>) uiWidget).getDelegate());
+    } else if (uiWidget != null) {
+      return ((TvmWidgetHtmlElement<?>) uiWidget).getTopWidget();
     }
-    return ((TvmWidgetHtmlElement<?>) uiWidget).getTopWidget();
+    return null;
   }
 
   /**
@@ -465,6 +485,46 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   protected static HTMLElement newTableCell() {
 
     return DOC.createElement("td").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement header element}.
+   */
+  protected static HTMLElement newHeader() {
+
+    return DOC.createElement("header").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement footer element}.
+   */
+  protected static HTMLElement newFooter() {
+
+    return DOC.createElement("footer").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement section element}.
+   */
+  protected static HTMLElement newSection() {
+
+    return DOC.createElement("section").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement aside element}.
+   */
+  protected static HTMLElement newASide() {
+
+    return DOC.createElement("aside").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement main element}.
+   */
+  protected static HTMLElement newMain() {
+
+    return DOC.createElement("main").cast();
   }
 
   /**

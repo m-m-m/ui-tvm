@@ -90,9 +90,9 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
   }
 
   @Override
-  public void setId(String id) {
+  protected void setIdNative(String id) {
 
-    super.setId(id);
+    super.setIdNative(id);
     this.output.setAttribute(ATR_FOR, id);
   }
 

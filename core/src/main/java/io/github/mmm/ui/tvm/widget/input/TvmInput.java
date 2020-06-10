@@ -88,9 +88,9 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public void setId(String id) {
+  protected void setIdNative(String id) {
 
-    super.setId(id);
+    super.setIdNative(id);
     if (this.nameWidget != null) {
       this.nameWidget.setFor(id);
     }

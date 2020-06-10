@@ -6,13 +6,14 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.menu.UiMenuItem;
 import io.github.mmm.ui.api.widget.menu.UiMenuItemSeparator;
+import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 
 /**
  * Implementation of {@link UiMenuItem} for TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmMenuItemSeparator extends TvmAbstractMenuItem<HTMLElement> implements UiMenuItemSeparator {
+public class TvmMenuItemSeparator extends TvmWidgetHtmlElement<HTMLElement> implements UiMenuItemSeparator {
 
   /**
    * The constructor.

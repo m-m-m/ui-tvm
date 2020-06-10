@@ -7,9 +7,8 @@ import org.teavm.jso.browser.Location;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 
-import io.github.mmm.ui.api.controller.AbstractUiController;
 import io.github.mmm.ui.api.controller.UiPlace;
-import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.spi.controller.AbstractUiController;
 import io.github.mmm.ui.spi.controller.AbstractUiNavigationManagerImpl;
 import io.github.mmm.ui.spi.controller.UiNavigationMode;
 import io.github.mmm.ui.tvm.TvmApplication;
@@ -86,7 +85,7 @@ public class TvmNavigationManager extends AbstractUiNavigationManagerImpl {
       System.out.println(uri);
       UiPlace uriPlace = UiPlace.parse(uri);
       if (fallback) {
-        AbstractUiController<UiWidget> controller = getController(uriPlace.getId());
+        AbstractUiController<?> controller = getController(uriPlace.getId());
         if (controller != null) {
           place = uriPlace;
         }
@@ -162,7 +161,7 @@ public class TvmNavigationManager extends AbstractUiNavigationManagerImpl {
 
   private String getTitle(UiPlace place) {
 
-    AbstractUiController<UiWidget> controller = getController(place.getId());
+    AbstractUiController<?> controller = getController(place.getId());
     if (controller != null) {
       return controller.getTitle();
     }

@@ -38,6 +38,7 @@ module io.github.mmm.ui.tvm.core {
       io.github.mmm.ui.tvm.TvmToggleGroupFactory;
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
+      io.github.mmm.ui.tvm.factory.core.TvmFactoryBorderPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryButton, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryButtonPanel, //
       io.github.mmm.ui.tvm.factory.core.TvmFactoryCheckbox, //
@@ -63,6 +64,8 @@ module io.github.mmm.ui.tvm.core {
   exports io.github.mmm.ui.tvm;
 
   exports io.github.mmm.ui.tvm.widget;
+
+  exports io.github.mmm.ui.tvm.widget.button;
 
   exports io.github.mmm.ui.tvm.widget.input;
 

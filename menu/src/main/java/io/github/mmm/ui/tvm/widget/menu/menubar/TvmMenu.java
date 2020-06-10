@@ -10,7 +10,7 @@ import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.xml.Node;
 
-import io.github.mmm.ui.api.event.UiEventListener;
+import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.widget.menu.UiAbstractMenuEntry;
 import io.github.mmm.ui.api.widget.menu.UiAdvancedMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuItem;
@@ -76,7 +76,7 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
   }
 
   @Override
-  public UiMenuItem addItem(String text, UiEventListener listener, int index) {
+  public UiMenuItem addItem(String text, UiClickEventListener listener, int index) {
 
     TvmMenuItem item = new TvmMenuItem();
     if (text != null) {
@@ -90,17 +90,23 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
   }
 
   @Override
-  public UiMenuItemCheckbox addCheckbox(String text, UiEventListener listener, int index) {
+  public UiMenuItemCheckbox addCheckbox(String text, UiClickEventListener listener, int index) {
 
-    // TODO Auto-generated method stub
-    return null;
+    TvmMenuItemCheckbox item = new TvmMenuItemCheckbox();
+    item.setText(text);
+    item.addListener(listener);
+    addChild(item, index);
+    return item;
   }
 
   @Override
-  public UiMenuItemRadioButton addRadioButton(String text, UiEventListener listener, int index) {
+  public UiMenuItemRadioButton addRadioButton(String text, UiClickEventListener listener, int index) {
 
-    // TODO Auto-generated method stub
-    return null;
+    TvmMenuItemRadioButton item = new TvmMenuItemRadioButton();
+    item.setText(text);
+    item.addListener(listener);
+    addChild(item, index);
+    return item;
   }
 
   @Override

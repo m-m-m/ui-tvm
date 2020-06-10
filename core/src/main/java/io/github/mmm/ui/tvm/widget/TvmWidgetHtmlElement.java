@@ -38,18 +38,24 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
   protected void onStylesChanged(String newStyles) {
 
     super.onStylesChanged(newStyles);
-    this.widget.setClassName(newStyles);
+    if (this.widget != null) {
+      this.widget.setClassName(newStyles);
+    }
   }
 
   @Override
   protected void setVisibleNative(boolean visible) {
 
-    this.widget.setHidden(!visible);
+    if (this.widget != null) {
+      this.widget.setHidden(!visible);
+    }
   }
 
   @Override
   protected void setTooltipNative(String tooltip) {
 
-    this.widget.setTitle(tooltip);
+    if (this.widget != null) {
+      this.widget.setTitle(tooltip);
+    }
   }
 }

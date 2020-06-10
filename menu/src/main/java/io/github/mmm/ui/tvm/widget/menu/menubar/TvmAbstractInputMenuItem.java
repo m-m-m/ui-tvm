@@ -6,15 +6,17 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.api.attribute.AttributeWriteText;
+import io.github.mmm.ui.api.widget.menu.UiAbstractMenuItem;
 import io.github.mmm.ui.api.widget.value.UiWidgetWithSelection;
+import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
 
 /**
- * {@link TvmAbstractMenuItem} based on {@link HTMLInputElement}.
+ * Implementation {@link UiAbstractMenuItem} for TeaVM based on {@link HTMLInputElement}.
  *
  * @since 1.0.0
  */
-public abstract class TvmAbstractInputMenuItem extends TvmAbstractMenuItem<HTMLInputElement>
-    implements UiWidgetWithSelection, AttributeWriteText {
+public abstract class TvmAbstractInputMenuItem extends TvmClickableWidget<HTMLInputElement>
+    implements UiAbstractMenuItem, UiWidgetWithSelection, AttributeWriteText {
 
   private final HTMLElement topWidget;
 
@@ -37,6 +39,7 @@ public abstract class TvmAbstractInputMenuItem extends TvmAbstractMenuItem<HTMLI
     this.topWidget.appendChild(this.widget);
     this.topWidget.appendChild(this.label);
     this.text = "";
+    this.topWidget.setAttribute(ATR_ROLE, "menuitem");
   }
 
   @Override
@@ -62,9 +65,9 @@ public abstract class TvmAbstractInputMenuItem extends TvmAbstractMenuItem<HTMLI
   }
 
   @Override
-  public void setId(String id) {
+  protected void setIdNative(String id) {
 
-    super.setId(id);
+    super.setIdNative(id);
     this.label.setAttribute("for", id);
   }
 

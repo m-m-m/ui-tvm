@@ -4,7 +4,7 @@ package io.github.mmm.ui.tvm.widget.menu.navigationbar;
 
 import org.teavm.jso.dom.html.HTMLElement;
 
-import io.github.mmm.ui.api.event.UiEventListener;
+import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.widget.menu.UiAbstractMenuEntry;
 import io.github.mmm.ui.api.widget.menu.UiAbstractMenuWithItems;
 import io.github.mmm.ui.api.widget.menu.UiMenu;
@@ -52,7 +52,7 @@ public abstract class TvmAbstractMenuWithItems<W extends HTMLElement>
   }
 
   @Override
-  public UiMenuItem addItem(String text, UiEventListener listener, int index) {
+  public UiMenuItem addItem(String text, UiClickEventListener listener, int index) {
 
     TvmNavigationItem item = new TvmNavigationItem();
     if (text != null) {

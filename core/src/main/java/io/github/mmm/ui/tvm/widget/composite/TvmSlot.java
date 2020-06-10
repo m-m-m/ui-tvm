@@ -24,6 +24,16 @@ public class TvmSlot extends TvmComposite<HTMLElement, UiRegularWidget> implemen
     super(newElement("ui-slot"));
   }
 
+  /**
+   * The constructor.
+   *
+   * @param widget the {@link #getWidget() TeaVM widget}.
+   */
+  public TvmSlot(HTMLElement widget) {
+
+    super(widget);
+  }
+
   @Override
   public void setChild(UiRegularWidget child) {
 

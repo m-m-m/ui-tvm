@@ -20,6 +20,7 @@ public class TvmNavigationBar extends TvmAbstractMenuWithItems<HTMLElement> impl
   public TvmNavigationBar() {
 
     super(newNav());
+    this.widget.appendChild(this.compositeElement);
     getStyles().add(STYLE);
   }
 

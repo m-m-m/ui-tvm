@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget.button;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
+import io.github.mmm.ui.api.widget.img.UiAbstractImage;
 import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
 
 /**
@@ -17,6 +18,8 @@ public abstract class TvmAbstractButton<W extends HTMLElement> extends TvmClicka
     implements UiAbstractButton {
 
   private String text;
+
+  private UiAbstractImage icon;
 
   /**
    * The constructor.
@@ -39,6 +42,24 @@ public abstract class TvmAbstractButton<W extends HTMLElement> extends TvmClicka
 
     this.widget.setTextContent(text);
     this.text = text;
+  }
+
+  @Override
+  public UiAbstractImage getImage() {
+
+    return this.icon;
+  }
+
+  @Override
+  public void setImage(UiAbstractImage icon) {
+
+    if (this.icon != null) {
+      this.widget.removeChild(getTopNode(this.icon));
+    }
+    this.icon = icon;
+    if (icon != null) {
+      insertFirst(this.widget, getTopNode(icon));
+    }
   }
 
 }
