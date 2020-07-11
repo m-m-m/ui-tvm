@@ -7,11 +7,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
-import org.teavm.jso.dom.html.HTMLOptionElement;
 
 import io.github.mmm.base.lang.ToStringFormatter;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.input.UiComboBox;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
 
@@ -31,7 +30,7 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
 
   private List<V> options;
 
-  private List<String> titles;
+  private final List<String> titles;
 
   private Function<V, String> formatter;
 
@@ -43,9 +42,6 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
     super("text");
     this.topWidget = newElement("ui-combobox");
     this.datalist = newDatalist();
-    String dataListId = "tvm-dl-" + counter++;
-    this.datalist.setAttribute("id", dataListId);
-    this.widget.setAttribute("list", dataListId);
     this.topWidget.appendChild(this.widget);
     this.topWidget.appendChild(this.datalist);
     this.options = Collections.emptyList();
@@ -57,6 +53,24 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
   public HTMLElement getTopWidget() {
 
     return this.topWidget;
+  }
+
+  @Override
+  protected void setParent(UiComposite<?> parent) {
+
+    if ((parent != null) && (getId() == null)) {
+      setId("combo_" + counter++);
+    }
+    super.setParent(parent);
+  }
+
+  @Override
+  protected void setIdNative(String id) {
+
+    super.setIdNative(id);
+    String dataListId = id + "_list";
+    this.datalist.setId(id);
+    this.widget.setAttribute(ATR_LIST, dataListId);
   }
 
   @Override
@@ -81,14 +95,11 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
   private void updateOptions() {
 
     removeAllChildren(this.datalist);
-    HTMLDocument document = this.datalist.getOwnerDocument();
     this.titles.clear();
     for (V option : this.options) {
-      HTMLOptionElement optionElement = document.createElement("option").cast();
       String title = this.formatter.apply(option);
+      newOption(this.datalist, title);
       this.titles.add(title);
-      optionElement.setValue(title);
-      this.widget.appendChild(optionElement);
     }
   }
 
