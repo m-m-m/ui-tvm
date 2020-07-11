@@ -144,7 +144,7 @@ public class TvmGridRow extends TvmWidgetHtmlElement<HTMLElement> implements UiG
 
       super();
       this.child = child;
-      this.td = newTableCell();
+      this.td = newTableDataCell();
       if (child != null) {
         this.td.appendChild(getTopNode(child));
       }

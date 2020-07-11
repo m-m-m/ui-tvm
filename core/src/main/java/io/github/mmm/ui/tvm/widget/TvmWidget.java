@@ -14,6 +14,7 @@ import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLFormElement;
 import org.teavm.jso.dom.html.HTMLImageElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
+import org.teavm.jso.dom.html.HTMLOptionElement;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.html.HTMLTextAreaElement;
 import org.teavm.jso.dom.html.HTMLVideoElement;
@@ -64,6 +65,15 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_FOR = "for";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_LIST = "list";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_MIN = "min";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_MAX = "max";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_REQUIRED = "required";
@@ -130,6 +140,9 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
 
   /** CSS style for a disabled widget that does not support disabling natively (e.g. anchor). */
   protected static final String STYLE_DISABLED = "disabled";
+
+  /** CSS style for a resizable widget. */
+  protected static final String STYLE_RESIZABLE = "resizable";
 
   /** @see #getWidget() */
   protected W widget;
@@ -229,7 +242,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
    * @param uiWidget the {@link UiWidget}.
    * @return the {@link #getWidget() containing} JavaFx {@link Node}.
    */
-  protected static Node getTopNode(UiWidget uiWidget) {
+  public static Node getTopNode(UiWidget uiWidget) {
 
     if (uiWidget instanceof UiCustomWidget) {
       return getTopNode(((UiCustomWidget<?>) uiWidget).getDelegate());
@@ -287,7 +300,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLButtonElement}.
    */
-  protected static HTMLButtonElement newButton() {
+  public static HTMLButtonElement newButton() {
 
     return DOC.createElement("button").cast();
   }
@@ -295,7 +308,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLAnchorElement}.
    */
-  protected static HTMLAnchorElement newAnchor() {
+  public static HTMLAnchorElement newAnchor() {
 
     return DOC.createElement("a").cast();
   }
@@ -303,7 +316,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLInputElement}.
    */
-  protected static HTMLInputElement newInput() {
+  public static HTMLInputElement newInput() {
 
     return DOC.createElement("input").cast();
   }
@@ -312,7 +325,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
    * @param type the {@link HTMLInputElement#getType() input type}.
    * @return a new {@link HTMLInputElement}.
    */
-  protected static HTMLInputElement newInput(String type) {
+  public static HTMLInputElement newInput(String type) {
 
     HTMLInputElement input = newInput();
     input.setType(type);
@@ -322,7 +335,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement output element}.
    */
-  protected static HTMLElement newOutput() {
+  public static HTMLElement newOutput() {
 
     return DOC.createElement("output").cast();
   }
@@ -330,7 +343,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLTextAreaElement}.
    */
-  protected static HTMLTextAreaElement newTextArea() {
+  public static HTMLTextAreaElement newTextArea() {
 
     return DOC.createElement("textarea").cast();
   }
@@ -338,7 +351,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLSelectElement}.
    */
-  protected static HTMLSelectElement newSelect() {
+  public static HTMLSelectElement newSelect() {
 
     return DOC.createElement("select").cast();
   }
@@ -346,7 +359,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLFormElement}.
    */
-  protected static HTMLFormElement newForm() {
+  public static HTMLFormElement newForm() {
 
     return DOC.createElement("form").cast();
   }
@@ -354,7 +367,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLImageElement}.
    */
-  protected static HTMLImageElement newImage() {
+  public static HTMLImageElement newImage() {
 
     return DOC.createElement("img").cast();
   }
@@ -362,7 +375,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLVideoElement}.
    */
-  protected static HTMLVideoElement newVideo() {
+  public static HTMLVideoElement newVideo() {
 
     return DOC.createElement("video").cast();
   }
@@ -370,7 +383,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLAudioElement}.
    */
-  protected static HTMLAudioElement newAudio() {
+  public static HTMLAudioElement newAudio() {
 
     return DOC.createElement("audio").cast();
   }
@@ -378,7 +391,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLCanvasElement}.
    */
-  protected static HTMLCanvasElement newCanvas() {
+  public static HTMLCanvasElement newCanvas() {
 
     return DOC.createElement("canvas").cast();
   }
@@ -386,7 +399,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement fieldset element}.
    */
-  protected static HTMLElement newFieldSet() {
+  public static HTMLElement newFieldSet() {
 
     return DOC.createElement("fieldset").cast();
   }
@@ -394,7 +407,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement legend element}.
    */
-  protected static HTMLElement newLegend() {
+  public static HTMLElement newLegend() {
 
     return DOC.createElement("legend").cast();
   }
@@ -402,7 +415,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement label element}.
    */
-  protected static HTMLElement newLabel() {
+  public static HTMLElement newLabel() {
 
     return DOC.createElement("label").cast();
   }
@@ -410,7 +423,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement div element}.
    */
-  protected static HTMLElement newDiv() {
+  public static HTMLElement newDiv() {
 
     return DOC.createElement("div").cast();
   }
@@ -418,7 +431,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement nav(igation) element}.
    */
-  protected static HTMLElement newNav() {
+  public static HTMLElement newNav() {
 
     return DOC.createElement("nav").cast();
   }
@@ -426,7 +439,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement unordered list element}.
    */
-  protected static HTMLElement newUl() {
+  public static HTMLElement newUl() {
 
     return DOC.createElement("ul").cast();
   }
@@ -434,7 +447,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement list item element}.
    */
-  protected static HTMLElement newLi() {
+  public static HTMLElement newLi() {
 
     return DOC.createElement("li").cast();
   }
@@ -442,7 +455,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement span element}.
    */
-  protected static HTMLElement newSpan() {
+  public static HTMLElement newSpan() {
 
     return DOC.createElement("span").cast();
   }
@@ -450,7 +463,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement horizontal ruler}.
    */
-  protected static HTMLElement newHr() {
+  public static HTMLElement newHr() {
 
     return DOC.createElement("hr").cast();
   }
@@ -458,23 +471,72 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement datalist element}.
    */
-  protected static HTMLElement newDatalist() {
+  public static HTMLElement newDatalist() {
 
     return DOC.createElement("datalist").cast();
   }
 
   /**
+   * @param document the {@link HTMLDocument}.
+   * @return a new {@link HTMLOptionElement option}.
+   */
+  public static HTMLOptionElement newOption(HTMLDocument document) {
+
+    if (document == null) {
+      document = DOC;
+    }
+    return document.createElement("option").cast();
+  }
+
+  /**
+   * @param parent the parent {@link HTMLElement} - typically a {@link #newDatalist() datalist}.
+   * @param value the value of the option.
+   * @return a new {@link HTMLOptionElement option}.
+   */
+  public static HTMLOptionElement newOption(HTMLElement parent, String value) {
+
+    HTMLOptionElement option = newOption(parent.getOwnerDocument());
+    option.setValue(value);
+    parent.appendChild(option);
+    return option;
+  }
+
+  /**
    * @return a new {@link HTMLElement table element}.
    */
-  protected static HTMLElement newTable() {
+  public static HTMLElement newTable() {
 
     return DOC.createElement("table").cast();
   }
 
   /**
+   * @return a new {@link HTMLElement table header element}.
+   */
+  public static HTMLElement newTableHead() {
+
+    return DOC.createElement("thead").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement table body element}.
+   */
+  public static HTMLElement newTableBody() {
+
+    return DOC.createElement("tbody").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement table footer element}.
+   */
+  public static HTMLElement newTableFoot() {
+
+    return DOC.createElement("tfoot").cast();
+  }
+
+  /**
    * @return a new {@link HTMLElement table row} (tr).
    */
-  protected static HTMLElement newTableRow() {
+  public static HTMLElement newTableRow() {
 
     return DOC.createElement("tr").cast();
   }
@@ -482,15 +544,23 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement table data cell} (td).
    */
-  protected static HTMLElement newTableCell() {
+  public static HTMLElement newTableDataCell() {
 
     return DOC.createElement("td").cast();
   }
 
   /**
+   * @return a new {@link HTMLElement table header cell} (th).
+   */
+  public static HTMLElement newTableHeaderCell() {
+
+    return DOC.createElement("th").cast();
+  }
+
+  /**
    * @return a new {@link HTMLElement header element}.
    */
-  protected static HTMLElement newHeader() {
+  public static HTMLElement newHeader() {
 
     return DOC.createElement("header").cast();
   }
@@ -498,7 +568,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement footer element}.
    */
-  protected static HTMLElement newFooter() {
+  public static HTMLElement newFooter() {
 
     return DOC.createElement("footer").cast();
   }
@@ -506,7 +576,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement section element}.
    */
-  protected static HTMLElement newSection() {
+  public static HTMLElement newSection() {
 
     return DOC.createElement("section").cast();
   }
@@ -514,7 +584,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement aside element}.
    */
-  protected static HTMLElement newASide() {
+  public static HTMLElement newASide() {
 
     return DOC.createElement("aside").cast();
   }
@@ -522,7 +592,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   /**
    * @return a new {@link HTMLElement main element}.
    */
-  protected static HTMLElement newMain() {
+  public static HTMLElement newMain() {
 
     return DOC.createElement("main").cast();
   }
@@ -531,7 +601,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
    * @param tag the {@link HTMLElement#getTagName() tag name}.
    * @return a new {@link HTMLElement div element}.
    */
-  protected static HTMLElement newElement(String tag) {
+  public static HTMLElement newElement(String tag) {
 
     return DOC.createElement(tag).cast();
   }
@@ -540,7 +610,7 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
    * @param name the {@link HTMLElement#getClassName() CSS class name} of the icon.
    * @return a new {@link HTMLElement}.
    */
-  protected static HTMLElement newIcon(String name) {
+  public static HTMLElement newIcon(String name) {
 
     HTMLElement element = newElement(TAG_NAME_UI_ICON);
     if (name != null) {

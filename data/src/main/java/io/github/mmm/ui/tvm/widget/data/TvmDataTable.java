@@ -2,14 +2,13 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.data;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
-import io.github.mmm.base.sort.SortOrder;
-import io.github.mmm.ui.api.widget.data.UiColumn;
+import org.teavm.jso.dom.html.HTMLElement;
+
 import io.github.mmm.ui.api.widget.data.UiDataTable;
 import io.github.mmm.validation.Validator;
-import io.github.mmm.value.PropertyPath;
 
 /**
  * Implementation of {@link UiDataTable} for TeaVM.
@@ -17,7 +16,11 @@ import io.github.mmm.value.PropertyPath;
  * @param <R> type of the data for the rows displayed by this widget. Typically a {@link io.github.mmm.bean.Bean}.
  * @since 1.0.0
  */
-public class TvmDataTable<R> extends TvmAbstractDataWidget<R> implements UiDataTable<R> {
+public class TvmDataTable<R> extends TvmAbstractDataTable<R> implements UiDataTable<R> {
+
+  private final List<TvmTableRow<R>> rows;
+
+  private List<R> originalValue;
 
   /**
    * The constructor.
@@ -25,91 +28,51 @@ public class TvmDataTable<R> extends TvmAbstractDataWidget<R> implements UiDataT
   public TvmDataTable() {
 
     super();
+    this.rows = new ArrayList<>();
   }
 
   @Override
-  public int getColumnCount() {
+  protected void addColumnToRows(TvmTableColumn<R, ?> tvmColumn, int colIndex) {
 
-    // TODO Auto-generated method stub
-    return 0;
+    for (TvmTableRow<R> row : this.rows) {
+      row.addColumn(tvmColumn, colIndex);
+    }
   }
 
   @Override
-  public <V> UiColumn<R, V> createColumn(PropertyPath<V> property) {
+  protected TvmTableRow<R> findRow(R value) {
 
-    // TODO Auto-generated method stub
+    for (TvmTableRow<R> row : this.rows) {
+      if (value == row.getValue()) {
+        return row;
+      }
+    }
     return null;
   }
 
   @Override
-  public <V> UiColumn<R, V> createColumn(String title, ColumnAdapter<R, V> adapter) {
+  protected void setShowRowNumbersNative(boolean showRowNumbers) {
 
-    // TODO Auto-generated method stub
-    return null;
+    for (TvmTableRow<R> row : this.rows) {
+      row.setShowRowNumbers(showRowNumbers);
+    }
   }
 
   @Override
-  public UiColumn<R, ?> getColumn(int index) {
+  protected void setMultiSelectionNative(boolean multiSelection) {
 
-    // TODO Auto-generated method stub
-    return null;
+    super.setMultiSelectionNative(multiSelection);
+    for (TvmTableRow<R> row : this.rows) {
+      row.setMultiSelection(multiSelection);
+    }
   }
 
   @Override
-  public void addColumn(UiColumn<R, ?> column) {
+  protected void onSelectAll(boolean selectAll) {
 
-    // TODO Auto-generated method stub
-
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public void sort(SortOrder order, UiColumn<R, ?>... columns) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void setFilterHandler(FilterHandler<R> filterHandler) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public boolean isMultiSelection() {
-
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public void setRowTemplate(R rowTemplate) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public boolean isShowRowNumbers() {
-
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public void setShowRowNumbers(boolean showRowNumbers) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void setSelection(R selection) {
-
-    // TODO Auto-generated method stub
-
+    for (TvmTableRow<R> row : this.rows) {
+      row.setSelected(selectAll);
+    }
   }
 
   @Override
@@ -122,22 +85,57 @@ public class TvmDataTable<R> extends TvmAbstractDataWidget<R> implements UiDataT
   @Override
   public void setValue(List<R> value, boolean forUser) {
 
-    // TODO Auto-generated method stub
+    int rowCount = 0;
+    if (value != null) {
+      rowCount = value.size();
+    }
+    if (!forUser) {
+      setOriginalValue(value);
+    }
+    ensureRowCount(rowCount);
+    boolean showRowNumbers = isShowRowNumbers();
+    boolean multiSelection = isMultiSelection();
+    for (int i = 0; i < rowCount; i++) {
+      R rowData = value.get(i);
+      TvmTableRow<R> row = this.rows.get(i);
+      if (showRowNumbers) {
+        row.setShowRowNumbers(true);
+      }
+      if (multiSelection) {
+        row.setMultiSelection(true);
+      }
+      for (TvmTableColumn<R, ?> column : this.columns) {
+        row.addColumn(column, -1);
+      }
+      row.setValue(rowData);
+    }
+  }
 
+  private void ensureRowCount(int rowCount) {
+
+    int rowSize = this.rows.size();
+    while (rowSize < rowCount) {
+      TvmTableRow<R> row = new TvmTableRow<>(this);
+      this.tbody.appendChild(row.getTopWidget());
+      this.rows.add(row);
+      rowSize++;
+    }
+    for (int i = rowSize - 1; i >= rowCount; i--) {
+      HTMLElement rowWidget = this.rows.get(i).getTopWidget();
+      this.tbody.removeChild(rowWidget);
+    }
   }
 
   @Override
   public List<R> getOriginalValue() {
 
-    // TODO Auto-generated method stub
-    return null;
+    return this.originalValue;
   }
 
   @Override
   public void setOriginalValue(List<R> originalValue) {
 
-    // TODO Auto-generated method stub
-
+    this.originalValue = originalValue;
   }
 
   @Override
@@ -152,34 +150,6 @@ public class TvmDataTable<R> extends TvmAbstractDataWidget<R> implements UiDataT
 
     // TODO Auto-generated method stub
 
-  }
-
-  @Override
-  public void setSelections(Collection<R> selection) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void setMultiSelection(boolean multiSelection) {
-
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public R getSelection() {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<R> getSelections() {
-
-    // TODO Auto-generated method stub
-    return null;
   }
 
 }
