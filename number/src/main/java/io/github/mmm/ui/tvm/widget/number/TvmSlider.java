@@ -8,6 +8,7 @@ import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.base.number.NumberType;
 import io.github.mmm.base.range.WritableRange;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.number.UiSlider;
 import io.github.mmm.ui.spi.range.NumericRange;
 import io.github.mmm.ui.tvm.widget.input.TvmHtmlInput;
@@ -20,13 +21,17 @@ import io.github.mmm.ui.tvm.widget.input.TvmHtmlInput;
  */
 public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implements UiSlider<V> {
 
-  private final NumericRange<V> range;
+  private static int counter = 1;
+
+  private final Range<V> range;
 
   private final HTMLElement topWidget;
 
   private final HTMLElement output;
 
   private HTMLInputElement input;
+
+  private HTMLElement datalist;
 
   private boolean textVisible;
 
@@ -42,8 +47,24 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     this.topWidget.appendChild(this.widget);
     this.output = newOutput();
     this.topWidget.appendChild(this.output);
+    this.datalist = newDatalist();
+    for (int i = 0; i <= 10; i++) {
+      newOption(this.datalist, Integer.toString(i * 10));
+    }
+    this.topWidget.appendChild(this.datalist);
+    this.widget.setAttribute(ATR_MIN, "0");
+    this.widget.setAttribute(ATR_MAX, "100");
     this.widget.addEventListener(EVENT_TYPE_INPUT, this::onInput);
-    this.range = new NumericRange<>(getNumberType());
+    this.range = new Range<>(getNumberType());
+  }
+
+  @Override
+  protected void setParent(UiComposite<?> parent) {
+
+    if ((parent != null) && (getId() == null)) {
+      setId("slider_" + counter++);
+    }
+    super.setParent(parent);
   }
 
   @Override
@@ -76,7 +97,8 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
   public V getValueOrThrow() {
 
     String value = this.widget.getValue();
-    return getNumberType().valueOf(value);
+    double d = Double.parseDouble(value) / 100;
+    return this.range.fromFactor(d);
   }
 
   @Override
@@ -94,6 +116,9 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
 
     super.setIdNative(id);
     this.output.setAttribute(ATR_FOR, id);
+    String listId = id + "_list";
+    this.widget.setAttribute(ATR_LIST, listId);
+    this.datalist.setId(listId);
   }
 
   @Override
@@ -151,4 +176,18 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     this.textEditable = textEditable;
   }
 
+  private class Range<N extends Number> extends NumericRange<N> {
+
+    public Range(NumberType<N> type) {
+
+      super(type);
+    }
+
+    @Override
+    protected void onValueChange() {
+
+      super.onValueChange();
+    }
+
+  }
 }
