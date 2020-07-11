@@ -52,6 +52,13 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
   }
 
   @Override
+  protected void setReadOnlyNative(boolean readOnly) {
+
+    super.setReadOnlyNative(readOnly);
+    this.widget.setReadOnly(readOnly);
+  }
+
+  @Override
   protected void setMandatory(boolean mandatory) {
 
     super.setMandatory(mandatory);
