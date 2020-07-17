@@ -191,6 +191,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
       if (this.prefixLabel != null) {
         this.hPanel.removeChild(this.prefixLabel);
         this.prefixLabel = null;
+        getStyles().remove(STYLE_WITH_PREFIX);
       }
     } else {
       if (this.prefixLabel == null) {
@@ -199,6 +200,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
         insertFirst(getHPanel(), this.prefixLabel);
       }
       this.prefixLabel.setTextContent(prefix);
+      getStyles().add(STYLE_WITH_PREFIX);
     }
   }
 
@@ -226,6 +228,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
       if (this.suffixLabel != null) {
         this.hPanel.removeChild(this.suffixLabel);
         this.suffixLabel = null;
+        getStyles().remove(STYLE_WITH_SUFFIX);
       }
     } else {
       if (this.suffixLabel == null) {
@@ -234,6 +237,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
         getHPanel().appendChild(this.suffixLabel);
       }
       this.suffixLabel.setTextContent(suffix);
+      getStyles().add(STYLE_WITH_SUFFIX);
     }
   }
 
