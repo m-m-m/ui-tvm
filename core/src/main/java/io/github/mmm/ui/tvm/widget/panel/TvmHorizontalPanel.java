@@ -18,12 +18,12 @@ public class TvmHorizontalPanel extends TvmMutablePanel<HTMLElement> implements 
    */
   public TvmHorizontalPanel() {
 
-    super(newElement("ui-hpanel"));
+    super(newElement(STYLE));
   }
 
   /**
    * The constructor.
-   * 
+   *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmHorizontalPanel(HTMLElement widget) {

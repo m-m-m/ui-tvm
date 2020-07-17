@@ -18,11 +18,12 @@ public class TvmVerticalPanel extends TvmMutablePanel<HTMLElement> implements Ui
    */
   public TvmVerticalPanel() {
 
-    super(newElement("ui-vpanel"));
+    super(newElement(STYLE));
   }
 
   /**
    * The constructor.
+   * 
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmVerticalPanel(HTMLElement widget) {

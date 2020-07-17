@@ -11,6 +11,7 @@ import io.github.mmm.ui.api.event.UiValueChangeEvent;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.form.UiInputContainer;
 import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
 import io.github.mmm.validation.Validator;
@@ -24,6 +25,12 @@ import io.github.mmm.validation.Validator;
  */
 public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget<W>
     implements UiInput<V>, AttributeWriteAutocomplete {
+
+  private HTMLElement hPanel;
+
+  private HTMLElement prefixLabel;
+
+  private HTMLElement suffixLabel;
 
   private String name;
 
@@ -65,6 +72,36 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
     updateModificationTimestamp(false);
     fireEvent(new UiValueChangeEvent(this, getProgrammaticEventType() == UiValueChangeEvent.TYPE));
+  }
+
+  @Override
+  public HTMLElement getTopWidget() {
+
+    if (this.hPanel != null) {
+      return this.hPanel;
+    }
+    return super.getTopWidget();
+  }
+
+  /**
+   * @return the {@link HTMLElement} used as {@link #getTopWidget() top widget}. Will be lazily initialized on the first
+   *         call of this method.
+   */
+  public HTMLElement getHPanel() {
+
+    if (this.hPanel == null) {
+      this.hPanel = newElement(UiHorizontalPanel.STYLE);
+      initHPanel(this.hPanel);
+    }
+    return this.hPanel;
+  }
+
+  /**
+   * @param panel the {@link HTMLElement} used as {@link #getTopWidget() top widget}.
+   */
+  protected void initHPanel(HTMLElement panel) {
+
+    panel.appendChild(this.widget);
   }
 
   @Override
@@ -136,6 +173,76 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
       this.containerWidget = UiInputContainer.of(this);
     }
     return this.containerWidget;
+  }
+
+  @Override
+  public String getPrefix() {
+
+    if (this.prefixLabel == null) {
+      return null;
+    }
+    return this.prefixLabel.getTextContent();
+  }
+
+  @Override
+  public void setPrefix(String prefix) {
+
+    if (isEmpty(prefix)) {
+      if (this.prefixLabel != null) {
+        this.hPanel.removeChild(this.prefixLabel);
+        this.prefixLabel = null;
+      }
+    } else {
+      if (this.prefixLabel == null) {
+        this.prefixLabel = newLabel();
+        this.prefixLabel.setClassName(STYLE_PREFIX);
+        insertFirst(getHPanel(), this.prefixLabel);
+      }
+      this.prefixLabel.setTextContent(prefix);
+    }
+  }
+
+  /**
+   * @return the {@link HTMLElement} for the {@link #getPrefix() prefix}.
+   */
+  protected HTMLElement getPrefixLabel() {
+
+    return this.prefixLabel;
+  }
+
+  @Override
+  public String getSuffix() {
+
+    if (this.suffixLabel == null) {
+      return null;
+    }
+    return this.suffixLabel.getTextContent();
+  }
+
+  @Override
+  public void setSuffix(String suffix) {
+
+    if (isEmpty(suffix)) {
+      if (this.suffixLabel != null) {
+        this.hPanel.removeChild(this.suffixLabel);
+        this.suffixLabel = null;
+      }
+    } else {
+      if (this.suffixLabel == null) {
+        this.suffixLabel = newLabel();
+        this.suffixLabel.setClassName(STYLE_SUFFIX);
+        getHPanel().appendChild(this.suffixLabel);
+      }
+      this.suffixLabel.setTextContent(suffix);
+    }
+  }
+
+  /**
+   * @return the {@link HTMLElement} for the {@link #getSuffix() suffix}.
+   */
+  protected HTMLElement getSuffixLabel() {
+
+    return this.suffixLabel;
   }
 
   @Override

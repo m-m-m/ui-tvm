@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
+import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
@@ -20,11 +21,9 @@ import io.github.mmm.ui.api.widget.input.UiTextInput;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoice<V> {
+public class TvmRadioChoice<V> extends TvmInput<V, HTMLElement> implements UiRadioChoice<V> {
 
   private static int counter = 1;
-
-  private final HTMLElement topWidget;
 
   private List<V> options;
 
@@ -37,21 +36,14 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
    */
   public TvmRadioChoice() {
 
-    super(TYPE_RADIO);
-    this.topWidget = newElement("ui-radios");
+    super(newElement("ui-radios"));
     String radioName = "tvm-radio-" + counter++;
     this.widget.addEventListener("focus", this::onFocusGain);
     this.widget.addEventListener("blur", this::onFocusLoss);
     this.radios = new ArrayList<>();
-    this.radios.add(new RadioButton(this.widget, radioName, 0));
+    this.radios.add(new RadioButton(radioName, 0));
     this.options = Collections.emptyList();
     this.formatter = ToStringFormatter.get();
-  }
-
-  @Override
-  public HTMLElement getTopWidget() {
-
-    return this.topWidget;
   }
 
   @Override
@@ -75,7 +67,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
   private void updateOptions() {
 
-    removeAllChildren(this.topWidget);
+    removeAllChildren(this.widget);
     ensureRadioButtonCount(this.options.size());
     int i = 0;
     String tooltip = getTooltip();
@@ -85,7 +77,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
       rb.setLabel(title);
       rb.input.setTitle(tooltip);
       rb.label.setTitle(tooltip);
-      this.topWidget.appendChild(rb.top);
+      this.widget.appendChild(rb.top);
     }
   }
 
@@ -97,6 +89,12 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
       rb = rb.createNext();
       rb.input.addEventListener("focus", this::onFocusGain);
       rb.input.addEventListener("blur", this::onFocusLoss);
+      if (getValidator().isMandatory()) {
+        rb.input.setAttribute(ATR_REQUIRED, "");
+      }
+      if (isReadOnly()) {
+        rb.input.setReadOnly(true);
+      }
       this.radios.add(rb);
     }
   }
@@ -142,6 +140,63 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
     }
   }
 
+  @Override
+  protected void setEnabledNative(boolean enabled) {
+
+    for (RadioButton rb : this.radios) {
+      rb.input.setDisabled(!enabled);
+    }
+  }
+
+  @Override
+  protected void setReadOnlyNative(boolean readOnly) {
+
+    super.setReadOnlyNative(readOnly);
+    for (RadioButton rb : this.radios) {
+      rb.input.setReadOnly(readOnly);
+    }
+  }
+
+  @Override
+  protected void setMandatory(boolean mandatory) {
+
+    super.setMandatory(mandatory);
+    if (mandatory) {
+      for (RadioButton rb : this.radios) {
+        rb.input.setAttribute(ATR_REQUIRED, "");
+      }
+    } else {
+      for (RadioButton rb : this.radios) {
+        rb.input.removeAttribute(ATR_REQUIRED);
+      }
+    }
+  }
+
+  @Override
+  protected void doSetValidationFailure(String error) {
+
+    if (this.radios.isEmpty()) {
+      return;
+    }
+    HTMLInputElement rb = this.radios.get(0).input;
+    if (error == null) {
+      rb.setCustomValidity("");
+    } else {
+      rb.setCustomValidity(error);
+      rb.reportValidity();
+    }
+  }
+
+  @Override
+  protected void onFocusGain(Event event) {
+
+    super.onFocusGain(event);
+    if (!isValid() && !this.radios.isEmpty()) {
+      HTMLInputElement rb = this.radios.get(0).input;
+      rb.reportValidity();
+    }
+  }
+
   private class RadioButton {
 
     private final HTMLElement top;
@@ -154,7 +209,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
     private RadioButton(String name, int index) {
 
-      this(newInput(TYPE_RADIO), name, index);
+      this(newInput(TvmHtmlInput.TYPE_RADIO), name, index);
     }
 
     private void setLabel(String title) {
