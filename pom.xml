@@ -30,7 +30,7 @@
     <module>form</module>
     <module>format</module>
     <module>media</module>
-    <module>menu</module>
+    <module>navigation</module>
     <module>number</module>
     <module>tab</module>
     <module>temporal</module>
@@ -96,7 +96,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-ui-tvm-menu</artifactId>
+        <artifactId>mmm-ui-tvm-navigation</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

@@ -4,20 +4,20 @@
  */
 
 /**
- * Provides the implementation of UI format widgets for TeaVM.
+ * Provides the implementation of UI navigation widgets based on TeaVM.
  *
  * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
  */
 @SuppressWarnings("rawtypes") //
-module io.github.mmm.ui.tvm.format {
+module io.github.mmm.ui.tvm.navigation {
 
-  requires transitive io.github.mmm.ui.api.format;
+  requires transitive io.github.mmm.ui.api.navigation;
 
   requires transitive io.github.mmm.ui.tvm.core;
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
-      // io.github.mmm.ui.tvm.factory.format.TvmFactorySourceCodeViewer, //
-      io.github.mmm.ui.tvm.factory.format.TvmFactoryHtmlEditor //
+      io.github.mmm.ui.tvm.factory.navigation.TvmFactoryMenuBar, //
+      io.github.mmm.ui.tvm.factory.navigation.TvmFactoryNavigationBar //
   ;
 
 }
