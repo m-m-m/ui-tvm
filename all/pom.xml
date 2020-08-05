@@ -43,7 +43,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-tvm-navigation</artifactId>
+      <artifactId>mmm-ui-tvm-menu</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
