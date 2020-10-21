@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget.menu;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.menu.UiAdvancedMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 import io.github.mmm.ui.tvm.widget.composite.TvmRemovableComposite;
@@ -40,7 +41,7 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
   public UiAdvancedMenu addMenu(String text, int index) {
 
     TvmMenu menu = new TvmMenu();
-    menu.setText(text);
+    UiWidget.initText(menu, text);
     setParent(menu, this);
     addChildWidget(menu, index);
     if (index == -1) {

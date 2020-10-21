@@ -97,7 +97,7 @@ public class TvmComboBoxDataList<V> extends TvmTextualInput<V> implements UiComb
     removeAllChildren(this.datalist);
     this.titles.clear();
     for (V option : this.options) {
-      String title = this.formatter.apply(option);
+      String title = format(option);
       newOption(this.datalist, title);
       this.titles.add(title);
     }

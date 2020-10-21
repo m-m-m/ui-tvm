@@ -11,6 +11,7 @@ import org.teavm.jso.dom.html.HTMLElement;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiVisibleFlags;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.tab.UiTab;
 import io.github.mmm.ui.api.widget.tab.UiTabPanel;
 import io.github.mmm.ui.tvm.widget.composite.TvmMutableComposite;
@@ -130,7 +131,7 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
 
     TvmTab tab = new TvmTab();
     setParent(tab, this);
-    tab.setText(text);
+    UiWidget.initText(tab, text);
     tab.setChild(childSupplier);
     addChild(tab, index);
     return tab;
