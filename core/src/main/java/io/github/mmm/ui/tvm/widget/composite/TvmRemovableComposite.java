@@ -73,7 +73,11 @@ public abstract class TvmRemovableComposite<W extends HTMLElement, C extends UiW
   protected void addChild(C child, int index) {
 
     setParent(child, this);
-    addChildWidget(child, index);
+    int i = index;
+    if (i >= 0) {
+      i = i + getChildIndexOffset();
+    }
+    addChildWidget(child, i);
     if (index == -1) {
       this.children.add(child);
     } else {
@@ -88,9 +92,6 @@ public abstract class TvmRemovableComposite<W extends HTMLElement, C extends UiW
    */
   protected void addChildWidget(C child, int index) {
 
-    if (index >= 0) {
-      index = index + getChildIndexOffset();
-    }
     insertAt(getCompositeElement(), getTopNode(child), index);
   }
 

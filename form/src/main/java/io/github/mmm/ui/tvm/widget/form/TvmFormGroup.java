@@ -35,7 +35,7 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
 
   /**
    * The constructor.
-   * 
+   *
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmFormGroup(HTMLElement widget) {
@@ -47,11 +47,14 @@ public class TvmFormGroup<V> extends TvmValuedComposite<HTMLElement, UiInput<?>,
   }
 
   @Override
+  protected int getChildIndexOffset() {
+
+    return 1;
+  }
+
+  @Override
   protected void addChildWidget(UiInput<?> child, int index) {
 
-    if (index >= 0) {
-      index++;
-    }
     insertAt(this.widget, getTopNode(child.getContainerWidget()), index);
   }
 
