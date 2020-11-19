@@ -90,7 +90,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   public HTMLElement getHPanel() {
 
     if (this.hPanel == null) {
-      if (this.widget.getTagName().equals(UiHorizontalPanel.STYLE)) {
+      if (this.widget.getNodeName().equals(UiHorizontalPanel.STYLE)) {
         this.hPanel = this.widget;
       } else {
         this.hPanel = newElement(UiHorizontalPanel.STYLE);
