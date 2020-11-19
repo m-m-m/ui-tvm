@@ -61,6 +61,15 @@ public abstract class TvmWidget<W extends JSObject> extends AbstractUiNativeWidg
   protected static final String ATR_ARIA_SELECTED = "aria-selected";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_EXPANDED = "aria-expanded";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_HAS_POPUP = "aria-haspopup";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_CURRENT = "aria-current";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_TABINDEX = "tabindex";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
