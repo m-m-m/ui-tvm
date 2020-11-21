@@ -16,13 +16,17 @@ import io.github.mmm.ui.tvm.widget.TvmClickableWidget;
  * @since 1.0.0
  */
 public abstract class TvmAbstractInputMenuItem extends TvmClickableWidget<HTMLInputElement>
-    implements UiAbstractMenuItem, UiWidgetWithSelection, AttributeWriteText {
+    implements UiAbstractMenuItem, UiWidgetWithSelection, AttributeWriteText, TvmAbstractMenuEntry {
 
   private final HTMLElement topWidget;
 
   private final HTMLElement label;
 
   private String text;
+
+  private boolean current;
+
+  private boolean active;
 
   /**
    * The constructor.
@@ -40,6 +44,7 @@ public abstract class TvmAbstractInputMenuItem extends TvmClickableWidget<HTMLIn
     this.topWidget.appendChild(this.label);
     this.text = "";
     this.topWidget.setAttribute(ATR_ROLE, "menuitem");
+    this.current = false;
   }
 
   @Override
@@ -87,6 +92,43 @@ public abstract class TvmAbstractInputMenuItem extends TvmClickableWidget<HTMLIn
   protected void setEnabledNative(boolean enabled) {
 
     this.widget.setDisabled(!enabled);
+  }
+
+  @Override
+  public boolean isCurrent() {
+
+    return this.current;
+  }
+
+  @Override
+  public void setCurrent(boolean current) {
+
+    if (current == this.current) {
+      return;
+    }
+    this.widget.setAttribute(ATR_ARIA_CURRENT, "" + current);
+    this.current = current;
+  }
+
+  @Override
+  public boolean isActive() {
+
+    return this.active;
+  }
+
+  @Override
+  public void setActive(boolean active) {
+
+    if (active == this.active) {
+      return;
+    }
+    if (active) {
+      this.widget.setTabIndex(0);
+      this.widget.focus();
+    } else {
+      this.widget.setTabIndex(-1);
+    }
+    this.active = active;
   }
 
 }

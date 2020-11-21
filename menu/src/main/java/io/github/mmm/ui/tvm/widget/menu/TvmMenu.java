@@ -8,6 +8,7 @@ import java.util.List;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
+import org.teavm.jso.dom.html.TextRectangle;
 import org.teavm.jso.dom.xml.Node;
 
 import io.github.mmm.ui.api.event.UiClickEventListener;
@@ -25,44 +26,125 @@ import io.github.mmm.ui.tvm.TvmToggleGroup;
  *
  * @since 1.0.0
  */
-public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu {
+public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu, TvmAbstractMenu<UiAbstractMenuEntry> {
 
   private final HTMLElement menu;
 
   private final List<UiAbstractMenuEntry> children;
 
+  private final HTMLElement submenus;
+
   private TvmToggleGroup toggleGroup;
+
+  private TvmAbstractMenuEntry currentEntry;
+
+  private boolean expanded;
 
   /**
    * The constructor.
+   *
+   * @param submenus the {@link HTMLElement} where sub-menus are temporary added and removed. Shall be placed below
+   *        menu-bar element for tab-order.
    */
-  public TvmMenu() {
+  public TvmMenu(HTMLElement submenus) {
 
-    this(newButton());
+    this(submenus, newButton());
   }
 
   /**
    * The constructor.
    *
+   * @param submenus the {@link HTMLElement} where sub-menus are temporary added and removed. Shall be placed below
+   *        menu-bar element for tab-order.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmMenu(HTMLButtonElement widget) {
+  public TvmMenu(HTMLElement submenus, HTMLButtonElement widget) {
 
     super(widget);
+    this.submenus = submenus;
     this.children = new ArrayList<>();
     this.menu = newElement("ui-menu");
+    widget.setTabIndex(-1);
+    widget.setAttribute(ATR_ROLE, "menuitem");
+    widget.setAttribute(ATR_ARIA_HAS_POPUP, "true");
+    widget.setAttribute(ATR_ARIA_EXPANDED, "false");
+    this.menu.setAttribute(ATR_ROLE, "menu");
+    this.menu.setAttribute("style", "display:none");
+    this.submenus.appendChild(this.menu);
+    this.expanded = false;
+  }
+
+  @Override
+  public void setCurrent(boolean current) {
+
+    boolean collapse = (!current && isCurrent());
+    super.setCurrent(current);
+    if (collapse) {
+      setExpanded(false);
+    }
+  }
+
+  @Override
+  public boolean isExpanded() {
+
+    return this.expanded;
+  }
+
+  @Override
+  public void setExpanded(boolean expanded) {
+
+    if (expanded == this.expanded) {
+      return;
+    }
+    if (expanded) {
+      TextRectangle rect = this.widget.getBoundingClientRect();
+      this.menu.setAttribute("style", "position:absolute;left:" + rect.getLeft() + "px;top:" + rect.getBottom() + "px");
+    } else {
+      this.menu.setAttribute("style", "display:none");
+      // also collapse all child menus recursively
+      if (this.currentEntry != null) {
+        this.currentEntry.setCurrent(false);
+        this.currentEntry = null;
+      }
+    }
+    this.widget.setAttribute(ATR_ARIA_EXPANDED, "" + expanded);
+    this.expanded = expanded;
+  }
+
+  @Override
+  public TvmAbstractMenuEntry getCurrentEntry() {
+
+    return this.currentEntry;
+  }
+
+  @Override
+  public void setCurrentEntry(TvmAbstractMenuEntry currentEntry) {
+
+    if (currentEntry == this.currentEntry) {
+      return;
+    }
+    if (this.currentEntry != null) {
+      this.currentEntry.setCurrent(false);
+    }
+    this.currentEntry = currentEntry;
+    this.currentEntry.setCurrent(true);
   }
 
   @Override
   protected void onClick(Event event) {
 
-    Node parentNode = this.menu.getParentNode();
-    if (parentNode == null) {
-      this.menu.setAttribute("style", "left:" + this.widget.getAbsoluteLeft() + "px,top:"
-          + (this.widget.getAbsoluteTop() + this.widget.getClientHeight()) + "px");
-      DOC.getBody().appendChild(this.menu);
-    } else {
-      parentNode.removeChild(this.menu);
+    boolean collapsed = !this.expanded;
+    TvmAbstractMenu<UiAdvancedMenu> parentMenu = getParentMenu();
+    if (parentMenu != null) {
+      TvmAbstractMenuEntry parentCurrent = parentMenu.getCurrentEntry();
+      if (parentCurrent == this) {
+        setCurrent(!isCurrent());
+      } else {
+        parentMenu.setCurrentEntry(this);
+      }
+    }
+    if (collapsed) {
+      setExpanded(true);
     }
     super.onClick(event);
   }
@@ -70,7 +152,7 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
   @Override
   public UiAdvancedMenu addMenu(String text, int index) {
 
-    TvmMenu subMenu = new TvmMenu();
+    TvmMenu subMenu = new TvmMenu(this.submenus);
     UiWidget.initText(subMenu, text);
     addChild(subMenu, index);
     return subMenu;
@@ -118,6 +200,7 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
 
   void addChild(UiAbstractMenuEntry child, int index) {
 
+    setParent(child, this);
     Node node = getTopNode(child);
     if (index == -1) {
       this.menu.appendChild(node);
@@ -133,6 +216,7 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
 
     UiAbstractMenuEntry childItem = this.children.remove(index);
     this.menu.removeChild(getTopNode(childItem));
+    setParent(childItem, null);
     return childItem;
   }
 

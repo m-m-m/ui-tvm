@@ -13,7 +13,11 @@ import io.github.mmm.ui.tvm.widget.button.TvmAbstractButton;
  * @since 1.0.0
  */
 public abstract class TvmAbstractButtonMenuItem extends TvmAbstractButton<HTMLButtonElement>
-    implements UiAbstractMenuEntry {
+    implements TvmAbstractMenuEntry {
+
+  private boolean current;
+
+  private boolean active;
 
   /**
    * The constructor.
@@ -23,13 +27,59 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractButton<HTMLBu
   public TvmAbstractButtonMenuItem(HTMLButtonElement widget) {
 
     super(widget);
+    this.widget.setTabIndex(-1);
     this.widget.setAttribute(ATR_ROLE, "menuitem");
+    this.current = false;
   }
 
   @Override
   protected void setEnabledNative(boolean enabled) {
 
     this.widget.setDisabled(!enabled);
+  }
+
+  @Override
+  public boolean isCurrent() {
+
+    return this.current;
+  }
+
+  @Override
+  public void setCurrent(boolean current) {
+
+    if (current == this.current) {
+      return;
+    }
+    this.widget.setAttribute(ATR_ARIA_CURRENT, "" + current);
+    this.current = current;
+  }
+
+  @Override
+  public boolean isActive() {
+
+    return this.active;
+  }
+
+  @Override
+  public void setActive(boolean active) {
+
+    setActive(active, true);
+  }
+
+  void setActive(boolean active, boolean focus) {
+
+    if (active == this.active) {
+      return;
+    }
+    if (active) {
+      this.widget.setTabIndex(0);
+      if (focus) {
+        this.widget.focus();
+      }
+    } else {
+      this.widget.setTabIndex(-1);
+    }
+    this.active = active;
   }
 
 }
