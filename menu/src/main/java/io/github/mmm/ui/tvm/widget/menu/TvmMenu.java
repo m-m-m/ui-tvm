@@ -13,6 +13,7 @@ import org.teavm.jso.dom.xml.Node;
 
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.menu.UiAbstractMenuEntry;
 import io.github.mmm.ui.api.widget.menu.UiAdvancedMenu;
 import io.github.mmm.ui.api.widget.menu.UiMenuItem;
@@ -98,7 +99,17 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiAdvancedMenu
     }
     if (expanded) {
       TextRectangle rect = this.widget.getBoundingClientRect();
-      this.menu.setAttribute("style", "position:absolute;left:" + rect.getLeft() + "px;top:" + rect.getBottom() + "px");
+      int left;
+      int top;
+      UiComposite<?> parent = getParent();
+      if (parent instanceof TvmMenuBar) {
+        left = rect.getLeft();
+        top = rect.getBottom();
+      } else {
+        left = rect.getRight();
+        top = rect.getTop();
+      }
+      this.menu.setAttribute("style", "position:absolute;left:" + left + "px;top:" + top + "px");
     } else {
       this.menu.setAttribute("style", "display:none");
       // also collapse all child menus recursively

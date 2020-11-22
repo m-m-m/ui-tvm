@@ -109,18 +109,36 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
           setActiveEntry((TvmAbstractMenuEntry) childSibling, true);
         }
       } else {
-        if (this.activeEntry instanceof TvmMenu) {
-          if (offset == 1) {
-            openSubMenu(1);
-          } else {
-            setActiveEntry((TvmAbstractMenuEntry) parent, true);
-          }
+        if ((offset == 1) && (this.activeEntry instanceof TvmMenu)) {
+          openSubMenu(1);
         } else {
-
+          UiComposite<?> ancestor = parent.getParent();
+          while (ancestor != null) {
+            if (ancestor instanceof TvmMenuBar) {
+              TvmMenu parentMenu = (TvmMenu) parent;
+              closeSubMenu(parentMenu);
+              UiAdvancedMenu childSibling = getChildSibling(parentMenu, offset);
+              if (childSibling != null) {
+                openSubMenu(1, (TvmMenu) childSibling);
+              }
+              ancestor = null;
+            } else if (offset == -1) {
+              closeSubMenu((TvmMenu) parent);
+              ancestor = null;
+            } else {
+              parent = ancestor;
+              ancestor = parent.getParent();
+            }
+          }
         }
       }
     }
+  }
 
+  private void closeSubMenu(TvmMenu menu) {
+
+    menu.setExpanded(false);
+    setActiveEntry(menu, true);
   }
 
   private void openSubMenu(int offset) {
@@ -169,10 +187,6 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
         }
         if (sibling != null) {
           setActiveEntry(sibling, true);
-        } else if (offset == -1) {
-          TvmMenu menu = (TvmMenu) parent;
-          menu.setExpanded(false);
-          setActiveEntry(menu, true);
         }
       }
     }
