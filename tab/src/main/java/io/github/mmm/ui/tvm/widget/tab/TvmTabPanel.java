@@ -119,7 +119,6 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
   public UiTab addTab(String text, UiRegularWidget child, int index) {
 
     TvmTab tab = new TvmTab();
-    setParent(tab, this);
     tab.setText(text);
     tab.setChild(child);
     addChild(tab, index);
