@@ -3,8 +3,11 @@
 package io.github.mmm.ui.tvm.widget.menu;
 
 import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.events.EventTarget;
 import org.teavm.jso.dom.events.KeyboardEvent;
+import org.teavm.jso.dom.events.MouseEvent;
 import org.teavm.jso.dom.html.HTMLElement;
+import org.teavm.jso.dom.xml.Node;
 
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
@@ -59,6 +62,30 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
 
     super.registerHandlers();
     this.topWidget.addEventListener(EVENT_TYPE_KEYDOWN, this::onKeyDown);
+    DOC.getBody().addEventListener(EVENT_TYPE_CLICK, this::onClickBody);
+  }
+
+  private void onClickBody(Event e) {
+
+    MouseEvent evt = e.cast();
+    EventTarget target = evt.getTarget();
+    boolean close = true;
+    if (true) {
+      Node element = target.cast();
+      while (element != null) {
+        if ((element == this.widget) || (element == this.submenus)) {
+          close = false;
+          element = null;
+        } else if (element == DOC.getBody()) {
+          element = null;
+        } else {
+          element = element.getParentNode();
+        }
+      }
+    }
+    if (close) {
+      closeMenus();
+    }
   }
 
   private void onKeyDown(Event e) {
@@ -84,6 +111,11 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
   }
 
   private void onKeyEscape() {
+
+    closeMenus();
+  }
+
+  private void closeMenus() {
 
     setCurrentEntry(null);
     setActiveEntry((TvmAbstractMenuEntry) getChild(0), true);
