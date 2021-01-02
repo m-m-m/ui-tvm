@@ -72,7 +72,6 @@ public abstract class TvmRemovableComposite<W extends HTMLElement, C extends UiW
    */
   protected void addChild(C child, int index) {
 
-    setParent(child, this);
     int i = index;
     if (i >= 0) {
       i = i + getChildIndexOffset();
@@ -83,6 +82,7 @@ public abstract class TvmRemovableComposite<W extends HTMLElement, C extends UiW
     } else {
       this.children.add(index, child);
     }
+    setParent(child, this);
   }
 
   /**

@@ -41,11 +41,12 @@ public class TvmSlot extends TvmComposite<HTMLElement, UiRegularWidget> implemen
       return;
     }
     if (this.child != null) {
-      setParent(this.child, null);
       this.widget.removeChild(getTopNode(this.child));
+      setParent(this.child, null);
     }
     this.widget.appendChild(getTopNode(child));
     this.child = child;
+    setParent(child, this);
   }
 
   @Override

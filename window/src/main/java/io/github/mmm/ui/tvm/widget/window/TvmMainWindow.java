@@ -48,9 +48,9 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
     this.body = widget.getDocument().getBody();
     this.positionAndSize = new TvmMainWindowPositionAndSize(widget);
     this.content.setVisible(false);
-    setParent(this.content, this);
     this.body.appendChild(this.content.getTopWidget());
     this.title = "";
+    setParent(this.content, this);
   }
 
   @Override

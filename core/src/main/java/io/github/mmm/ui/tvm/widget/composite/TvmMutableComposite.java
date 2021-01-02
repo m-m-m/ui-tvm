@@ -30,13 +30,13 @@ public abstract class TvmMutableComposite<W extends HTMLElement, C extends UiWid
   @Override
   public void addChild(C child, int index) {
 
-    setParent(child, this);
     addChildWidget(child, index);
     if (index == -1) {
       this.children.add(child);
     } else {
       this.children.add(index, child);
     }
+    setParent(child, this);
   }
 
 }
