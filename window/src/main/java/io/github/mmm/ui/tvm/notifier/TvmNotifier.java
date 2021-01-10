@@ -2,9 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.notifier;
 
-import org.teavm.jso.browser.Window;
-
-import io.github.mmm.ui.api.datatype.UiSeverity;
+import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.notifier.AbstractUiNotifier;
 
 /**
@@ -23,10 +21,10 @@ public class TvmNotifier extends AbstractUiNotifier {
   }
 
   @Override
-  public void showNotification(String message, UiSeverity severity) {
+  public void showGrowl(UiNotification notification) {
 
-    // TODO: just a temporary hack until js grow is implemented
-    Window.alert(message);
+    // TODO implement growl for TeaVM
+    showPopupOk(notification);
   }
 
 }
