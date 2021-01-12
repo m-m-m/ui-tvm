@@ -5,9 +5,9 @@
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
- * 
+ *
  * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
- * @provides io.github.mmm.ui.api.notifier.UiNotifier
+ * @provides io.github.mmm.ui.api.notify.UiNotifier
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.tvm.window {
@@ -16,7 +16,7 @@ module io.github.mmm.ui.tvm.window {
 
   requires transitive io.github.mmm.ui.tvm.core;
 
-  provides io.github.mmm.ui.api.notifier.UiNotifier with //
+  provides io.github.mmm.ui.api.notify.UiNotifier with //
       io.github.mmm.ui.tvm.notifier.TvmNotifier;
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
