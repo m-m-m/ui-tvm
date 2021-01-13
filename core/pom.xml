@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description>Implementation of user-interface framework based on TeaVM.</description>
-  
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -20,6 +20,10 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-api-form</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-tvm</artifactId>
     </dependency>
   </dependencies>
 </project>
