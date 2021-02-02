@@ -24,6 +24,8 @@ module io.github.mmm.ui.tvm.all {
 
   requires transitive io.github.mmm.ui.tvm.number;
 
+  requires transitive io.github.mmm.ui.tvm.temporal;
+
   requires transitive io.github.mmm.ui.tvm.window;
 
 }

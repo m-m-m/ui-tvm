@@ -15,10 +15,7 @@
   <description>Implementation of mmm-ui-api for the web using TeaVM.</description>
 
   <properties>
-    <revision>1.0.0</revision>
-    <changelist>-SNAPSHOT</changelist>
     <mmm.repository>ui-tvm</mmm.repository>
-    <teavm.version>0.7.0-dev-1169</teavm.version>
   </properties>
 
   <modules>
@@ -37,27 +34,14 @@
     <module>window</module>
   </modules>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.teavm</groupId>
-      <artifactId>teavm-classlib</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-spi-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.2.0-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-tvm</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
@@ -124,29 +108,13 @@
         <artifactId>mmm-ui-tvm-window</artifactId>
         <version>${project.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.teavm</groupId>
-        <artifactId>teavm-classlib</artifactId>
-        <version>${teavm.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.teavm</groupId>
-        <artifactId>teavm-metaprogramming-impl</artifactId>
-        <version>${teavm.version}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <repositories>
-    <repository>
-      <id>teavm-dev</id>
-      <url>https://dl.bintray.com/konsoletyper/teavm</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>teavm-dev</id>
-      <url>https://dl.bintray.com/konsoletyper/teavm</url>
-    </pluginRepository>
-  </pluginRepositories>
+  <dependencies>
+    <dependency>
+      <groupId>org.teavm</groupId>
+      <artifactId>teavm-classlib</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>

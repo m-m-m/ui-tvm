@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description>Combines all ui implementations for TeaVM.</description>
-  
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -53,12 +53,10 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-tvm-tab</artifactId>
     </dependency>
-    <!--
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-tvm-temporal</artifactId>
     </dependency>
-    -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-tvm-window</artifactId>
