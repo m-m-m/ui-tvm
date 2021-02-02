@@ -24,7 +24,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   private final HTMLElement labelWidget;
 
-  private final HTMLElement sectionWidget;
+  private final HTMLElement tabContentElement;
 
   private final HTMLElement errorWidget;
 
@@ -53,7 +53,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.widget.appendChild(this.labelWidget);
     this.text = "";
     this.closable = false;
-    this.sectionWidget = document.createElement("ui-tabcontent");
+    this.tabContentElement = document.createElement("ui-tabcontent");
     setSelected(false);
     this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
@@ -80,9 +80,9 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   /**
    * @return the widget with the {@link #getChild() content} of this tab.
    */
-  public HTMLElement getSectionWidget() {
+  public HTMLElement getTabContentElement() {
 
-    return this.sectionWidget;
+    return this.tabContentElement;
   }
 
   @Override
@@ -95,8 +95,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
       setParent(this.child, null);
     }
     this.child = child;
-    this.sectionWidget.clear();
-    this.sectionWidget.appendChild(getTopNode(child));
+    this.tabContentElement.clear();
+    this.tabContentElement.appendChild(getTopNode(child));
     setParent(child, this);
   }
 
@@ -179,7 +179,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
     super.setVisibleNative(visible);
     if (!visible) {
-      this.sectionWidget.setAttribute(ATR_ARIA_HIDDEN, "true");
+      this.tabContentElement.setAttribute(ATR_ARIA_HIDDEN, "true");
       if (this.selected) {
         TvmTabPanel tabPanel = getTabPanel();
         if (tabPanel != null) {
@@ -214,12 +214,12 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
       getChild(); // ensure lazy loading from Supplier
     }
     TvmTabPanel tabPanel = getTabPanel();
-    if (tabPanel != null) {
+    if ((tabPanel != null) && (this.selected != selected)) {
       HTMLElement tabContent = tabPanel.getTopWidget();
       if (selected) {
-        tabContent.appendChild(this.sectionWidget);
+        tabContent.appendChild(this.tabContentElement);
       } else {
-        tabContent.removeChild(this.sectionWidget);
+        tabContent.removeChild(this.tabContentElement);
       }
     }
     this.selected = selected;
@@ -235,9 +235,9 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.errorWidget.setHidden(error == null);
     this.errorWidget.setTitle(error);
     if (error == null) {
-      this.sectionWidget.setClassName("");
+      this.tabContentElement.setClassName("");
     } else {
-      this.sectionWidget.setClassName(STYLE_INVALID);
+      this.tabContentElement.setClassName(STYLE_INVALID);
     }
   }
 

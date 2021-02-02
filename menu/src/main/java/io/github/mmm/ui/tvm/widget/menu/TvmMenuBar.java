@@ -238,7 +238,6 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
         menu.setActive(true, false);
         this.activeEntry = menu;
       }
-
     }
     super.addChildWidget(child, index);
   }
@@ -307,8 +306,8 @@ public class TvmMenuBar extends TvmRemovableComposite<HTMLElement, UiAdvancedMen
 
     TvmMenu menu = new TvmMenu(this.submenus);
     UiWidget.initText(menu, text);
-    setParent(menu, this);
     addChildWidget(menu, index);
+    setParent(menu, this);
     if (index == -1) {
       this.children.add(menu);
     } else {

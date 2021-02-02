@@ -104,9 +104,9 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
   }
 
   @Override
-  protected void addChildWidget(UiTab child, int index) {
+  public void addChild(UiTab child, int index) {
 
-    super.addChildWidget(child, index);
+    super.addChild(child, index);
     int size = this.children.size();
     TvmTab tab = (TvmTab) child;
     if (size == 0) {
@@ -119,7 +119,7 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
   public UiTab addTab(String text, UiRegularWidget child, int index) {
 
     TvmTab tab = new TvmTab();
-    tab.setText(text);
+    UiWidget.initText(tab, text);
     tab.setChild(child);
     addChild(tab, index);
     return tab;
@@ -129,7 +129,6 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
   public UiTab addTab(String text, Supplier<UiRegularWidget> childSupplier, int index) {
 
     TvmTab tab = new TvmTab();
-    setParent(tab, this);
     UiWidget.initText(tab, text);
     tab.setChild(childSupplier);
     addChild(tab, index);
@@ -141,7 +140,7 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
 
     super.removeChildWidget(child);
     TvmTab tab = (TvmTab) child;
-    this.topWidget.removeChild(tab.getSectionWidget());
+    this.topWidget.removeChild(tab.getTabContentElement());
   }
 
   @Override
@@ -150,7 +149,7 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
     UiTab child = super.removeChild(index);
     if (child != null) {
       TvmTab tab = (TvmTab) child;
-      this.topWidget.removeChild(tab.getSectionWidget());
+      this.topWidget.removeChild(tab.getTabContentElement());
     }
     return child;
   }
