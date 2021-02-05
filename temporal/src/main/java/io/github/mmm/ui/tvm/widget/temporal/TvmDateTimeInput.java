@@ -19,7 +19,7 @@ public class TvmDateTimeInput extends TvmTextualInput<LocalDateTime> implements 
    */
   public TvmDateTimeInput() {
 
-    super("date");
+    super("datetime-local");
   }
 
   @Override
