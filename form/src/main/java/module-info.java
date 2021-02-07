@@ -5,7 +5,7 @@
 
 /**
  * Provides the implementation of UI form widgets for TeaVM.
- * 
+ *
  * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
  */
 @SuppressWarnings("rawtypes") //
@@ -17,8 +17,7 @@ module io.github.mmm.ui.tvm.form {
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
       io.github.mmm.ui.tvm.factory.form.TvmFactoryFormGroup, //
-      io.github.mmm.ui.tvm.factory.form.TvmFactoryFormPanel, //
-      io.github.mmm.ui.tvm.factory.form.TvmFactoryInputContainer //
+      io.github.mmm.ui.tvm.factory.form.TvmFactoryFormPanel //
   ;
 
 }

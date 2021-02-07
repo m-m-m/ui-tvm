@@ -8,9 +8,8 @@ import org.teavm.jso.dom.html.HTMLElement;
 import io.github.mmm.ui.api.attribute.AttributeWriteAutocomplete;
 import io.github.mmm.ui.api.datatype.bitmask.BitMask;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
-import io.github.mmm.ui.api.widget.UiRegularWidget;
-import io.github.mmm.ui.api.widget.form.UiInputContainer;
 import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.input.UiInputContainer;
 import io.github.mmm.ui.api.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
@@ -171,7 +170,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public UiRegularWidget getContainerWidget() {
+  public UiInputContainer<V> getContainerWidget() {
 
     if (this.containerWidget == null) {
       this.containerWidget = UiInputContainer.of(this);

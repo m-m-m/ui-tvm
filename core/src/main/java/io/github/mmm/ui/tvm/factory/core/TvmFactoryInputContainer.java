@@ -1,10 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.factory.form;
+package io.github.mmm.ui.tvm.factory.core;
 
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.api.widget.form.UiInputContainer;
-import io.github.mmm.ui.tvm.widget.form.TvmInputContainer;
+import io.github.mmm.ui.api.widget.input.UiInputContainer;
+import io.github.mmm.ui.tvm.widget.input.TvmInputContainer;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiInputContainer}.
