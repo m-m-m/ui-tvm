@@ -117,4 +117,10 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>teavm-dev</id>
+      <url>https://dl.bintray.com/konsoletyper/teavm</url>
+    </repository>
+  </repositories>
 </project>
