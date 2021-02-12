@@ -338,7 +338,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   @Override
   protected void onFocusLoss(Event event) {
 
-    validate();
+    validate(false);
     super.onFocusLoss(event);
   }
 
