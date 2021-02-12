@@ -5,7 +5,11 @@ package io.github.mmm.ui.tvm.widget.window;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Screen;
 import org.teavm.jso.browser.Window;
+import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.events.EventTarget;
+import org.teavm.jso.dom.events.KeyboardEvent;
 import org.teavm.jso.dom.html.HTMLBodyElement;
+import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.api.attribute.AttributeWritePosition;
@@ -45,7 +49,9 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   public TvmMainWindow(Window widget) {
 
     super(widget);
-    this.body = widget.getDocument().getBody();
+    HTMLDocument document = widget.getDocument();
+    document.addEventListener(EVENT_TYPE_KEYDOWN, this::onKeyDown);
+    this.body = document.getBody();
     this.positionAndSize = new TvmMainWindowPositionAndSize(widget);
     this.content.setVisible(false);
     this.body.appendChild(this.content.getTopWidget());
@@ -69,6 +75,28 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   public HTMLElement getElement() {
 
     return this.body;
+  }
+
+  private void onKeyDown(Event e) {
+
+    KeyboardEvent keyEvent = e.cast();
+    if (keyEvent.getKeyCode() == 8) { // backspace?
+      if (!isTextual(keyEvent.getTarget())) {
+        keyEvent.preventDefault();
+      }
+    }
+  }
+
+  private boolean isTextual(EventTarget target) {
+
+    HTMLElement element = target.cast();
+    String tagName = element.getNodeName();
+    if ("input".equalsIgnoreCase(tagName)) {
+      return true;
+    } else if ("textarea".equalsIgnoreCase(tagName)) {
+      return true;
+    }
+    return false;
   }
 
   @Override
