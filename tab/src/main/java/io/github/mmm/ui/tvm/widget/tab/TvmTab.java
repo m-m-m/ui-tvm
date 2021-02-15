@@ -28,6 +28,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   private final HTMLElement errorWidget;
 
+  private HTMLElement closeWidget;
+
   private String text;
 
   private UiRegularWidget child;
@@ -134,8 +136,31 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     if (closable == this.closable) {
       return;
     }
+    if (this.closeWidget == null) {
+      this.closeWidget = newIcon("close");
+      this.closeWidget.addEventListener(EVENT_TYPE_CLICK, this::onClose);
+      this.widget.appendChild(this.closeWidget);
+    }
+    this.closeWidget.setHidden(!closable);
     this.widget.setAttribute("closable", Boolean.toString(closable));
     this.closable = closable;
+  }
+
+  private void onClose(Event e) {
+
+    close();
+    e.preventDefault();
+  }
+
+  /**
+   * Closes this tab.
+   */
+  public void close() {
+
+    TvmTabPanel tabPanel = getTabPanel();
+    if (tabPanel != null) {
+      tabPanel.removeChild(this);
+    }
   }
 
   @Override
