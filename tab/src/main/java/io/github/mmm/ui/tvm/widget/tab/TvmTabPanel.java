@@ -106,8 +106,8 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
   @Override
   public void addChild(UiTab child, int index) {
 
-    super.addChild(child, index);
     int size = this.children.size();
+    super.addChild(child, index);
     TvmTab tab = (TvmTab) child;
     if (size == 0) {
       tab.setSelected(true, false);
@@ -140,18 +140,12 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
 
     super.removeChildWidget(child);
     TvmTab tab = (TvmTab) child;
-    this.topWidget.removeChild(tab.getTabContentElement());
-  }
-
-  @Override
-  public UiTab removeChild(int index) {
-
-    UiTab child = super.removeChild(index);
-    if (child != null) {
-      TvmTab tab = (TvmTab) child;
-      this.topWidget.removeChild(tab.getTabContentElement());
+    if (tab.isSelected()) {
+      tab.setSelected(false);
+      this.selectedTabIndex = -1;
+      selectNextTab();
     }
-    return child;
+    this.topWidget.removeChild(tab.getTabContentElement());
   }
 
   @Override

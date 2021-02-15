@@ -253,6 +253,15 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     }
   }
 
+  /**
+   * @return {@code true} if selected, {@code false} otherwise.
+   * @see #setSelected(boolean)
+   */
+  boolean isSelected() {
+
+    return this.selected;
+  }
+
   @Override
   protected void doSetValidationFailure(String error) {
 
