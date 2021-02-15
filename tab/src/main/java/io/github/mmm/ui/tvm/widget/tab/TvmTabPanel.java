@@ -74,8 +74,13 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
 
     int tabIndex = this.selectedTabIndex;
     int size = this.children.size();
+    if (size == 0) {
+      return;
+    }
     while (true) {
-      if (next) {
+      if (tabIndex < 0) {
+        tabIndex = 0;
+      } else if (next) {
         tabIndex++;
         if (tabIndex >= size) {
           tabIndex = 0;
@@ -89,7 +94,10 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
       if (tabIndex == this.selectedTabIndex) {
         return; // no other (visible) tab
       }
-      UiTab tab = this.children.get(tabIndex);
+      UiTab tab = getChild(tabIndex);
+      if (tab == null) {
+        return;
+      }
       if (tab.isVisible(UiVisibleFlags.ALL)) {
         setActiveChild(tab, tabIndex);
         return;
@@ -145,7 +153,6 @@ public class TvmTabPanel extends TvmMutableComposite<HTMLElement, UiTab> impleme
       this.selectedTabIndex = -1;
       selectNextTab();
     }
-    this.topWidget.removeChild(tab.getTabContentElement());
   }
 
   @Override
