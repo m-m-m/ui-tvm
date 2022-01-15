@@ -19,7 +19,7 @@ import io.github.mmm.ui.tvm.widget.input.TvmHtmlInput;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implements UiSlider<V> {
+public abstract class TvmSlider<V extends Number & Comparable<?>> extends TvmHtmlInput<V> implements UiSlider<V> {
 
   private static int counter = 1;
 
@@ -176,7 +176,7 @@ public abstract class TvmSlider<V extends Number> extends TvmHtmlInput<V> implem
     this.textEditable = textEditable;
   }
 
-  private class Range<N extends Number> extends NumericRange<N> {
+  private class Range<N extends Number & Comparable<?>> extends NumericRange<N> {
 
     public Range(NumberType<N> type) {
 

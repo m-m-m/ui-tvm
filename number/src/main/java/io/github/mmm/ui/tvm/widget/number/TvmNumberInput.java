@@ -14,7 +14,8 @@ import io.github.mmm.ui.tvm.widget.input.TvmTextualInput;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public abstract class TvmNumberInput<V extends Number> extends TvmTextualInput<V> implements UiNumberInput<V> {
+public abstract class TvmNumberInput<V extends Number & Comparable<?>> extends TvmTextualInput<V>
+    implements UiNumberInput<V> {
 
   private static final String ATR_STEP = "step";
 
