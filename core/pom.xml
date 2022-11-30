@@ -25,9 +25,5 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-tvm-core</artifactId>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-tvm-time</artifactId>
-    </dependency>
   </dependencies>
 </project>
