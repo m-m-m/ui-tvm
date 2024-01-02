@@ -50,7 +50,7 @@ public abstract class TvmNumberInput<V extends Number & Comparable<?>> extends T
     if (text.isEmpty()) {
       return null;
     }
-    return getNumberType().valueOf(text);
+    return getNumberType().parse(text);
   }
 
   @Override
