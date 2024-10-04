@@ -1,10 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.factory.temporal;
+package io.github.mmm.ui.tvm.factory.time;
 
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.api.widget.temporal.UiDateTimeInput;
-import io.github.mmm.ui.tvm.widget.temporal.TvmDateTimeInput;
+import io.github.mmm.ui.api.widget.time.UiDateTimeInput;
+import io.github.mmm.ui.tvm.widget.time.TvmDateTimeInput;
 
 /**
  * {@link UiSingleWidgetFactoryNative} for {@link UiDateTimeInput}.

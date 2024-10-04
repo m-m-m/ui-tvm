@@ -15,7 +15,6 @@ import io.github.mmm.ui.api.widget.data.UiColumn;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
 import io.github.mmm.value.PropertyPath;
-import io.github.mmm.value.TypedPropertyPath;
 
 /**
  * Implementation of {@link UiColumn} for TeaVM.
@@ -30,7 +29,7 @@ public class TvmTableColumn<R, V> extends TvmWidgetHtmlElement<HTMLElement> impl
 
   final ColumnAdapter<R, V> adapter;
 
-  final TypedPropertyPath<V> property;
+  final PropertyPath<V> property;
 
   private HTMLElement label;
 
@@ -61,12 +60,12 @@ public class TvmTableColumn<R, V> extends TvmWidgetHtmlElement<HTMLElement> impl
    * @param table the owning {@link TvmAbstractDataTable}.
    * @param property the {@link PropertyPath}.
    */
-  public TvmTableColumn(TvmAbstractDataTable<R> table, TypedPropertyPath<V> property) {
+  public TvmTableColumn(TvmAbstractDataTable<R> table, PropertyPath<V> property) {
 
     this(table, null, property);
   }
 
-  private TvmTableColumn(TvmAbstractDataTable<R> table, ColumnAdapter<R, V> adapter, TypedPropertyPath<V> property) {
+  private TvmTableColumn(TvmAbstractDataTable<R> table, ColumnAdapter<R, V> adapter, PropertyPath<V> property) {
 
     super(newTableHeaderCell());
     this.table = table;

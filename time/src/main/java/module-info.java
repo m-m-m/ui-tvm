@@ -5,19 +5,19 @@
 
 /**
  * Provides the implementation of the UI framework based on TeaVM.
- * 
+ *
  * @provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
  */
 @SuppressWarnings("rawtypes") //
-module io.github.mmm.ui.tvm.temporal {
+module io.github.mmm.ui.tvm.time {
 
-  requires transitive io.github.mmm.ui.api.temporal;
+  requires transitive io.github.mmm.ui.api.time;
 
   requires transitive io.github.mmm.ui.tvm.core;
 
   provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative with //
-      io.github.mmm.ui.tvm.factory.temporal.TvmFactoryDateInput, //
-      io.github.mmm.ui.tvm.factory.temporal.TvmFactoryDateTimeInput, //
-      io.github.mmm.ui.tvm.factory.temporal.TvmFactoryTimeInput;
+      io.github.mmm.ui.tvm.factory.time.TvmFactoryDateInput, //
+      io.github.mmm.ui.tvm.factory.time.TvmFactoryDateTimeInput, //
+      io.github.mmm.ui.tvm.factory.time.TvmFactoryTimeInput;
 
 }

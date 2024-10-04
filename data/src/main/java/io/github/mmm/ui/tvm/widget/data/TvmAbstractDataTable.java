@@ -16,7 +16,7 @@ import io.github.mmm.ui.api.widget.data.UiAbstractDataTable;
 import io.github.mmm.ui.api.widget.data.UiColumn;
 import io.github.mmm.ui.api.widget.data.UiDataTable;
 import io.github.mmm.ui.tvm.widget.input.TvmHtmlInput;
-import io.github.mmm.value.TypedPropertyPath;
+import io.github.mmm.value.PropertyPath;
 
 /**
  * Implementation of {@link UiDataTable} for TeaVM.
@@ -62,7 +62,7 @@ public abstract class TvmAbstractDataTable<R> extends TvmAbstractDataWidget<R>
   }
 
   @Override
-  public <V> UiColumn<R, V> createColumn(TypedPropertyPath<V> property) {
+  public <V> UiColumn<R, V> createColumn(PropertyPath<V> property) {
 
     TvmTableColumn<R, V> column = new TvmTableColumn<>(this, property);
     String title = UiLocalizer.get().localize(property.getName());

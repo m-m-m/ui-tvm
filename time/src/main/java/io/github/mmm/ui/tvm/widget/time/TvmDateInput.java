@@ -1,39 +1,39 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.tvm.widget.temporal;
+package io.github.mmm.ui.tvm.widget.time;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
-import io.github.mmm.ui.api.widget.temporal.UiTimeInput;
+import io.github.mmm.ui.api.widget.time.UiDateInput;
 import io.github.mmm.ui.tvm.widget.input.TvmTextualInput;
 
 /**
- * Implementation of {@link UiTimeInput} using TeaVM.
+ * Implementation of {@link UiDateInput} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmTimeInput extends TvmTextualInput<LocalTime> implements UiTimeInput {
+public class TvmDateInput extends TvmTextualInput<LocalDate> implements UiDateInput {
 
   /**
    * The constructor.
    */
-  public TvmTimeInput() {
+  public TvmDateInput() {
 
-    super("time");
+    super("date");
   }
 
   @Override
-  public LocalTime getValueOrThrow() {
+  public LocalDate getValueOrThrow() {
 
     String value = this.widget.getValue();
     if (isEmpty(value)) {
       return null;
     }
-    return LocalTime.parse(value);
+    return LocalDate.parse(value);
   }
 
   @Override
-  protected void setValueNative(LocalTime value) {
+  protected void setValueNative(LocalDate value) {
 
     if (value == null) {
       setText("");
